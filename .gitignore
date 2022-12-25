@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+.vscode
+node_modules
+bower_components
+npm-debug.log
+Desktop.ini
+._*
+Thumbs.db
+.Spotlight-V100
+.Trashes

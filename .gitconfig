@@ -1,0 +1,70 @@
+[user]
+email = cooperrunyanspam@gmail.com
+name = cooperrunyan
+signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB74Hf2I9YmY0kJUZy1RGWmBTNMMLbJAwHBmleTMviUw
+
+[github]
+user = cooperrunyan
+
+[init]
+defaultBranch = main
+
+[alias]
+amend = commit --amend --reuse-message=HEAD
+unstage = reset --hard HEAD
+c = commit -m
+aa = add -A
+ch = checkout
+p = push
+b = branch
+db = branch -D
+yolo = commit -m \"$(curl -s https://whatthecommit.com/index.txt)\"
+lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+[gpg]
+format = ssh
+
+[gpg "ssh"]
+program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+[commit]
+gpgsign = true
+
+[core]
+editor = code --wait
+filemode = false
+
+[pull]
+rebase = true
+
+[fetch]
+prune = true
+
+[core]
+# Use custom `.gitignore` and `.gitattributes`
+excludesfile = ~/.gitignore
+attributesfile = ~/.gitattributes
+
+# Make `git rebase` safer on macOS
+trustctime = false
+
+# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+precomposeunicode = false
+
+# Speed up commands involving untracked files such as `git status`.
+untrackedCache = true
+
+[color]
+# Use colors in Git commands that are capable of colored output when
+# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+ui = auto
+
+[help]
+# Automatically correct and execute mistyped commands
+autocorrect = 1
+
+[url "git@github.com:"]
+insteadOf = "gh:"
+pushInsteadOf = "g:"
+pushInsteadOf = "github:"
+pushInsteadOf = "git://github.com/"
