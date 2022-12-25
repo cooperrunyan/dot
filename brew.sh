@@ -57,8 +57,8 @@ brew install gh
 brew install bottom
 brew install bat
 
-brew cask install 1password-cli
-brew cask install font-roboto-mono-nerd-font
+brew install --cask 1password-cli
+brew install --cask font-roboto-mono-nerd-font
 
 # Remove outdated versions from the cellar.
 brew cleanup
