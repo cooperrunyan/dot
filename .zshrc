@@ -26,3 +26,5 @@ ENABLE_CORRECTION="true"
 source $ZSH/oh-my-zsh.sh
 
 PROMPT='[$(battery_pct)%%] %(?.%F{green}--.%F{red}XX)%f %1~: '
+
+source $HOME/.config/op/plugins.sh

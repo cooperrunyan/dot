@@ -12,4 +12,3 @@ export GOPATH=$(go env GOPATH)
 export PATH="$GOPATH:$PATH"
 export PATH="$GOPATH/bin:$PATH"
 
-eval "${HOMEBREW_PREFIX}/bin/brew shellenv"
