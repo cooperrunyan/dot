@@ -31,7 +31,7 @@ program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 gpgsign = true
 
 [core]
-editor = code --wait
+	editor = code
 filemode = false
 
 [pull]
