@@ -7,6 +7,8 @@ export ZSH_HOME="${ZSH_HOME:-$HOME}"
 ZSH=$ZSH_HOME/.oh-my-zsh
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+ZSH_COMPDUMP="${XDG_CACHE_HOME:-${HOME}/.cache}/zcompdump/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+
 HISTSIZE=10000
 SAVEHIST=9000
 HISTFILE=$ZSH_HOME/.zsh_history

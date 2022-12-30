@@ -133,7 +133,7 @@ if [ $MOVES_SPACE -eq 1 ]; then
 fi
 
 for link in ${links[@]}; do
-  echo "Linked file: ${link//\\/ }"
+  echo "Linked: ${link//\\/ }"
 done
 
 echo " "
