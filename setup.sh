@@ -82,12 +82,25 @@ for link in ${links[@]}; do
   echo "Linked file: ${link//\\/ }"
 done
 
-git clone --recurse https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_HOME/custom/plugins/zsh-autosuggestions # zsh-autosuggestions
+# zsh-autosuggestions
+if [ -d $ZSH/custom/plugins/zsh-autosuggestions ]; then
+  git -C $ZSH/custom/plugins/zsh-autosuggestions pull --recurse-submodules
+else
+  git clone --recurse https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/custom/plugins/zsh-autosuggestions
+fi
 
 # zsh-syntax-highlighting
-git clone --recurse https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_HOME/custom/plugins/zsh-syntax-highlighting
+if [ -d $ZSH/custom/plugins/zsh-syntax-highlighting ]; then
+  git -C $ZSH/custom/plugins/zsh-syntax-highlighting pull --recurse-submodules
+else
+  git clone --recurse https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting #
+fi
 
 # Powerlevel10k
-git clone --recurse https://github.com/romkatv/powerlevel10k.git $ZSH_HOME/custom/themes/powerlevel10k
+if [ -d $ZSH/custom/themes/powerlevel10k ]; then
+  git -C $ZSH/custom/themes/powerlevel10k pull --recurse-submodules
+else
+  git clone --recurse https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
+fi
 
 echo "$DIR" >$DIR/home/.zsh/dotfiles
