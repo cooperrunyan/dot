@@ -21,7 +21,7 @@ for arg in $@; do
   test $arg == "--no-pull" && PULL=0
 done
 
-# test $PULL == 1 && git pull -C $DIR --recurse-submodules
+test $PULL == 1 && git pull -C $DIR --recurse-submodules
 
 if ! [ -r $DIR/home/.zsh/.oh-my-zsh ]; then
   echo "Cloning OMZ..."
