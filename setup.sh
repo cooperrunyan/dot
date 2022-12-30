@@ -8,9 +8,16 @@ while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
 
-echo "$DIR" >$DIR/home/.zsh/dotfiles
+if [ -r $ZSH_HOME/dotfiles ]; then
+  DIR=$(cat $ZSH_HOME/dotfiles)
+fi
 
-git -C $DIR pull --recurse-submodules
+PULL=1
+for arg in $@; do
+  test $arg == "--no-pull" && PULL=0
+done
+
+test $PULL == 1 && git -C $DIR pull --recurse-submodules
 
 SYM_BASE=$DIR/home
 
@@ -74,3 +81,13 @@ for link in ${links[@]}; do
   link="${link//\/\///}"
   echo "Linked file: ${link//\\/ }"
 done
+
+git clone --recurse https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_HOME/custom/plugins/zsh-autosuggestions # zsh-autosuggestions
+
+# zsh-syntax-highlighting
+git clone --recurse https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_HOME/custom/plugins/zsh-syntax-highlighting
+
+# Powerlevel10k
+git clone --recurse https://github.com/romkatv/powerlevel10k.git $ZSH_HOME/custom/themes/powerlevel10k
+
+echo "$DIR" >$DIR/home/.zsh/dotfiles
