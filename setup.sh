@@ -21,7 +21,7 @@ for arg in $@; do
   test $arg == "--no-pull" && PULL=0
 done
 
-test $PULL == 1 && git -C $DIR update --recurse-submodules
+test $PULL == 1 && git -C $DIR pull --recurse-submodules
 
 if ! [ -r $DIR/home/.zsh/.oh-my-zsh ]; then
   git -C $DIR submodule init https://www.github.com/ohmyzsh/ohmyzsh.git $DIR/home/.zsh/.oh-my-zsh
