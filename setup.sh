@@ -16,21 +16,21 @@ if [ -d $1 ]; then
   DIR=${DIR:-$1}
 fi
 
+echo "Setting up dotfiles pointing to ~/${DIR//$HOME\//}"
+
 PULL=1
 for arg in $@; do
   test $arg == "--no-pull" && PULL=0
 done
 
-test $PULL == 1 && git -C $DIR pull --recurse-submodules
+test $PULL == 1 && echo "Pulling dotfile repository" && git -C $DIR pull -q --recurse-submodules
 
 if ! [ -r $DIR/home/.zsh/.oh-my-zsh ]; then
-  echo "Cloning OMZ..."
-  git clone https://www.github.com/ohmyzsh/ohmyzsh.git $DIR/home/.zsh/.oh-my-zsh
+  echo "Cloning OMZ"
+  git clone -q https://www.github.com/ohmyzsh/ohmyzsh.git $DIR/home/.zsh/.oh-my-zsh
 else
-  test $PULL == 0 && git -C $DIR submodule update
+  test $PULL == 0 && echo "Pulling OMZ" && git -C $DIR/home/.zsh/.oh-my-zsh pull -q
 fi
-
-test $PULL == 0 && git -C $DIR/home/.zsh/.oh-my-zsh pull
 
 SYM_BASE=$DIR/home
 
@@ -42,7 +42,11 @@ prefer_children=(
 
 links=()
 folders=()
+moves=()
 
+echo " "
+echo "Creating symlinks:"
+echo " "
 for prefer_child in ${prefer_children[@]}; do
   if ! [ -d $HOME/$prefer_child ]; then
     mkdir $HOME/$prefer_child
@@ -57,7 +61,7 @@ for prefer_child in ${prefer_children[@]}; do
     if [ -L $sym ]; then
       rm -rf $sym
     else
-      echo "$sym is not a symlink"
+      moves+=($sym)
       mv $sym "$sym.old"
     fi
     ln -sf "$item" "$sym"
@@ -97,40 +101,67 @@ for item in $SYM_BASE/{*,.*}; do
   if [ -L $sym ]; then
     rm -rf $sym
   else
-    echo "$sym is not a symlink"
+    moves+=($sym)
     mv $sym "$sym.old"
   fi
   ln -sf "$item" "$sym"
   links+=("~/${sym//$HOME\//}\\\\-->\\\\~/${item//$HOME\//}")
 done
 
+FOLDER_SPACE=0
 for folder in ${folders[@]}; do
+  FOLDER_SPACE=1
   echo "Made directory: ~/$folder/"
 done
+
+if [ $FOLDER_SPACE -eq 1 ]; then
+  echo " "
+fi
+
+MOVES_SPACE=0
+for sym in ${moves[@]}; do
+  MOVES_SPACE=1
+  echo "~/${sym//$HOME\//} already existed (moved to ~/${sym//$HOME\//}.old)"
+done
+
+if [ $MOVES_SPACE -eq 1 ]; then
+  echo " "
+fi
 
 for link in ${links[@]}; do
   echo "Linked file: ${link//\\/ }"
 done
 
+echo " "
+
 # zsh-autosuggestions
 if [ -d $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
-  git -C $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions pull --recurse-submodules
+  echo 'Pulling zsh-autosuggestions'
+  git -C $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions pull -q --recurse-submodules
 else
-  git clone --recurse https://github.com/zsh-users/zsh-autosuggestions.git $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  echo 'Cloning zsh-autosuggestions'
+  git clone -q --recurse https://github.com/zsh-users/zsh-autosuggestions.git $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 fi
 
 # zsh-syntax-highlighting
 if [ -d $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; then
-  git -C $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting pull --recurse-submodules
+  echo 'Pulling zsh-syntax-highlighting'
+  git -C $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting pull -q --recurse-submodules
 else
-  git clone --recurse https://github.com/zsh-users/zsh-syntax-highlighting.git $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting #
+  echo 'Cloning zsh-syntax-highlighting'
+  git clone -q --recurse https://github.com/zsh-users/zsh-syntax-highlighting.git $DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting #
 fi
 
 # Powerlevel10k
 if [ -d $DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k ]; then
-  git -C $DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k pull --recurse-submodules
+  echo 'Pulling powerlevel10k'
+  git -C $DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k pull -q --recurse-submodules
 else
-  git clone --recurse https://github.com/romkatv/powerlevel10k.git $DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k
+  echo 'Cloning powerlevel10k'
+  git clone -q --recurse https://github.com/romkatv/powerlevel10k.git $DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k
 fi
 
 echo "$DIR" >$DIR/home/.zsh/dotfiles
+
+echo " "
+echo "Done"
