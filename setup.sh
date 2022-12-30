@@ -61,8 +61,10 @@ for prefer_child in ${prefer_children[@]}; do
     if [ -L $sym ]; then
       rm -rf $sym
     else
-      moves+=($sym)
-      mv $sym "$sym.old"
+      if [ -r $sym ]; then
+        moves+=($sym)
+        mv $sym "$sym.old"
+      fi
     fi
     ln -sf "$item" "$sym"
     links+=("~/${sym//$HOME\//}\\\\-->\\\\~/${item//$HOME\//}")
@@ -101,8 +103,10 @@ for item in $SYM_BASE/{*,.*}; do
   if [ -L $sym ]; then
     rm -rf $sym
   else
-    moves+=($sym)
-    mv $sym "$sym.old"
+    if [ -r $sym ]; then
+      moves+=($sym)
+      mv $sym "$sym.old"
+    fi
   fi
   ln -sf "$item" "$sym"
   links+=("~/${sym//$HOME\//}\\\\-->\\\\~/${item//$HOME\//}")
