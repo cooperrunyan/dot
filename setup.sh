@@ -50,9 +50,18 @@ for prefer_child in ${prefer_children[@]}; do
   fi
 
   for item in $SYM_BASE/$prefer_child/*; do
-    sym=$HOME/${item//$SYM_BASE/}
-    ln -sf "${item//\/\///}" "${sym//\/\///}"
-    links+="~${sym//$HOME/}\\\\-->\\\\~${item//$HOME/} "
+    sym=$HOME/${item//$SYM_BASE\//}
+    sym=${sym//\/\///}
+    item=${item//\/\///}
+
+    if [ -L $sym ]; then
+      rm -rf $sym
+    else
+      echo "$sym is not a symlink"
+      mv $sym "$sym.old"
+    fi
+    ln -sf "$item" "$sym"
+    links+=("~/${sym//$HOME\//}\\\\-->\\\\~/${item//$HOME\//}")
   done
   unset item
 done
@@ -82,8 +91,17 @@ for item in $SYM_BASE/{*,.*}; do
 
   sym=$HOME/${item//$SYM_BASE\//}
 
-  ln -sf "${item//\/\///}" "${sym//\/\///}"
-  links+=("~/${sym//$HOME/}\\\\-->\\\\~/${item//$HOME/}")
+  item=${item//\/\///}
+  sym=${sym//\/\///}
+
+  if [ -L $sym ]; then
+    rm -rf $sym
+  else
+    echo "$sym is not a symlink"
+    mv $sym "$sym.old"
+  fi
+  ln -sf "$item" "$sym"
+  links+=("~/${sym//$HOME\//}\\\\-->\\\\~/${item//$HOME\//}")
 done
 
 for folder in ${folders[@]}; do
@@ -91,7 +109,6 @@ for folder in ${folders[@]}; do
 done
 
 for link in ${links[@]}; do
-  link="${link//\/\///}"
   echo "Linked file: ${link//\\/ }"
 done
 
