@@ -29,7 +29,7 @@ for prefer_child in ${prefer_children[@]}; do
 
   for item in $SYM_BASE/$prefer_child/*; do
     sym=$HOME/${item//$SYM_BASE/}
-    # ln -sf "$item" "$sym"
+    ln -sf "$item" "$sym"
     links+="~${sym//$HOME/}\\\\-->\\\\~${item//$HOME/} "
   done
   unset item
@@ -60,7 +60,7 @@ for item in $SYM_BASE/{*,.*}; do
 
   sym=$HOME/${item//$SYM_BASE\//}
 
-  # ln -sf "$item" "$sym"
+  ln -sf "$item" "$sym"
   links+=("~/${sym//$HOME/}\\\\-->\\\\~/${item//$HOME/}")
 done
 
