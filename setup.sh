@@ -12,6 +12,10 @@ if [ -r $ZSH_HOME/dotfiles ]; then
   DIR=$(cat $ZSH_HOME/dotfiles)
 fi
 
+if [ -d $1 ]; then
+  DIR=$1
+fi
+
 PULL=1
 for arg in $@; do
   test $arg == "--no-pull" && PULL=0
@@ -38,7 +42,7 @@ for prefer_child in ${prefer_children[@]}; do
 
   for item in $SYM_BASE/$prefer_child/*; do
     sym=$HOME/${item//$SYM_BASE/}
-    ln -sf "$item" "$sym"
+    echo "${item//\/\///}" "${sym//\/\///}"
     links+="~${sym//$HOME/}\\\\-->\\\\~${item//$HOME/} "
   done
   unset item
@@ -69,7 +73,7 @@ for item in $SYM_BASE/{*,.*}; do
 
   sym=$HOME/${item//$SYM_BASE\//}
 
-  ln -sf "$item" "$sym"
+  echo "${item//\/\///}" "${sym//\/\///}"
   links+=("~/${sym//$HOME/}\\\\-->\\\\~/${item//$HOME/}")
 done
 
