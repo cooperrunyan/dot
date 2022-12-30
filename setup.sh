@@ -13,7 +13,7 @@ if [ -r $ZSH_HOME/dotfiles ]; then
 fi
 
 if [ -d $1 ]; then
-  DIR=$1
+  DIR=${DIR:-$1}
 fi
 
 PULL=1
@@ -21,15 +21,16 @@ for arg in $@; do
   test $arg == "--no-pull" && PULL=0
 done
 
-test $PULL == 1 && git -C $DIR pull --recurse-submodules
+# test $PULL == 1 && git pull -C $DIR --recurse-submodules
 
 if ! [ -r $DIR/home/.zsh/.oh-my-zsh ]; then
-  git clone -C $DIR https://www.github.com/ohmyzsh/ohmyzsh.git $DIR/home/.zsh/.oh-my-zsh
+  echo "Cloning OMZ..."
+  git clone https://www.github.com/ohmyzsh/ohmyzsh.git $DIR/home/.zsh/.oh-my-zsh
 else
   test $PULL == 0 && git -C $DIR submodule update
 fi
 
-test $PULL == 0 && git -C $DIR/home/.zsh/.oh-my-zsh pull
+test $PULL == 0 && git pull -C $DIR/home/.zsh/.oh-my-zsh
 
 SYM_BASE=$DIR/home
 
@@ -50,7 +51,7 @@ for prefer_child in ${prefer_children[@]}; do
 
   for item in $SYM_BASE/$prefer_child/*; do
     sym=$HOME/${item//$SYM_BASE/}
-    echo "${item//\/\///}" "${sym//\/\///}"
+    ln -sf "${item//\/\///}" "${sym//\/\///}"
     links+="~${sym//$HOME/}\\\\-->\\\\~${item//$HOME/} "
   done
   unset item
@@ -81,7 +82,7 @@ for item in $SYM_BASE/{*,.*}; do
 
   sym=$HOME/${item//$SYM_BASE\//}
 
-  echo "${item//\/\///}" "${sym//\/\///}"
+  ln -sf "${item//\/\///}" "${sym//\/\///}"
   links+=("~/${sym//$HOME/}\\\\-->\\\\~/${item//$HOME/}")
 done
 
