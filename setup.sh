@@ -21,7 +21,15 @@ for arg in $@; do
   test $arg == "--no-pull" && PULL=0
 done
 
-test $PULL == 1 && git -C $DIR pull --recurse-submodules
+test $PULL == 1 && git -C $DIR update --recurse-submodules
+
+if ! [ -r $DIR/home/.zsh/.oh-my-zsh ]; then
+  git -C $DIR submodule init https://www.github.com/ohmyzsh/ohmyzsh.git $DIR/home/.zsh/.oh-my-zsh
+else
+  test $PULL == 0 && git -C $DIR submodule update
+fi
+
+test $PULL == 0 && git -C $DIR/home/.zsh/.oh-my-zsh pull
 
 SYM_BASE=$DIR/home
 
@@ -86,25 +94,25 @@ for link in ${links[@]}; do
   echo "Linked file: ${link//\\/ }"
 done
 
-# zsh-autosuggestions
-if [ -d $ZSH/custom/plugins/zsh-autosuggestions ]; then
-  git -C $ZSH/custom/plugins/zsh-autosuggestions pull --recurse-submodules
-else
-  git clone --recurse https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/custom/plugins/zsh-autosuggestions
-fi
+# # zsh-autosuggestions
+# if [ -d $ZSH/custom/plugins/zsh-autosuggestions ]; then
+#   git -C $ZSH/custom/plugins/zsh-autosuggestions pull --recurse-submodules
+# else
+#   git clone --recurse https://github.com/zsh-users/zsh-autosuggestions.git $ZSH/custom/plugins/zsh-autosuggestions
+# fi
 
-# zsh-syntax-highlighting
-if [ -d $ZSH/custom/plugins/zsh-syntax-highlighting ]; then
-  git -C $ZSH/custom/plugins/zsh-syntax-highlighting pull --recurse-submodules
-else
-  git clone --recurse https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting #
-fi
+# # zsh-syntax-highlighting
+# if [ -d $ZSH/custom/plugins/zsh-syntax-highlighting ]; then
+#   git -C $ZSH/custom/plugins/zsh-syntax-highlighting pull --recurse-submodules
+# else
+#   git clone --recurse https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH/custom/plugins/zsh-syntax-highlighting #
+# fi
 
-# Powerlevel10k
-if [ -d $ZSH/custom/themes/powerlevel10k ]; then
-  git -C $ZSH/custom/themes/powerlevel10k pull --recurse-submodules
-else
-  git clone --recurse https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
-fi
+# # Powerlevel10k
+# if [ -d $ZSH/custom/themes/powerlevel10k ]; then
+#   git -C $ZSH/custom/themes/powerlevel10k pull --recurse-submodules
+# else
+#   git clone --recurse https://github.com/romkatv/powerlevel10k.git $ZSH/custom/themes/powerlevel10k
+# fi
 
 echo "$DIR" >$DIR/home/.zsh/dotfiles
