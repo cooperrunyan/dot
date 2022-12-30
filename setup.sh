@@ -21,7 +21,7 @@ for arg in $@; do
   test $arg == "--no-pull" && PULL=0
 done
 
-test $PULL == 1 && git pull -C $DIR --recurse-submodules
+test $PULL == 1 && git -C $DIR pull --recurse-submodules
 
 if ! [ -r $DIR/home/.zsh/.oh-my-zsh ]; then
   echo "Cloning OMZ..."
@@ -30,7 +30,7 @@ else
   test $PULL == 0 && git -C $DIR submodule update
 fi
 
-test $PULL == 0 && git pull -C $DIR/home/.zsh/.oh-my-zsh
+test $PULL == 0 && git -C $DIR/home/.zsh/.oh-my-zsh pull
 
 SYM_BASE=$DIR/home
 
