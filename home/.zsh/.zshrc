@@ -22,8 +22,8 @@ plugins=(
 )
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-if [[ -r "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "$HOME/.cache/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r "$HOME/.cache/p10k-instant-prompt-$(whoami).zsh" ]]; then
+  source "$HOME/.cache/p10k-instant-prompt-$(whoami).zsh"
 fi
 
 for file in $ZSH_HOME/{path,env,aliases,functions,.p10k}.zsh; do
@@ -36,5 +36,3 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.config/op/plugins.sh ]] || source ~/.config/op/plugins.sh
 
 test -e "${ZSH_HOME}/.iterm2_shell_integration.zsh" && source "${ZSH_HOME}/.iterm2_shell_integration.zsh"
-
-

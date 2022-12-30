@@ -8,6 +8,8 @@ while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
 
+echo "$DIR" >$DIR/home/.zsh/dotfiles
+
 git -C $DIR pull --recurse-submodules
 
 SYM_BASE=$DIR/home
