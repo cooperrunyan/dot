@@ -6,7 +6,11 @@ while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
   SOURCE=$(readlink "$SOURCE")
   [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
-SYM_BASE=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)/home
+DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
+
+git -C $DIR pull --recurse-submodules
+
+SYM_BASE=$DIR/home
 
 # Link the contents instead of the whole folder
 prefer_children=(
@@ -14,14 +18,19 @@ prefer_children=(
   .scripts
 )
 
+links=()
+folders=()
+
 for prefer_child in ${prefer_children[@]}; do
   if ! [ -d $HOME/$prefer_child ]; then
     mkdir $HOME/$prefer_child
+    folders+="$prefer_child"
   fi
 
   for item in $SYM_BASE/$prefer_child/*; do
     sym=$HOME/${item//$SYM_BASE/}
-    ln -sf "$item" "$sym"
+    # ln -sf "$item" "$sym"
+    links+="~${sym//$HOME/}\\\\-->\\\\~${item//$HOME/} "
   done
   unset item
 done
@@ -49,7 +58,17 @@ for item in $SYM_BASE/{*,.*}; do
     continue
   fi
 
-  sym=$HOME/${item//$SYM_BASE/}
+  sym=$HOME/${item//$SYM_BASE\//}
 
-  ln -sf "$item" "$sym"
+  # ln -sf "$item" "$sym"
+  links+=("~/${sym//$HOME/}\\\\-->\\\\~/${item//$HOME/}")
+done
+
+for folder in ${folders[@]}; do
+  echo "Made directory: ~/$folder/"
+done
+
+for link in ${links[@]}; do
+  link="${link//\/\///}"
+  echo "Linked file: ${link//\\/ }"
 done
