@@ -10,26 +10,25 @@ while true; do
   kill -0 "$$" || exit
 done 2>/dev/null &
 
-echo "Deleting .DS_Store files"
-find ~ -type f -name '*.DS_Store' -ls -delete
+echo "Starting"
 echo " "
+
+echo "  Deleting .DS_Store files"
+find ~ -type f -name '*.DS_Store' -ls -delete | echo
 
 # Flush Directory Service cache
-echo "Flushing Directory Service cache"
-dscacheutil -flushcache
-echo " "
+echo "  Flushing Directory Service cache"
+dscacheutil -flushcache | echo
 
-echo "Empty the Trash on all volumes and device"
-killall -HUP mDNSResponder && sudo rm -rfv /Volumes/*/.Trashes
-sudo rm -rfv ~/.Trash
-echo " "
+echo "  Empty the Trash on all volumes and device"
+killall -HUP mDNSResponder
+sudo rm -rfv /Volumes/*/.Trashes | echo
+sudo rm -rfv ~/.Trash | echo
 
-echo "Clear System Logs to improve shell startup speed"
-sudo rm -rfv /private/var/log/asl/*.asl
-echo " "
+echo "  Clear System Logs to improve shell startup speed"
+sudo rm -rfv /private/var/log/asl/*.asl | echo
 
-echo "Clear download history from quarantine" # https://mths.be/bum
-sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'
-echo " "
+echo "  Clear download history from quarantine" # https://mths.be/bum
+sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent' | echo
 
 echo "Done"
