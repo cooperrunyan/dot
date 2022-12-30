@@ -31,7 +31,7 @@ program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 gpgsign = true
 
 [core]
-	editor = code
+editor = code
 filemode = false
 
 [pull]
@@ -65,6 +65,8 @@ autocorrect = 1
 
 [url "git@github.com:"]
 insteadOf = "gh:"
-pushInsteadOf = "g:"
 pushInsteadOf = "github:"
 pushInsteadOf = "git://github.com/"
+
+[url "https://www.github.com/"]
+insteadOf = "g/"
