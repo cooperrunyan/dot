@@ -178,3 +178,12 @@ if ! command -v brew &>/dev/null; then
   echo "Homebrew is not installed, run \`$DIR/packages.sh\` to install it and additional packages"
   echo " "
 fi
+
+if ! command -v zsh &>/dev/null; then
+  echo " "
+  echo "Zsh is not installed."
+  echo "Install it, then run (location is probably something like /bin/zsh):"
+  echo "chsh -s <location>"
+  echo " "
+  exit 1
+fi

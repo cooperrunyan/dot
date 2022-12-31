@@ -90,7 +90,7 @@ else
 fi
 
 packages=(
-  wget\\--with-iri
+  wget
   vim
   neovim
   grep
@@ -120,7 +120,7 @@ packages=(
 for package in ${packages[*]}; do
   package=${package//\\/ }
   echo "Installing: $package"
-  brew install $package
+  brew list ${package//--cask /} || (echo "Installing: $package" && brew install $package)
 done
 
 echo " "
