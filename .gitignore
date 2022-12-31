@@ -11,4 +11,5 @@ Thumbs.db
 .Trashes
 .zsh_history
 home/.zsh/.zsh_history
-home/.zsh/dotfiles
+home/.zsh/custom/*
+!home/.zsh/custom/example.zsh

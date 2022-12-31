@@ -8,15 +8,15 @@ while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symli
 done
 DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
 
-if [ -r $ZSH_HOME/dotfiles ]; then
-  DIR=$(cat $ZSH_HOME/dotfiles)
-fi
+DIR=${DIR:-$DOTFILE_PATH}
 
 if [ -d $1 ]; then
   DIR=${DIR:-$1}
 fi
 
 echo "Setting up dotfiles pointing to ~/${DIR//$HOME\//}"
+
+! [ -d $DIR/home/.zsh/custom ] && mkdir $DIR/home/.zsh/custom
 
 PULL=1
 for arg in $@; do
@@ -165,7 +165,16 @@ else
   git clone -q --recurse https://github.com/romkatv/powerlevel10k.git $DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k
 fi
 
-echo "$DIR" >$DIR/home/.zsh/dotfiles
+file="export DOTFILE_PATH=${DIR//$HOME/\$HOME}"
+
+! [ -d $DIR/home/.zsh/custom ] && mkdir $DIR/home/.zsh/custom
+echo $file >$DIR/home/.zsh/custom/dotfiles.zsh
 
 echo " "
-echo "Done"
+echo "Done setting up dotfiles"
+
+if ! command -v brew &>/dev/null; then
+  echo " "
+  echo "Homebrew is not installed, run \`$DIR/packages.sh\` to install it and additional packages"
+  echo " "
+fi

@@ -12,6 +12,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export GOPATH=$(go env GOPATH)
 export PATH="$GOPATH:$PATH"
 export PATH="$GOPATH/bin:$PATH"
-
-# Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"

@@ -19,6 +19,7 @@ plugins=(
   zsh-syntax-highlighting
   web-search
   macos
+  brew
   dotenv
   1password
 )
@@ -27,6 +28,11 @@ plugins=(
 if [[ -r "$HOME/.cache/p10k-instant-prompt-$(whoami).zsh" ]]; then
   source "$HOME/.cache/p10k-instant-prompt-$(whoami).zsh"
 fi
+
+for file in $ZSH_HOME/custom/*.zsh; do
+  [ -r "$file" ] && [ -f "$file" ] && source "$file"
+done
+unset file
 
 for file in $ZSH_HOME/{path,env,aliases,functions,.p10k}.zsh; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"

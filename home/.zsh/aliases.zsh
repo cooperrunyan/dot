@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 alias pretty="prettier --config ~/.prettierrc -w ."
-alias repo="g remote get-url origin | open"
+alias repo="open \$(g remote get-url origin)"
 
 alias dev="cd ~/dev"
 

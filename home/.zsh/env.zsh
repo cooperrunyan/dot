@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 export ZSH="$ZSH_HOME/.oh-my-zsh"
 
 export EDITOR="code --wait"
@@ -17,5 +15,3 @@ export LANG='en_US.UTF-8'
 export GPG_TTY=$(tty)
 
 export WAKATIME_HOME=$HOME/.wakatime
-
-export DOTFILE_PATH=$(cat $ZSH_HOME/dotfiles)
