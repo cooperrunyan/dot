@@ -34,11 +34,12 @@ nvimtree.setup({
 		},
 	},
 	filters = {
-		dotfiles = true,
+		--		dotfiles = true,
 		custom = {
 			".DS_Store",
 			"yarn.lock",
 			"package-lock.json",
+			".git",
 		},
 	},
 })
