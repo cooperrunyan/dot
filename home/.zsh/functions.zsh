@@ -30,9 +30,9 @@ function update() {
   brew update
   brew upgrade
   brew cleanup
-  npm install npm -g
-  npm update -g
-  [ $1 ] || reboot
+  sudo npm install npm -g
+  sudo npm update -g
+  [ $1 ] || sudo reboot
 }
 
 function get_external_ip() {
