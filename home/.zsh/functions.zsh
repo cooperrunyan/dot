@@ -1,14 +1,50 @@
 # Create a new directory and enter it
-function mkd() {
+function mkdir_move() {
   mkdir -p "$@" && cd "$@"
 }
 
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
-function o() {
+function openx() {
   if [ $# -eq 0 ]; then
     open .
   else
     open "$@"
   fi
+}
+
+function run_prettier() {
+  if [ $# -eq 0 ]; then
+    prettier --config ~/.prettierrc -w .
+  else
+    prettier --config ~/.prettierrc -w "$@"
+  fi
+}
+
+function open_git_repo() {
+  open $(g remote get-url origin)
+}
+
+function update() {
+  sudo softwareupdate -i -a
+  brew update
+  brew upgrade
+  brew cleanup
+  npm install npm -g
+  npm update -g
+  [ $1 ] || reboot
+}
+
+function get_external_ip() {
+  return dig +short myip.opendns.com @resolver1.opendns.com
+}
+
+function get_local_ip() {
+  return ipconfig getifaddr en0
+}
+
+function execute_script() {
+  script="$HOME/.scripts/$1.zsh"
+  [ -x script ] && return $script
+  zsh -e $script
 }
