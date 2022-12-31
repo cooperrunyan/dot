@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 clear
 
 export ZSH_HOME="${ZSH_HOME:-$HOME}"

@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 alias pretty="prettier --config ~/.prettierrc -w ."
 alias repo="open \$(g remote get-url origin)"
 

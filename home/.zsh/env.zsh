@@ -1,8 +1,6 @@
-#!/usr/bin/env bash
-
 export ZSH="$ZSH_HOME/.oh-my-zsh"
 
-export EDITOR="code --wait"
+export EDITOR="code"
 
 export NODE_REPL_HISTORY_SIZE='0'
 export NODE_REPL_MODE='sloppy'

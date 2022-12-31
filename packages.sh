@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # Check for homebrew
 if ! command -v brew &>/dev/null; then
