@@ -27,7 +27,7 @@ if [[ -r "$HOME/.cache/p10k-instant-prompt-$(whoami).zsh" ]]; then
   source "$HOME/.cache/p10k-instant-prompt-$(whoami).zsh"
 fi
 
-for file in $ZSH_HOME/custom/*.zsh; do
+for file in $ZSH_HOME/custom/{.*,*}.zsh; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -39,6 +39,4 @@ unset file
 
 source $ZSH/oh-my-zsh.sh
 
-[[ ! -f ~/.config/op/plugins.sh ]] || source ~/.config/op/plugins.sh
-
-test -e "${ZSH_HOME}/.iterm2_shell_integration.zsh" && source "${ZSH_HOME}/.iterm2_shell_integration.zsh"
+[[ -f ~/.config/op/plugins.sh ]] && source ~/.config/op/plugins.sh
