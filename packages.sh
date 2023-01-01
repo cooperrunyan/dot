@@ -115,6 +115,7 @@ packages=(
   bat
   --cask\\1password-cli
   --cask\\font-roboto-mono-nerd-font
+  kubectl
 )
 
 for package in ${packages[*]}; do

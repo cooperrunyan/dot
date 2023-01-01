@@ -7,6 +7,8 @@ alias sp="spotify"
 alias sudo='sudo ' # Allows aliases to be run w sudo
 
 alias pretty="run_prettier"
+alias mkd="mkdir_move"
+alias o="openx"
 alias repo="open_git_repo"
 alias ip="get_external_ip"
 alias localip="get_local_ip"
