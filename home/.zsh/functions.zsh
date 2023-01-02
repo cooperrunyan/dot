@@ -15,9 +15,9 @@ function openx() {
 
 function run_prettier() {
   if [ $# -eq 0 ]; then
-    prettier --config ~/.prettierrc -w .
+    prettier --config ~/.config/prettier/.prettierrc -w .
   else
-    prettier --config ~/.prettierrc -w "$@"
+    prettier --config ~/.config/prettier/.prettierrc -w "$@"
   fi
 }
 
