@@ -1,11 +1,11 @@
 # Create a new directory and enter it
-function mkdir_move() {
+function mkd() {
   mkdir -p "$@" && cd "$@"
 }
 
 # `o` with no arguments opens the current directory, otherwise opens the given
 # location
-function openx() {
+function o() {
   if [ $# -eq 0 ]; then
     open .
   else
@@ -13,7 +13,7 @@ function openx() {
   fi
 }
 
-function run_prettier() {
+function pretty() {
   if [ $# -eq 0 ]; then
     prettier --config ~/.config/prettier/.prettierrc -w .
   else
@@ -21,7 +21,7 @@ function run_prettier() {
   fi
 }
 
-function open_git_repo() {
+function repo() {
   open $(g remote get-url origin)
 }
 
@@ -35,15 +35,15 @@ function update() {
   [ $1 ] || sudo reboot
 }
 
-function get_external_ip() {
+function ip() {
   return dig +short myip.opendns.com @resolver1.opendns.com
 }
 
-function get_local_ip() {
+function localip() {
   return ipconfig getifaddr en0
 }
 
-function execute_script() {
+function zscript() {
   script="$HOME/.scripts/$1.zsh"
   [ -x script ] && return $script
   zsh -e $script

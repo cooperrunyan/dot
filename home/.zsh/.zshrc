@@ -34,5 +34,12 @@ HISTFILE=$ZSH_HOME/.zsh_history
 
 source $ZSH/oh-my-zsh.sh
 
+alias egrep &>/dev/null && unalias egrep &>/dev/null
+alias fgrep &>/dev/null && unalias fgrep &>/dev/null
+alias _ &>/dev/null && unalias _ &>/dev/null
+alias which-command &>/dev/null && unalias which-command &>/dev/null
+alias run-help &>/dev/null && unalias run-help &>/dev/null
+alias globurl && unalias globurl
+
 [ -f ~/.config/op/plugins.sh ] && source ~/.config/op/plugins.sh
 [ -f $ZSH_HOME/.fzf.zsh ] && source $ZSH_HOME/.fzf.zsh

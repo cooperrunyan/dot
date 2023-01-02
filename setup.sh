@@ -10,7 +10,14 @@ fi
 
 echo "Setting up dotfiles pointing to ~/${DIR//$HOME\//}"
 
-! [ -d $DIR/home/.zsh/custom ] && mkdir $DIR/home/.zsh/custom
+! [ -d $DIR/home/.zsh/custom ] && mkdir -p $DIR/home/.zsh/custom
+
+! [ -d $DIR/home/.zsh/.oh-my-zsh/custom/lib ] && mkdir -p $DIR/home/.zsh/.oh-my-zsh/custom/lib
+! [ -d $DIR/home/.zsh/.oh-my-zsh/custom/plugins ] && mkdir -p $DIR/home/.zsh/.oh-my-zsh/custom/plugins
+! [ -d $DIR/home/.zsh/.oh-my-zsh/custom/themes ] && mkdir -p $DIR/home/.zsh/.oh-my-zsh/custom/themes
+
+# .oh-my-zsh/custom/lib/directories.zsh to disable default aliases
+echo "" > $DIR/home/.zsh/.oh-my-zsh/custom/lib/directories.zsh
 
 PULL=1
 for arg in $@; do
