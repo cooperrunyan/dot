@@ -1,12 +1,6 @@
 #!/bin/sh
 
-SOURCE=${BASH_SOURCE[0]}
-while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-  DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
-  SOURCE=$(readlink "$SOURCE")
-  [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-done
-DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
+DIR=$(cd -P "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
 
 DIR=${DIR:-$DOTFILE_PATH}
 
@@ -23,7 +17,7 @@ for arg in $@; do
   test $arg == "--no-pull" && PULL=0
 done
 
-test $PULL == 1 && echo "Pulling dotfile repository" && git -C $DIR pull -q --recurse-submodules
+test $PULL == 1 && (echo "Pulling dotfile repository" && git -C $DIR pull -q --recurse-submodules)
 
 if ! [ -r $DIR/home/.zsh/.oh-my-zsh ]; then
   echo "Cloning OMZ"
@@ -165,10 +159,6 @@ else
   git clone -q --recurse https://github.com/romkatv/powerlevel10k.git $DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k
 fi
 
-file="export DOTFILE_PATH=${DIR//$HOME/\$HOME}"
-
-! [ -d $DIR/home/.zsh/custom ] && mkdir $DIR/home/.zsh/custom
-echo $file >$DIR/home/.zsh/custom/dotfiles.zsh
 
 echo " "
 echo "Done setting up dotfiles"

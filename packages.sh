@@ -1,12 +1,6 @@
 #!/bin/sh
 
-SOURCE=${BASH_SOURCE[0]}
-while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-  DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
-  SOURCE=$(readlink "$SOURCE")
-  [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
-done
-DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
+DIR=$(cd -P "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
 
 DIR=${DIR:-$DOTFILE_PATH}
 
@@ -57,23 +51,6 @@ if ! command -v brew &>/dev/null; then
       fi
     fi
   fi
-fi
-
-# Add brew env vars to .../custom/brew.zsh
-
-file="eval \"\$($(brew --prefix)/bin/brew shellenv)\""
-
-if [[ ! -d "${DOTFILE_PATH}" && ! -d "${ZSH_HOME}" ]]; then
-  echo "Add this file to your zsh config: "
-  echo $file
-  echo " "
-else
-  p=$ZSH_HOME
-  [ -d $DOTFILE_PATH ] && p=$DOTFILE_PATH/home/.zsh
-
-  ! [ -d $p/custom ] && mkdir $p/custom
-  echo $file >$p/custom/brew.zsh
-  source $p/custom/brew.zsh
 fi
 
 brew update && brew upgrade
