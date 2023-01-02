@@ -67,10 +67,5 @@
 # Automatically correct and execute mistyped commands
   autocorrect = 1
 
-[url "git@github.com:"]
-  insteadOf = "gh:"
-  pushInsteadOf = "github:"
-  pushInsteadOf = "git://github.com/"
-
 [url "https://www.github.com/"]
-  insteadOf = "g/"
+  insteadOf = "g:"
