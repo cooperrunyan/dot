@@ -1,4 +1,4 @@
-if ((!$ + commands[brew])); then
+if ! command -v brew &>/dev/null; then
   if [[ -x /opt/homebrew/bin/brew ]]; then
     BREW_LOCATION="/opt/homebrew/bin/brew"
   elif [[ -x /usr/local/bin/brew ]]; then

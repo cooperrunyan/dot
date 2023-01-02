@@ -1,13 +1,6 @@
 clear
 
-export ZSH_HOME="${ZSH_HOME:-$HOME}"
-
-export DOTFILE_PATH=$(readlink $ZSH_HOME)
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
-
-ZSH=$ZSH_HOME/.oh-my-zsh
-ZSH_THEME="powerlevel10k/powerlevel10k"
-HIST_STAMPS="dd.mm.yyyy"
+export ZDOTDIR="${ZDOTDIR:-$HOME}"
 
 plugins=(
   zsh-autosuggestions
@@ -19,18 +12,18 @@ if [[ -r "$HOME/.cache/p10k-instant-prompt-$(whoami).zsh" ]]; then
   source "$HOME/.cache/p10k-instant-prompt-$(whoami).zsh"
 fi
 
-for file in $ZSH_HOME/custom/{.*,*}.zsh; do
+for file in $ZDOTDIR/custom/{.*,*}.zsh; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
 
-for file in $ZSH_HOME/{path,env,aliases,functions,.p10k}.zsh; do
+for file in $ZDOTDIR/{brew,path,aliases,functions,.p10k,.fzf}.zsh; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
 
 ZSH_COMPDUMP="${XDG_CACHE_HOME:-${HOME}/.cache}/zcompdump/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-HISTFILE=$ZSH_HOME/.zsh_history
+HISTFILE=$ZDOTDIR/.zsh_history
 
 source $ZSH/oh-my-zsh.sh
 
@@ -42,4 +35,5 @@ alias run-help &>/dev/null && unalias run-help &>/dev/null
 alias globurl && unalias globurl
 
 [ -f ~/.config/op/plugins.sh ] && source ~/.config/op/plugins.sh
-[ -f $ZSH_HOME/.fzf.zsh ] && source $ZSH_HOME/.fzf.zsh
+
+[[ "$TERM_PROGRAM" == "vscode" ]] && source "$(code --locate-shell-integration-path zsh)"
