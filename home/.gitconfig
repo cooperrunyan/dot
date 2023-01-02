@@ -3,6 +3,10 @@
   name = cooperrunyan
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB74Hf2I9YmY0kJUZy1RGWmBTNMMLbJAwHBmleTMviUw
 
+[author]
+  name = cooperrunyan
+  email = cooperrunyanspam@gmail.com
+
 [github]
   user = cooperrunyan
 
@@ -41,17 +45,17 @@
   prune = true
 
 [core]
-# Use custom `.gitignore` and `.gitattributes`
+  # Use custom `.gitignore` and `.gitattributes`
   excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
 
-# Make `git rebase` safer on macOS
+  # Make `git rebase` safer on macOS
   trustctime = false
 
-# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+  # Prevent showing files whose names contain non-ASCII symbols as unversioned.
   precomposeunicode = false
 
-# Speed up commands involving untracked files such as `git status`.
+  # Speed up commands involving untracked files such as `git status`.
   untrackedCache = true
 
 [color]
