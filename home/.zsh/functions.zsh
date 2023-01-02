@@ -48,3 +48,22 @@ function execute_script() {
   [ -x script ] && return $script
   zsh -e $script
 }
+
+function google () {
+  if [[ $# -gt 1 ]]; then
+    b="https://www.google.com/search?q="
+    url="${b}$(omz_urlencode ${@[2,-1]})"
+  else
+    url="https://www.google.com"
+  fi
+
+  open $url
+}
+
+function brewclean() {
+  brew update
+  brew upgrade
+  brew prune
+  brew cleanup
+  brew doctor
+}

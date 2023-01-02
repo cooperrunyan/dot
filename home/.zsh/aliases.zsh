@@ -3,7 +3,7 @@ alias cat="bat"
 alias g="git"
 alias v="vim"
 alias vim="nvim"
-alias sp="spotify"
+alias spd="speedtest-cli"
 alias sudo='sudo ' # Allows aliases to be run w sudo
 
 alias pretty="run_prettier"

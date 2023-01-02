@@ -1,5 +1,15 @@
 #!/bin/sh
 
+SOURCE=${BASH_SOURCE[0]}
+while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
+  SOURCE=$(readlink "$SOURCE")
+  [[ $SOURCE != /* ]] && SOURCE=$DIR/$SOURCE # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR=$(cd -P "$(dirname "$SOURCE")" >/dev/null 2>&1 && pwd)
+
+DIR=${DIR:-$DOTFILE_PATH}
+
 # Check for homebrew
 if ! command -v brew &>/dev/null; then
   echo "brew not installed"
@@ -89,46 +99,16 @@ else
   echo " "
 fi
 
-packages=(
-  wget
-  vim
-  neovim
-  grep
-  openssh
-  screen
-  php
-  gmp
-  woff2
-  nmap
-  git
-  lua
-  tree
-  yarn
-  heroku
-  netcat
-  toilet
-  go
-  fzf
-  gdu
-  gh
-  bottom
-  bat
-  --cask\\1password-cli
-  --cask\\font-roboto-mono-nerd-font
-  kubectl
+casks=(
+  1password-cli
+  font-roboto-mono-nerd-font
 )
 
-for package in ${packages[*]}; do
-  package=${package//\\/ }
-  echo "Installing: $package"
-  brew list ${package//--cask /} || (echo "Installing: $package" && brew install $package)
-done
+brew install $(<$DIR/packages.txt) | noti
 
-echo " "
-echo "More fun packages: "
-echo " "
-echo "asciiquarium"
-echo "cmatrix"
-echo " "
+for cask in ${casks[*]}; do
+  echo "Installing: $cask"
+  brew list $cask || (echo "Installing: $cask" && cask install $cask)
+done
 
 brew cleanup

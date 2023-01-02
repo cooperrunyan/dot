@@ -15,10 +15,7 @@ plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
-  web-search
-  macos
   brew
-  dotenv
   1password
 )
 
@@ -39,4 +36,5 @@ unset file
 
 source $ZSH/oh-my-zsh.sh
 
-[[ -f ~/.config/op/plugins.sh ]] && source ~/.config/op/plugins.sh
+[ -f ~/.config/op/plugins.sh ] && source ~/.config/op/plugins.sh
+[ -f ~/.zsh/.fzf.zsh ] && source ~/.zsh/.fzf.zsh
