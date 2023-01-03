@@ -12,6 +12,8 @@ nmap
 git
 lua
 tree
+npm
+node
 yarn
 heroku
 netcat
