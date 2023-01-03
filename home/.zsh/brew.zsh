@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 if ! command -v brew &>/dev/null; then
   if [[ -x /opt/homebrew/bin/brew ]]; then
     BREW_LOCATION="/opt/homebrew/bin/brew"

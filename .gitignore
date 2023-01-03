@@ -6,10 +6,8 @@ bower_components
 npm-debug.log
 Desktop.ini
 ._*
-Thumbs.db
 .Spotlight-V100
 .Trashes
-.zsh_history
 **/.zsh_history
-home/.zsh/custom/*
-!home/.zsh/custom/example.zsh
+**/custom/*
+**/custom/example.zsh

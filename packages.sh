@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
 DIR=$(cd -P "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
-
-DIR=${DIR:-$DOTFILE_PATH}
 
 # Check for homebrew
 if ! command -v brew &>/dev/null; then
@@ -20,7 +18,7 @@ if ! command -v brew &>/dev/null; then
     echo " "
   }
 
-  if [ $(xcode-select -p) ]; then
+  if [ "$(xcode-select -p)" ]; then
     # macos, start installing brew
     echo "xcode tools are installed"
     install_brew
@@ -42,7 +40,7 @@ if ! command -v brew &>/dev/null; then
         sudo yum groupinstall 'Development Tools' && sudo yum install procps-ng curl file git && sudo yum install libxcrypt-compat
       fi
 
-      if ! [ -e $(which make) ]; then
+      if ! [ -e "$(which make)" ]; then
         echo "The required tools for homebrew are not installed. Use your distro's package manager to add them. https://docs.brew.sh/Homebrew-on-Linux#requirements"
 
       else
@@ -66,26 +64,15 @@ COREUTIL_PREFIX=$(brew --prefix coreutils)
 
 export PATH="$COREUTIL_PREFIX/libexec/gnubin:$PATH"
 
-file="export PATH=\"$COREUTIL_PREFIX/libexec/gnubin:\$PATH\""
-
-if [ -r $p/custom/brew.zsh ]; then
-  echo $file >>$p/custom/brew.zsh
-else
-  echo "Add this file to your zsh config: "
-  echo $file
-  echo " "
-fi
-
 casks=(
-  1password-cli
   font-roboto-mono-nerd-font
 )
 
-brew install $(<$DIR/packages.txt) | noti
+brew install "$(<"$DIR"/packages.txt)" && noti -t "Packages are done installing"
 
-for cask in ${casks[*]}; do
+for cask in "${casks[@]}"; do
   echo "Installing: $cask"
-  brew list $cask || (echo "Installing: $cask" && cask install $cask)
+  brew list "$cask" || (echo "Installing: $cask" && cask install "$cask")
 done
 
 brew cleanup

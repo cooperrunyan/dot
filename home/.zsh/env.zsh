@@ -1,24 +1,32 @@
-export DOTFILE_PATH=$(readlink $ZDOTDIR)
+#!/bin/zsh
 
-XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
-ZSH=$ZDOTDIR/.oh-my-zsh
-ZSH_THEME="powerlevel10k/powerlevel10k"
+export DOTFILE_PATH=$(readlink "$ZDOTDIR")
 
-HIST_STAMPS="dd.mm.yyyy"
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}
+export XDG_CONFIG_HOME=$HOME/.config
 
-EDITOR="code"
+export CURL_HOME=$XDG_CONFIG_HOME/curl
 
-NODE_REPL_HISTORY_SIZE='0'
-NODE_REPL_MODE='sloppy'
+export ZSH=$ZDOTDIR/.oh-my-zsh
+export ZSH_THEME="powerlevel10k/powerlevel10k"
 
-HOMEBREW_NO_ENV_HINTS=1
-HISTCONTROL='ignoreboth' # Omit duplicates and commands that begin with a space from history.
-LANG='en_US.UTF-8'
+export HIST_STAMPS="dd.mm.yyyy"
 
-GPG_TTY=$(tty)
+export EDITOR="code"
 
-GOPATH=$HOME/.go
-GOMODCACHE=$XDG_CACHE_HOME/go-mod
-GOCACHE=$XDG_CACHE_HOME/go
+export NODE_REPL_HISTORY_SIZE='0'
+export NODE_REPL_MODE='sloppy'
+
+export OMEBREW_NO_ENV_HINTS=1
+export HISTCONTROL='ignoreboth' # Omit duplicates and commands that begin with a space from history.
+export LANG='en_US.UTF-8'
+
+export GPG_TTY=$(tty)
+
+export GOPATH=$HOME/.go
+export GOMODCACHE=$XDG_CACHE_HOME/go-mod
+export GOCACHE=$XDG_CACHE_HOME/go
 
 export WAKATIME_HOME=$HOME/.wakatime
+
+export EXPLAINSHELL_ENDPOINT=http://localhost:3003

@@ -1,3 +1,6 @@
+[include]
+  path = aliases
+
 [user]
   email = cooperrunyanspam@gmail.com
   name = cooperrunyan
@@ -12,18 +15,6 @@
 
 [init]
   defaultBranch = main
-
-[alias]
-  amend = commit --amend --reuse-message=HEAD
-  unstage = reset --hard HEAD
-  c = commit -m
-  aa = add -A
-  ch = checkout
-  p = push
-  b = branch
-  db = branch -D
-  yolo = !git commit -m \"'(yolo) $(curl -s https://whatthecommit.com/index.txt)'\"
-  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 
 [gpg]
   format = ssh
@@ -45,10 +36,6 @@
   prune = true
 
 [core]
-  # Use custom `.gitignore` and `.gitattributes`
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
-
   # Make `git rebase` safer on macOS
   trustctime = false
 
@@ -65,7 +52,8 @@
 
 [help]
   # Automatically correct and execute mistyped commands
-  autocorrect = 1
+  autocorrect = 
+
 
 [url "https://www.github.com/"]
   insteadOf = "g:"

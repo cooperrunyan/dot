@@ -1,6 +1,8 @@
+#!/bin/zsh
+
 # Create a new directory and enter it
 function mkd() {
-  mkdir -p "$@" && cd "$@"
+  mkdir -p "$@" && cd "$@" || exit
 }
 
 # `o` with no arguments opens the current directory, otherwise opens the given
@@ -22,7 +24,7 @@ function pretty() {
 }
 
 function repo() {
-  open $(g remote get-url origin)
+  open "$(g remote get-url origin)"
 }
 
 function update() {
@@ -32,32 +34,34 @@ function update() {
   brew cleanup
   sudo npm install npm -g
   sudo npm update -g
-  [ $1 ] || sudo reboot
+  [ "$1" ] || sudo reboot
 }
 
 function ip() {
-  return dig +short myip.opendns.com @resolver1.opendns.com
+  dig +short myip.opendns.com @resolver1.opendns.com || return 1
+  return 0
 }
 
 function localip() {
-  return ipconfig getifaddr en0
+  ipconfig getifaddr en0 || return 1
+  return 0
 }
 
 function zscript() {
   script="$HOME/.scripts/$1.zsh"
-  [ -x script ] && return $script
-  zsh -e $script
+  [ -x script ] && return "$script"
+  zsh -e "$script"
 }
 
 function google () {
   if [[ $# -gt 1 ]]; then
     b="https://www.google.com/search?q="
-    url="${b}$(omz_urlencode ${@[2,-1]})"
+    url="${b}$(omz_urlencode "${@[2,-1]}")"
   else
     url="https://www.google.com"
   fi
 
-  open $url
+  open "$url"
 }
 
 function brewclean() {

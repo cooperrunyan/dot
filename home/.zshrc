@@ -1,2 +1,6 @@
+#!/bin/zsh
+
 ZDOTDIR=$HOME/.zsh
-source $ZDOTDIR/.zshrc
+
+# shellcheck source="./.zsh/.zshrc"
+source "$ZDOTDIR"/.zshrc
