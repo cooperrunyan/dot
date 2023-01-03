@@ -17,8 +17,8 @@ LANG='en_US.UTF-8'
 
 GPG_TTY=$(tty)
 
-WAKATIME_HOME=$HOME/.wakatime
-
 GOPATH=$HOME/.go
 GOMODCACHE=$XDG_CACHE_HOME/go-mod
 GOCACHE=$XDG_CACHE_HOME/go
+
+export WAKATIME_HOME=$HOME/.wakatime

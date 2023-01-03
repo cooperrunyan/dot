@@ -17,7 +17,7 @@ for file in $ZDOTDIR/custom/{.*,*}.zsh; do
 done
 unset file
 
-for file in $ZDOTDIR/{brew,path,aliases,functions,.p10k,.fzf}.zsh; do
+for file in $ZDOTDIR/{brew,path,aliases,functions,.p10k,.fzf,env}.zsh; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
@@ -32,7 +32,6 @@ alias fgrep &>/dev/null && unalias fgrep &>/dev/null
 alias _ &>/dev/null && unalias _ &>/dev/null
 alias which-command &>/dev/null && unalias which-command &>/dev/null
 alias run-help &>/dev/null && unalias run-help &>/dev/null
-alias globurl && unalias globurl
 
 [ -f ~/.config/op/plugins.sh ] && source ~/.config/op/plugins.sh
 
