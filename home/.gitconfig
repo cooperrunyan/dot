@@ -59,12 +59,12 @@
   untrackedCache = true
 
 [color]
-# Use colors in Git commands that are capable of colored output when
-# outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
+  # Use colors in Git commands that are capable of colored output when
+  # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
   ui = auto
 
 [help]
-# Automatically correct and execute mistyped commands
+  # Automatically correct and execute mistyped commands
   autocorrect = 1
 
 [url "https://www.github.com/"]
