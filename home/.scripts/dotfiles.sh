@@ -12,6 +12,6 @@ DIR=$(cd -P "$(dirname "$DIR")" >/dev/null 2>&1 && pwd)
 DIR=$(cd -P "$(dirname "$DIR")" >/dev/null 2>&1 && pwd)
 DIR=$(cd -P "$(dirname "$DIR")" >/dev/null 2>&1 && pwd)
 
-echo Running: "${DOTFILE_PATH:-$DIR}/setup.sh $*"
+echo Running: "${DOTFILE_SOURCE:-$DIR}/setup.sh $*"
 
-"${DOTFILE_PATH:-$DIR}/setup.sh" "$@"
+"${DOTFILE_SOURCE:-$DIR}/setup.sh" "$@"

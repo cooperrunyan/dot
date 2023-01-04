@@ -1,37 +1,54 @@
 #!/bin/bash
+echo " "
 
 DIR=$(cd -P "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
 
-DIR=${DIR:-$DOTFILE_PATH}
-
-if [ -d "$1" ]; then
-  DIR=${DIR:-$1}
-fi
-
 echo "Setting up dotfiles pointing to ~/${DIR//$HOME\//}"
+echo ""
 
 ! [ -d "$DIR/home/.zsh/custom" ] && mkdir -p "$DIR/home/.zsh/custom"
 
-! [ -d "$DIR/home/.zsh/.oh-my-zsh/custom/lib" ] && mkdir -p "$DIR/home/.zsh/.oh-my-zsh/custom/lib"
-! [ -d "$DIR/home/.zsh/.oh-my-zsh/custom/plugins" ] && mkdir -p "$DIR/home/.zsh/.oh-my-zsh/custom/plugins"
-! [ -d "$DIR/home/.zsh/.oh-my-zsh/custom/themes" ] && mkdir -p "$DIR/home/.zsh/.oh-my-zsh/custom/themes"
+OMZ_CUSTOM=$DIR/home/.zsh/.oh-my-zsh/custom
+
+! [ -d "$OMZ_CUSTOM/lib" ] && mkdir -p "$OMZ_CUSTOM/lib"
+! [ -d "$OMZ_CUSTOM/plugins" ] && mkdir -p "$OMZ_CUSTOM/plugins"
+! [ -d "$OMZ_CUSTOM/themes" ] && mkdir -p "$OMZ_CUSTOM/themes"
 
 # .oh-my-zsh/custom/lib/directories.zsh to disable default aliases
-echo "" >"$DIR/home/.zsh/.oh-my-zsh/custom/lib/directories.zsh"
+echo "" >"$OMZ_CUSTOM/lib/directories.zsh"
 
-PULL=1
-for arg in "$@"; do
-  test "$arg" == "--no-pull" && PULL=0
+mkdir -p "$OMZ_CUSTOM/plugins/zsh-syntax-highlighting"
+mkdir -p "$OMZ_CUSTOM/plugins/zsh-autosuggestions"
+mkdir -p "$OMZ_CUSTOM/themes/powerlevel10k"
+
+echo "Pulling OMZ..."
+git -C "$DIR" submodule sync -q --recursive && git submodule update --recursive
+
+submodules=(
+  "$OMZ_CUSTOM/plugins/zsh-syntax-highlighting ::: https://github.com/zsh-users/zsh-syntax-highlighting.git"
+  "$OMZ_CUSTOM/plugins/zsh-autosuggestions ::: https://github.com/zsh-users/zsh-autosuggestions.git"
+  "$OMZ_CUSTOM/themes/powerlevel10k ::: https://github.com/romkatv/powerlevel10k.git"
+)
+
+for _submodule in "${submodules[@]}"; do
+  _submodule_path=${_submodule%% ::: *}
+  _submodule_url=${_submodule#* ::: }
+  _submodule_name=$(echo "$_submodule_url" | sed 's/.*\///')
+
+  echo "Pulling ${_submodule_name//.git/}..."
+
+  if [ -d "$_submodule_path" ] && [ "$(ls -A "$_submodule_path")" = "" ]; then
+    git -C "$DIR" clone -q "$_submodule_url" "$_submodule_path"
+  else
+    git -C "$_submodule_path" pull -q
+  fi
 done
+echo ""
 
-test $PULL == 1 && (echo "Pulling dotfile repository" && git -C "$DIR" pull -q --recurse-submodules)
-
-if ! [ -r "$DIR/home/.zsh/.oh-my-zsh" ]; then
-  echo "Cloning OMZ"
-  git clone -q https://www.github.com/ohmyzsh/ohmyzsh.git "$DIR/home/.zsh/.oh-my-zsh"
-else
-  test $PULL == 0 && echo "Pulling OMZ" && git -C "$DIR/home/.zsh/.oh-my-zsh" pull -q
-fi
+unset _submodule_path
+unset _submodule_url
+unset _submodule_name
+unset _submodule
 
 SYM_BASE="$DIR/home"
 
@@ -138,48 +155,17 @@ for link in "${links[@]}"; do
 done
 
 echo " "
-
-# zsh-autosuggestions
-if [ -d "$DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-  echo 'Pulling zsh-autosuggestions'
-  git -C "$DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions" pull -q --recurse-submodules
-else
-  echo 'Cloning zsh-autosuggestions'
-  git clone -q --recurse https://github.com/zsh-users/zsh-autosuggestions.git "$DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
-fi
-
-# zsh-syntax-highlighting
-if [ -d "$DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
-  echo 'Pulling zsh-syntax-highlighting'
-  git -C "$DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" pull -q --recurse-submodules
-else
-  echo 'Cloning zsh-syntax-highlighting'
-  git clone -q --recurse https://github.com/zsh-users/zsh-syntax-highlighting.git "$DIR/home/.zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" #
-fi
-
-# Powerlevel10k
-if [ -d "$DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k" ]; then
-  echo 'Pulling powerlevel10k'
-  git -C "$DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k" pull -q --recurse-submodules
-else
-  echo 'Cloning powerlevel10k'
-  git clone -q --recurse https://github.com/romkatv/powerlevel10k.git "$DIR/home/.zsh/.oh-my-zsh/custom/themes/powerlevel10k"
-fi
-
-echo " "
 echo "Done setting up dotfiles"
+echo " "
 
-if ! command -v brew &>/dev/null; then
-  echo " "
-  echo "Homebrew is not installed, run \`$DIR/packages.sh\` to install it and additional packages"
+if command -v brew &>/dev/null; then
+  echo "NOTICE: Homebrew is not installed, run \`./packages.sh\` to install it and additional packages"
   echo " "
 fi
 
-if ! command -v zsh &>/dev/null; then
+if command -v zsh &>/dev/null; then
+  echo "NOTICE: Zsh is not installed."
+  echo "NOTICE: Install it, then run (location is probably something like /bin/zsh):"
+  echo "NOTICE: chsh -s <location>"
   echo " "
-  echo "Zsh is not installed."
-  echo "Install it, then run (location is probably something like /bin/zsh):"
-  echo "chsh -s <location>"
-  echo " "
-  exit 1
 fi

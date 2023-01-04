@@ -23,7 +23,6 @@ kubectl
 noti
 shpotify
 speedtest-cli
-tldr
 jq
 wifi-password
 pidof

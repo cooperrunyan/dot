@@ -2,11 +2,31 @@
 
 clear
 
-setopt interactivecomments
-
 export ZDOTDIR="${ZDOTDIR:-$HOME}"
 
-export ZSH_COMPDUMP="${XDG_CACHE_HOME:-${HOME}/.cache}/zcompdump/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
+[ -r "$ZDOTDIR/env.sh" ] && source "$ZDOTDIR/env.sh"
+[ -r "$ZDOTDIR/custom/env.sh" ] && source "$ZDOTDIR/custom/env.sh"
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+[[ -r "$XDG_CACHE_HOME/p10k-instant-prompt-$(whoami).zsh" ]] && source "$XDG_CACHE_HOME/p10k-instant-prompt-$(whoami).zsh"
+[[ -r "$XDG_CACHE_HOME/p10k-dump-$(whoami).zsh" ]] && source "$XDG_CACHE_HOME/p10k-dump-$(whoami).zsh"
+
+setopt interactivecomments
+
+function source_files() {
+  emulate -L zsh
+  unsetopt nomatch
+  for cfg_file in "$ZDOTDIR"{"/","/custom/"}{*,.*}.{sh,zsh}; do
+    [ "$cfg_file" = "$ZDOTDIR/env.sh" ] && continue        # Already sourced
+    [ "$cfg_file" = "$ZDOTDIR/custom/env.sh" ] && continue # Already sourced
+    [ -r "$cfg_file" ] && [ -f "$cfg_file" ] && source "$cfg_file"
+  done
+  unset cfg_file
+}
+source_files
+unset source_files
+
+export ZSH_COMPDUMP="$XDG_CACHE_HOME/.zcompdump"
 export HISTFILE=$ZDOTDIR/.zsh_history
 
 export plugins=(
@@ -14,25 +34,12 @@ export plugins=(
   zsh-syntax-highlighting
 )
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-[[ -r "$HOME/.cache/p10k/instant-prompt.zsh" ]] && source "$HOME/.cache/p10k/instant-prompt.zsh"
-
-for cfg_file in $ZDOTDIR/custom/{.*,*}.sh; do
-  [ -r "$cfg_file" ] && [ -f "$cfg_file" ] && source "$cfg_file"
-done
-unset cfg_file
-
-for cfg_file in $ZDOTDIR/{brew,path,aliases,functions,p10k,.fzf,env}.sh; do
-  [ -r "$cfg_file" ] && [ -f "$cfg_file" ] && source "$cfg_file"
-done
-unset cfg_file
-
 unalias egrep &>/dev/null
 unalias fgrep &>/dev/null
 unalias which-command &>/dev/null
 unalias run-help &>/dev/null
 
-[ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
+[ -f "$XDG_CONFIG_HOME/op/plugins.sh" ] && source "$XDG_CONFIG_HOME/op/plugins.sh"
 
 [[ "$TERM_PROGRAM" == "vscode" ]] && source "$(code --locate-shell-integration-path zsh)"
 

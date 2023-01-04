@@ -11,3 +11,4 @@ Desktop.ini
 **/.zsh_history
 **/custom/*
 !**/custom/example.sh
+home/.zsh/.oh-my-zsh/.git
