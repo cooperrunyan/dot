@@ -45,10 +45,10 @@ function localip() {
   return 0
 }
 
-function zscript() {
-  script="$HOME/.scripts/$1.zsh"
+function s() {
+  script="$HOME/.scripts/$1.sh"
   [ -x script ] && return "$script"
-  zsh -e "$script"
+  bash -c "$script"
 }
 
 function brewclean() {

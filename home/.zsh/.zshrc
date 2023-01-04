@@ -20,13 +20,11 @@ for cfg_file in $ZDOTDIR/custom/{.*,*}.sh; do
 done
 unset cfg_file
 
-for cfg_file in $ZDOTDIR/{brew,path,aliases,functions,.p10k,.fzf,env}.sh; do
-  #shellcheck source="./path.zsh"
+for cfg_file in $ZDOTDIR/{brew,path,aliases,functions,p10k,.fzf,env}.sh; do
   [ -r "$cfg_file" ] && [ -f "$cfg_file" ] && source "$cfg_file"
 done
 unset cfg_file
 
-#shellcheck source="./.oh-my-zsh/oh-my-zsh.sh"
 [ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
 
 alias egrep &>/dev/null && unalias egrep &>/dev/null
