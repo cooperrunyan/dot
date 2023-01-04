@@ -10,4 +10,4 @@ Desktop.ini
 .Trashes
 **/.zsh_history
 **/custom/*
-**/custom/example.zsh
+!**/custom/example.sh

@@ -15,12 +15,12 @@ export plugins=(
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 [[ -r "$HOME/.cache/p10k/instant-prompt.zsh" ]] && source "$HOME/.cache/p10k/instant-prompt.zsh"
 
-for cfg_file in $ZDOTDIR/custom/{.*,*}.zsh; do
+for cfg_file in $ZDOTDIR/custom/{.*,*}.sh; do
   [ -r "$cfg_file" ] && [ -f "$cfg_file" ] && source "$cfg_file"
 done
 unset cfg_file
 
-for cfg_file in $ZDOTDIR/{brew,path,aliases,functions,.p10k,.fzf,env}.zsh; do
+for cfg_file in $ZDOTDIR/{brew,path,aliases,functions,.p10k,.fzf,env}.sh; do
   #shellcheck source="./path.zsh"
   [ -r "$cfg_file" ] && [ -f "$cfg_file" ] && source "$cfg_file"
 done

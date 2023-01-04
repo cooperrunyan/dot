@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 export DOTFILE_PATH=$(readlink "$ZDOTDIR")
 
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-${HOME}/.cache}

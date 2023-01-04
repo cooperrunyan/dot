@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # See: https://mths.be/macos
 
 # Close any open System Preferences panes, to prevent them from overriding

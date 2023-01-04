@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 alias g="git"
 alias v="nvim"
 alias cat="bat"
