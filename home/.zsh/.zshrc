@@ -2,6 +2,8 @@
 
 clear
 
+setopt interactivecomments
+
 export ZDOTDIR="${ZDOTDIR:-$HOME}"
 
 export ZSH_COMPDUMP="${XDG_CACHE_HOME:-${HOME}/.cache}/zcompdump/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
@@ -25,14 +27,17 @@ for cfg_file in $ZDOTDIR/{brew,path,aliases,functions,p10k,.fzf,env}.sh; do
 done
 unset cfg_file
 
-[ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
-
-alias egrep &>/dev/null && unalias egrep &>/dev/null
-alias fgrep &>/dev/null && unalias fgrep &>/dev/null
-alias _ &>/dev/null && unalias _ &>/dev/null
-alias which-command &>/dev/null && unalias which-command &>/dev/null
-alias run-help &>/dev/null && unalias run-help &>/dev/null
+unalias egrep &>/dev/null
+unalias fgrep &>/dev/null
+unalias which-command &>/dev/null
+unalias run-help &>/dev/null
 
 [ -f "$HOME/.config/op/plugins.sh" ] && source "$HOME/.config/op/plugins.sh"
 
 [[ "$TERM_PROGRAM" == "vscode" ]] && source "$(code --locate-shell-integration-path zsh)"
+
+if command -v direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
+[ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"

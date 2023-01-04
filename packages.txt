@@ -4,10 +4,6 @@ vim
 neovim
 grep
 openssh
-screen
-php
-gmp
-woff2
 nmap
 git
 lua
@@ -26,7 +22,6 @@ bat
 kubectl
 noti
 shpotify
-geoip
 speedtest-cli
 tldr
 jq
@@ -37,9 +32,7 @@ parallel
 direnv
 openssh
 vault
-trash
 typescript
-john
 duti
 prettier
 shfmt

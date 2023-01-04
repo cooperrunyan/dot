@@ -11,7 +11,7 @@ if ! command -v brew &>/dev/null; then
     return
   fi
 
-  eval "$("$BREW_LOCATION" shellenv)"
+  eval "$($BREW_LOCATION shellenv)"
   unset BREW_LOCATION
 fi
 
