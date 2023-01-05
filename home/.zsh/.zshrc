@@ -43,8 +43,6 @@ unalias run-help &>/dev/null
 
 [[ "$TERM_PROGRAM" == "vscode" ]] && source "$(code --locate-shell-integration-path zsh)"
 
-if command -v direnv &>/dev/null; then
-  eval "$(direnv hook zsh)"
-fi
+command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 
 [ -f "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"

@@ -25,7 +25,6 @@ shpotify
 speedtest-cli
 jq
 wifi-password
-pidof
 docker
 parallel
 direnv
