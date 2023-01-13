@@ -47,11 +47,6 @@
   # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
   ui = auto
 
-[help]
-  # Automatically correct and execute mistyped commands
-  autocorrect = 
-
-
 [url "https://www.github.com/"]
   insteadOf = "g:"
 
