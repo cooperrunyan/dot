@@ -1,11 +1,11 @@
 [user]
-  email = cooperrunyanspam@gmail.com
+  email = c@cooperrunyan.com
   name = cooperrunyan
   signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB74Hf2I9YmY0kJUZy1RGWmBTNMMLbJAwHBmleTMviUw
 
 [author]
   name = cooperrunyan
-  email = cooperrunyanspam@gmail.com
+  email = c@cooperrunyan.com
 
 [github]
   user = cooperrunyan
