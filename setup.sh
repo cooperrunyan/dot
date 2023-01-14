@@ -22,7 +22,7 @@ mkdir -p "$OMZ_CUSTOM/plugins/zsh-autosuggestions"
 mkdir -p "$OMZ_CUSTOM/themes/powerlevel10k"
 
 echo "Pulling OMZ..."
-git -C "$DIR" submodule sync -q --recursive && git submodule update --recursive
+git -C "$DIR" submodule sync --recursive && git submodule update --recursive
 
 submodules=(
   "$OMZ_CUSTOM/plugins/zsh-syntax-highlighting ::: https://github.com/zsh-users/zsh-syntax-highlighting.git"
@@ -38,9 +38,9 @@ for _submodule in "${submodules[@]}"; do
   echo "Pulling ${_submodule_name//.git/}..."
 
   if [ -d "$_submodule_path" ] && [ "$(ls -A "$_submodule_path")" = "" ]; then
-    git -C "$DIR" clone -q "$_submodule_url" "$_submodule_path"
+    git -C "$DIR" clone "$_submodule_url" "$_submodule_path"
   else
-    git -C "$_submodule_path" pull -q
+    git -C "$_submodule_path" pull
   fi
 done
 echo ""
