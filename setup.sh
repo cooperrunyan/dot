@@ -1,9 +1,9 @@
 #!/bin/bash
 DIR=$(cd -P "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
 
-! [ -d "$DIR/home/.zsh/custom" ] && mkdir -p "$DIR/home/.zsh/custom"
+! [ -d "$DIR/.config/zsh/custom" ] && mkdir -p "$DIR/.config/zsh/custom"
 
-OMZ_CUSTOM=$DIR/home/.zsh/.oh-my-zsh/custom
+OMZ_CUSTOM=$DIR/.config/zsh/oh-my-zsh/custom
 
 ! [ -d "$OMZ_CUSTOM/lib" ] && mkdir -p "$OMZ_CUSTOM/lib"
 ! [ -d "$OMZ_CUSTOM/plugins" ] && mkdir -p "$OMZ_CUSTOM/plugins"
