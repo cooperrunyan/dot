@@ -16,15 +16,6 @@ nvimtree.setup({
 			},
 		},
 	},
-	view = {
-		mappings = {
-			list = {
-				{ key = "r", action = "full_rename" },
-				{ key = "l", action = "edit" },
-				{ key = "h", action = "close_node" },
-			},
-		},
-	},
 	actions = {
 		open_file = {
 			quit_on_open = true,

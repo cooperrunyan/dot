@@ -1,6 +1,10 @@
 #!/bin/zsh
 
-ZDOTDIR=$HOME/.zsh
+export DEVELOPMENT="$HOME/dev"
+export CONFIG="$HOME/.config"
+export CACHE="$HOME/.cache"
+export LIB="$HOME/.lib"
+export BIN="$HOME/.bin"
+export LOG="$HOME/.log"
 
-# shellcheck source="./.zsh/.zshrc"
-source "$ZDOTDIR"/.zshrc
+source "$CONFIG/zsh/.zshrc"

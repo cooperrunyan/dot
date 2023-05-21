@@ -15,9 +15,9 @@ function o() {
 
 function pretty() {
   if [ $# -eq 0 ]; then
-    prettier --config ~/.config/prettier/.prettierrc -w .
+    prettier --config "$CONFIG/prettier/.prettierrc" -w .
   else
-    prettier --config ~/.config/prettier/.prettierrc -w "$@"
+    prettier --config "$CONFIG/prettier/.prettierrc" -w "$@"
   fi
 }
 
@@ -30,8 +30,6 @@ function update() {
   brew update
   brew upgrade
   brew cleanup
-  sudo npm install npm -g
-  sudo npm update -g
   [ "$1" ] || sudo reboot
 }
 
@@ -43,12 +41,6 @@ function ip() {
 function localip() {
   ipconfig getifaddr en0 || return 1
   return 0
-}
-
-function s() {
-  script="$HOME/.scripts/$1.sh"
-  [ -x script ] && return "$script"
-  bash -c "$script"
 }
 
 function brewclean() {

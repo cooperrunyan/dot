@@ -13,7 +13,7 @@ mason_lspconfig.setup({
 		"dockerls",
 		"jsonls",
 		"marksman",
-		"sumneko_lua",
+		"lua_ls",
 	},
 })
 
