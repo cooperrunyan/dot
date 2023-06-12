@@ -55,6 +55,9 @@ echo " "
 
 SYM_BASE="$DIR/.config"
 
+mv "$HOME/.zshrc" "$HOME/.zshrc.old"
+ln -sf "$DIR/.zshrc" "$HOME/.zshrc"
+
 for item in $SYM_BASE/{*,.*}; do
   item_name=${item//$SYM_BASE\//}
 
@@ -62,7 +65,6 @@ for item in $SYM_BASE/{*,.*}; do
   test "$item_name" = '.' && continue
   test "$item_name" = '..' && continue
   test "$item_name" = '.DS_Store' && continue
-
 
   sym=$HOME/.config/${item//$SYM_BASE\//}
 
@@ -108,4 +110,3 @@ done
 echo " "
 echo "Done setting up dotfiles"
 echo " "
-
