@@ -1,19 +1,18 @@
 neovim
 git
 npm
+bat
+fzf
+shellcheck
+unzip
 node
 yarn
-fzf
 gh
 typescript
 bottom
 prettier
-bat
 deno
 shfmt
-shellcheck
-unzip
-
 
 
 coreutils
