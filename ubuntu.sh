@@ -19,5 +19,10 @@ curl -LO https://github.com/ClementTsang/bottom/releases/download/0.9.2/bottom_0
 sudo dpkg -i bottom_0.9.2_amd64.deb
 rm bottom_0.9.2_amd64.deb
 
+# Font
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/RobotoMono.zip
+unzip RobotoMono.zip -d ~/.fonts
+fc-cache -fv
+
 # Packer
 sudo git clone --depth 1 https://github.com/wbthomason/packer.nvim /usr/share/nvim/site/pack/packer/start/packer.nvim
