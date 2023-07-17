@@ -11,7 +11,12 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("folke/tokyonight.nvim")
-	use("ThePrimeagen/vim-be-good")
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = function()
+			require("nvim-treesitter.install").update({ with_sync = true })()
+		end,
+	})
 	use("christoomey/vim-tmux-navigator")
 	use("szw/vim-maximizer")
 	use("tpope/vim-surround")
@@ -38,12 +43,6 @@ return require("packer").startup(function(use)
 	use("onsails/lspkind.nvim")
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("jayp0521/mason-null-ls.nvim")
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			require("nvim-treesitter.install").update({ with_sync = true })()
-		end,
-	})
 	use("windwp/nvim-autopairs")
 	use("windwp/nvim-ts-autotag")
 	use("lewis6991/gitsigns.nvim")
