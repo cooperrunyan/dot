@@ -1,7 +1,7 @@
 [user]
   email = c@cooperrunyan.com
   name = cooperrunyan
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB74Hf2I9YmY0kJUZy1RGWmBTNMMLbJAwHBmleTMviUw
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKxUnSW3/NqUVdH0kn14c22eGtrHCaLyn/82WiaGye0g
 
 [author]
   name = cooperrunyan
@@ -17,7 +17,7 @@
   format = ssh
 
 [gpg "ssh"]
-  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [commit]
   gpgsign = true

@@ -38,3 +38,5 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.opt.iskeyword:append("-")
+
+vim.g.rustfmt_autosave = 1

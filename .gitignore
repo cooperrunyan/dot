@@ -11,3 +11,5 @@ Desktop.ini
 **/.zsh_history
 **/custom/*
 !**/custom/example.sh
+**/nvim/**/packer_compiled.lua
+.config/nvim/plugin/packer_compiled.lua

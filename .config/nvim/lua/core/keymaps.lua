@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>")
+vim.keymap.set("n", "<S-u>", ":redo<CR>")
 
 vim.keymap.set("n", "<leader>=", "<C-a>")
 vim.keymap.set("n", "<leader>-", "<C-x>")
@@ -32,5 +33,8 @@ vim.keymap.set("", "<C-w>", "<cmd>:wa<cr><cmd>:Prettier<cr>")
 vim.keymap.set("", "<C-q>", "<cmd>:q<cr>")
 
 -- Terminal
-vim.keymap.set("t", "<Esc>", "<C-\\><C-n><C-^>")
 vim.keymap.set("n", "<leader>x", "<cmd>:ter<cr>i")
+-- vim.keymap.set("t", "<Esc>", "<C-\\><C-n><C-^>")
+vim.keymap.set("t", "<Esc>", "<C-\\><C-n>:q<CR>")
+vim.keymap.set("n", "<leader>tn", ":FloatermNew --name=float --height=0.8 --width=0.7 --autoclose=2 zsh <CR>")
+vim.keymap.set("n", "<leader>tt", ":FloatermToggle float<CR>")

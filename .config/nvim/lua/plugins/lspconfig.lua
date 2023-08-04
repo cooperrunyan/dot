@@ -1,27 +1,31 @@
 local lspconfig = require("lspconfig")
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local mason_lspconfig = require("mason_lspconfig")
 local typescript = require("typescript")
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-local on_attach = function(client, buf)
-	local opts = { noremap = true, silent = true, buffer = buf }
-
-	vim.keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts)
-	vim.keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	vim.keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
-	vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()", opts)
-	vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
-	vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
-	vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostis<CR>", opts)
-	vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts)
-	vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
-	vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
-	vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
-	vim.keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts)
-
+local on_attach = function(client, _)
 	if client.name == "tsserver" then
 		vim.keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>")
 	end
 end
+
+mason_lspconfig.setup({
+	ensure_installed = {
+		"tsserver",
+		"html",
+		"cssls",
+		"denols",
+		"dockerls",
+		"jsonls",
+		"marksman",
+		"lua_ls",
+		"rust_analyzer",
+		"prismals",
+		"bashls",
+		"yamlls",
+		"sqls",
+	},
+})
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -53,11 +57,6 @@ lspconfig["dockerls"].setup({
 	on_attach = on_attach,
 })
 
-lspconfig["gopls"].setup({
-	capabilities = capabilities,
-	on_attach = on_attach,
-})
-
 lspconfig["jsonls"].setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -84,4 +83,29 @@ lspconfig["lua_ls"].setup({
 			},
 		},
 	},
+})
+
+lspconfig["rust_analyzer"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["bashls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["prismals"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["yamlls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig["sqls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
