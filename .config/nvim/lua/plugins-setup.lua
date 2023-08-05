@@ -11,20 +11,12 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("nvim-lua/plenary.nvim")
 	use("folke/tokyonight.nvim")
-<<<<<<< HEAD:.config/nvim/lua/cooperrunyan/plugins-setup.lua
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = function()
 			require("nvim-treesitter.install").update({ with_sync = true })()
 		end,
 	})
-	use("christoomey/vim-tmux-navigator")
-	use("szw/vim-maximizer")
-	use("tpope/vim-surround")
-	use("vim-scripts/ReplaceWithRegister")
-	use("numToStr/Comment.nvim")
-=======
->>>>>>> 3f20c270 (Update nvim config):.config/nvim/lua/plugins-setup.lua
 	use("nvim-tree/nvim-tree.lua")
 	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
