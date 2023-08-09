@@ -1,5 +1,8 @@
 vim.g.mapleader = " "
 
+vim.keymap.set("n", "<leader>l", "1000000l")
+vim.keymap.set("n", "<leader>h", "1000000h")
+
 vim.keymap.set("n", "<leader>nh", ":nohl<CR>")
 vim.keymap.set("n", "<S-u>", ":redo<CR>")
 

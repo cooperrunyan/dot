@@ -4,7 +4,7 @@
 [ -r "$CONFIG/zsh/custom/path.sh" ] && source "$CONFIG/zsh/custom/path.sh"
 
 [ -r "$CONFIG/zsh/env.sh" ] && source "$CONFIG/zsh/env.sh"
-[ -r "$CONFIG/zsh/custom/env.sh" ] && source "$CONFIG/.zsh/custom/env.sh"
+[ -r "$CONFIG/zsh/custom/env.sh" ] && source "$CONFIG/zsh/custom/env.sh"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 [ -r "$CACHE/p10k-instant-prompt-$(whoami).zsh" ] && source "$CACHE/p10k-instant-prompt-$(whoami).zsh"
@@ -51,5 +51,5 @@ command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
 [ -f "$CONFIG/zsh/oh-my-zsh/oh-my-zsh.sh" ] && source "$CONFIG/zsh/oh-my-zsh/oh-my-zsh.sh"
 
 [ -r "$CONFIG/zsh/aliases.sh" ] && source "$CONFIG/zsh/aliases.sh"
-[ -r "$CONFIG/zsh/custom/aliases.sh" ] && source "$CONFIG/.zsh/custom/aliases.sh"
+[ -r "$CONFIG/zsh/custom/aliases.sh" ] && source "$CONFIG/zsh/custom/aliases.sh"
 
