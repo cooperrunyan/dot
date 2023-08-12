@@ -33,8 +33,7 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
-					vim.lsp.buf.format(client)
-					return client.name == "null-ls"
+					vim.lsp.buf.format()
 				end,
 			})
 		end
@@ -45,7 +44,7 @@ mason_null_ls.setup({
 	ensure_installed = {
 		"shfmt",
 		"sqlfmt",
-    "prettier",
-    "stylua",
+		"prettier",
+		"stylua",
 	},
 })

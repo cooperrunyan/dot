@@ -26,3 +26,4 @@ fc-cache -fv
 
 # Packer
 sudo git clone --depth 1 https://github.com/wbthomason/packer.nvim /usr/share/nvim/site/pack/packer/start/packer.nvim
+sudo chmod -R 777 /usr/share/nvim

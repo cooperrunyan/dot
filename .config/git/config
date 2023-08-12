@@ -1,7 +1,6 @@
 [user]
   email = c@cooperrunyan.com
   name = cooperrunyan
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKxUnSW3/NqUVdH0kn14c22eGtrHCaLyn/82WiaGye0g
 
 [author]
   name = cooperrunyan
@@ -13,17 +12,8 @@
 [init]
   defaultBranch = main
 
-[gpg]
-  format = ssh
-
-[gpg "ssh"]
-  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
-[commit]
-  gpgsign = true
-
 [core]
-  editor = code
+  editor = nvim
   filemode = false
 
 [pull]
@@ -54,6 +44,7 @@
   amend = commit --amend --reuse-message=HEAD
   unstage = reset --hard HEAD
   c = commit -m
+  sm = submodule
   aa = add -A
   ch = checkout
   p = push
@@ -61,3 +52,6 @@
   db = branch -D
   yolo = !git commit -m \"'(yolo) $(curl -s https://whatthecommit.com/index.txt)'\"
   lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+[include]
+  path = $CONFIG/git/custom.gitconfig

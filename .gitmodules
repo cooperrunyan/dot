@@ -1,3 +1,15 @@
-[submodule "oh-my-zsh"]
-path = .config/zsh/oh-my-zsh
+[submodule "powerlevel10k"]
+path = .config/zsh/lib/themes/powerlevel10k
+url = https://github.com/romkatv/powerlevel10k.git
+[submodule "zsh-autosuggestions"]
+path = .config/zsh/lib/plugins/zsh-autosuggestions
+url = https://github.com/zsh-users/zsh-autosuggestions.git
+[submodule "zsh-syntax-highlighting"]
+path = .config/zsh/lib/plugins/zsh-syntax-highlighting
+url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "omz"]
+path = .config/zsh/omz
 url = https://www.github.com/ohmyzsh/ohmyzsh.git
+[submodule "zsh-completions"]
+	path = .config/zsh/lib/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
