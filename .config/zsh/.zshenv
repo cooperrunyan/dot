@@ -8,6 +8,7 @@ export ZSH="$CONFIG/zsh/omz"
 export ZSH_CUSTOM="$CONFIG/zsh/lib"
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 export ZSH_COMPDUMP="$CACHE/.zcompdump"
+export ZCOMPDUMP="$CACHE/.zcompdump"
 
 export ZDOTDIR="$CONFIG/zsh"
 export USER_ZDOTDIR="$ZDOTDIR"
@@ -36,7 +37,7 @@ export YARN_CACHE_FOLDER=$CACHE/yarn
 export YARN_GLOBAL_FOLDER=$BIN/yarn
 export YARN_ENABLE_GLOBAL_CACHE=true
 
-export LESSHISTFILE=$LOG/.lesshst
+export LESSHISTFILE=$CACHE/.lesshst
 
 export CARGO_HOME="$LIB/cargo"
 export RUSTUP_HOME="$LIB/rustup"
