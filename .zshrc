@@ -7,3 +7,5 @@ export LIB="$HOME/.lib"
 export BIN="$HOME/.bin"
 
 source "$CONFIG/zsh/.zshrc"
+
+alias ls="ls -phFHAtG --color"

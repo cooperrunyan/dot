@@ -1,21 +1,25 @@
+[flags]
+hide_time = true
+hide_table_gap = true
+regex = true
+color = "default"
+
 [[row]]
-  ratio=11
+  ratio = 1
   [[row.child]]
-    type="cpu"
-[[row]]
-  ratio=14
+    ratio = 2
+    type = "cpu"
   [[row.child]]
-    ratio=4
-    type="memory"
-  [[row.child]]
-    ratio=3
+    ratio = 2
     [[row.child.child]]
-      type="battery"
+      ratio = 2
+      type = "disk"
     [[row.child.child]]
-      type="disk"
-[[row]]
-  ratio=10
+      ratio = 1
+      type = "batt"
   [[row.child]]
-    type="network"
-  [[row.child]]
-    type="process"
+    ratio = 4
+    type = "proc"
+
+[processes]
+columns = ["pid", "name", "cpu%", "mem%", "state", "time"]
