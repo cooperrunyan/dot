@@ -1,6 +1,5 @@
 #!/bin/zsh
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 source "$CONFIG/zsh/.zshenv"
 
 WHO=$(whoami)
@@ -9,6 +8,8 @@ WHO=$(whoami)
 
 source "$CONFIG/zsh/functions.zsh"
 source "$CONFIG/zsh/p10k.zsh"
+
+[ -r "$HOME/env.zsh" ] && source "$HOME/env.zsh"
 
 setopt interactivecomments
 setopt HIST_SAVE_NO_DUPS

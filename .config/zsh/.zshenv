@@ -56,5 +56,6 @@ alias resource="source \$HOME/.zshrc"
 alias ls='ls -phFHAtG '
 alias mkdir='mkdir -p'
 alias rg='ranger'
+alias sudo='sudo -E'
 
 export dev="$DEVELOPMENT"

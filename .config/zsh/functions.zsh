@@ -1,7 +1,11 @@
 #!/bin/zsh
 
 function vcmp() {
-	ffmpeg -hwaccel auto -dn -an -i "$1" -vcodec libx264 -pix_fmt yuv420p -profile:v baseline -b:v 64k -r 24 "$2"
+	ffmpeg -hwaccel auto -dn -an -i "$1" -vcodec libx264 -pix_fmt yuv420p -profile:v baseline -r 24 "$2"
+}
+
+function epath() {
+  echo -e ${PATH//:/\\n}
 }
 
 function repo() {
