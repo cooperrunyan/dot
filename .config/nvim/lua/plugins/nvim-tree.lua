@@ -1,11 +1,29 @@
-local nvimtree = require("nvim-tree")
+local ok, nvim_tree = pcall(require, "nvim-tree")
+if not ok then
+  return
+end
 
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
 
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
 
-nvimtree.setup({
+nvim_tree.setup({
+	diagnostics = {
+    enable = true,
+    show_on_dirs = true,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
+  },
+  view = {
+    width = 30,
+    side = "left"
+  },
 	renderer = {
 		icons = {
 			glyphs = {
@@ -24,6 +42,17 @@ nvimtree.setup({
 			},
 		},
 	},
+	git = {
+      enable = true,
+      ignore = false,
+      timeout = 500,
+  },
+	update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    -- ignore_list = {},
+    update_root = true,
+  },
 	filters = {
 		--		dotfiles = true,
 		custom = {
