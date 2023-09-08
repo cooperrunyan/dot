@@ -11,9 +11,11 @@ pcall(require, "plugins.comment")
 pcall(require, "plugins.gitsigns")
 pcall(require, "plugins.impatient")
 pcall(require, "plugins.lualine")
+pcall(require, "plugins.luasnip")
 pcall(require, "plugins.nvim-tree")
 pcall(require, "plugins.telescope")
 pcall(require, "plugins.treesitter")
+pcall(require, "plugins.vimtex")
 
 pcall(require, "plugins.lsp.lang.rust")
 

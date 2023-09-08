@@ -62,6 +62,8 @@ return packer.startup(function(use)
   use("hrsh7th/cmp-omni")
   use("f3fora/cmp-spell")
 
+	use("rafamadriz/friendly-snippets")
+
 	use("L3MON4D3/LuaSnip")
 
 	use("williamboman/mason.nvim")
@@ -72,16 +74,15 @@ return packer.startup(function(use)
 	use("mfussenegger/nvim-dap")
 
 	use("jose-elias-alvarez/typescript.nvim")
-	use("MunifTanjim/prettier.nvim")
 	use("windwp/nvim-ts-autotag")
 
 	use("rust-lang/rust.vim")
 	use("simrat39/rust-tools.nvim")
 
 	-- LaTeX
-  -- use("lervag/vimtex")
-  -- use("kdheepak/cmp-latex-symbols")
-  -- use("jbyuki/nabla.nvim")
+  use("lervag/vimtex")
+  use("kdheepak/cmp-latex-symbols")
+  use("jbyuki/nabla.nvim")
 
 	if packer_bootstrap then
 		require("packer").sync()
