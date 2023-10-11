@@ -1,63 +1,76 @@
 local ok, lualine = pcall(require, "lualine")
 if not ok then
-	return
+  return
 end
 
 local diagnostics = {
-	"diagnostics",
-	sources = { "nvim_diagnostic" },
-	sections = { "error", "warn" },
-	symbols = { error = " ", warn = " " },
-	colored = false,
-	update_in_insert = false,
-	always_visible = true,
-}
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
+  sections = { "error", "warn", "hint", "info" },
+  symbols = { error = " ", warn = " ", hint = "󰌶", info = "󰋽" },
 
-local diff = {
-	"diff",
-	colored = false,
-	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
-  cond = hide_in_width
-}
-
-
-local filetype = {
-	"filetype",
-	icons_enabled = false,
-	icon = nil,
+  colored = true,
+  update_in_insert = true,
+  always_visible = false,
 }
 
 local branch = {
-	"branch",
-	icons_enabled = true,
-	icon = "",
+  "branch",
+  icons_enabled = true,
+  icon = "",
 }
 
-local location = {
-	"location",
-	padding = 0,
+local mode = {
+  "mode",
+  right_padding = 2,
+  fmt = function(str)
+    return str:sub(1, 1)
+  end,
+}
+
+local filename = {
+  "filename",
+  file_status = false,
+  newfile_status = false,
+}
+
+local filetype = {
+  "filetype",
 }
 
 lualine.setup({
-	options = {
-		theme = "tokyonight",
-		icons_enabled = true,
-	},
-	sections = {
-		lualine_a = { branch, diagnostics },
-		lualine_b = { "mode" },
-		lualine_c = {},
-		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, "encoding", filetype },
-		lualine_y = { location },
-		lualine_z = {  },
-	},
-	inactive_sections = {
-		lualine_a = {},
-		lualine_b = {},
-		lualine_c = { "filename" },
-		lualine_x = { "location" },
-		lualine_y = {},
-		lualine_z = {},
-	},
+  options = {
+    theme = "tokyonight",
+    icons_enabled = true,
+    -- fmt = string.lower,
+    section_separators = { left = "", right = "" },
+    disabled_filetypes = {
+      NvimTree = {},
+    },
+  },
+  sections = {
+    lualine_a = { mode },
+    lualine_b = { branch },
+    lualine_c = { diagnostics },
+    lualine_x = { filetype },
+    lualine_y = { filename },
+    lualine_z = {},
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = { filetype },
+    lualine_x = { filename },
+    lualine_y = {},
+    lualine_z = {},
+  },
+  extensions = {
+    "nvim-tree",
+    "trouble",
+    "man",
+    "nvim-dap-ui",
+    "fzf",
+    "quickfix",
+    "toggleterm",
+  },
 })

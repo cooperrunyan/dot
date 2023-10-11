@@ -9,22 +9,22 @@ if not m_lsp_ok then
 end
 
 mason.setup({
-	ui = {
-		border = "none",
-	},
+  ui = {
+    border = "none",
+  },
 })
 
 mason_lspconfig.setup({
   automatic_installation = true,
-	ensure_installed = {
-		"tsserver",
-		"html",
-		"cssls",
-		"denols",
-		"dockerls",
-		"jsonls",
-		"lua_ls",
-		"rust_analyzer",
-		"yamlls",
-	},
+  ensure_installed = {
+    "tsserver",
+    "html",
+    "cssls",
+    "denols",
+    "dockerls",
+    "jsonls",
+    "lua_ls",
+    "rust_analyzer",
+    "yamlls",
+  },
 })

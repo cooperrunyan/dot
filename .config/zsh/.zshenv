@@ -50,6 +50,7 @@ export PATH="$PATH:$LIB/cargo/bin"
 
 alias g="git"
 alias v="nvim"
+alias nv="neovide"
 alias cat="bat"
 alias ccat="/bin/cat"
 alias resource="source \$HOME/.zshrc"

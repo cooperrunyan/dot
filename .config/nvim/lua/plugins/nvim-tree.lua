@@ -8,58 +8,85 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 vim.cmd([[ highlight NvimTreeIndentMarker guifg=#3FC5FF ]])
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeFocus<CR>")
 
 nvim_tree.setup({
-	diagnostics = {
-    enable = true,
-    show_on_dirs = true,
+  disable_netrw = true,
+  hijack_netrw = true,
+  hijack_cursor = true,
+  renderer = {
+    highlight_opened_files = "none",
+    indent_markers = {
+      enable = false,
+    },
     icons = {
-      hint = "",
-      info = "",
-      warning = "",
-      error = "",
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = false,
+      },
+
+      glyphs = {
+        default = "󰈚",
+        symlink = "",
+        folder = {
+          default = "",
+          empty = "",
+          empty_open = "",
+          open = "",
+          symlink = "",
+          symlink_open = "",
+          arrow_open = "",
+          arrow_closed = "",
+        },
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌",
+        },
+      },
     },
   },
-  view = {
-    width = 30,
-    side = "left"
+  actions = {
+    open_file = {
+      -- quit_on_open = true,
+      window_picker = {
+        enable = false,
+      },
+    },
   },
-	renderer = {
-		icons = {
-			glyphs = {
-				folder = {
-					arrow_closed = " ",
-					arrow_open = " ",
-				},
-			},
-		},
-	},
-	actions = {
-		open_file = {
-			quit_on_open = true,
-			window_picker = {
-				enable = false,
-			},
-		},
-	},
-	git = {
-      enable = true,
-      ignore = false,
-      timeout = 500,
+  git = {
+    enable = true,
+    ignore = false,
+    timeout = 500,
   },
-	update_focused_file = {
+  update_focused_file = {
     enable = true,
     update_cwd = true,
     -- ignore_list = {},
     update_root = true,
   },
-	filters = {
-		--		dotfiles = true,
-		custom = {
-			".DS_Store",
-			"yarn.lock",
-			"package-lock.json",
-			".git",
-		},
-	},
+  filters = {
+    --		dotfiles = true,
+    custom = {
+      ".DS_Store",
+      "yarn.lock",
+      "package-lock.json",
+      ".git",
+    },
+  },
+  view = {
+    width = 30,
+    preserve_window_proportions = true,
+    adaptive_size = false,
+    side = "left",
+  },
+  filesystem_watchers = {
+    enable = true,
+  },
 })
