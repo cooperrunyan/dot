@@ -41,7 +41,7 @@
   insteadOf = "g:"
 
 [alias]
-  amend = commit --amend --reuse-message=HEAD
+  amend = commit --all --amend --reuse-message=HEAD
   unstage = reset --hard HEAD
   c = commit -am
   sm = submodule
