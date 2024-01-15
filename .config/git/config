@@ -43,7 +43,7 @@
 [alias]
   amend = commit --amend --reuse-message=HEAD
   unstage = reset --hard HEAD
-  c = commit -m
+  c = commit -am
   sm = submodule
   aa = add -A
   ch = checkout

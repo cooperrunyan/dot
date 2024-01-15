@@ -1,0 +1,9 @@
+[install.cache]
+    dir = "~/Library/Caches/bun/install"
+
+[install]
+    # where `bun add --global` installs packages
+    globalDir = "~/.local/share/bun/install/global"
+
+    # where globally-installed package bins are linked
+    globalBinDir = "~/.local/share/bun/bin"

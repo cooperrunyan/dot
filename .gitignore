@@ -16,3 +16,5 @@ Desktop.ini
 
 .config/git/custom.gitconfig
 **/.zcompdump
+
+**/zsh/local.z*

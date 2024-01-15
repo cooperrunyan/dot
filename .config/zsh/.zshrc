@@ -1,32 +1,85 @@
 #!/bin/zsh
 
-source "$CONFIG/zsh/.zshenv"
+trysource() {
+  [[ -s "$1" ]] && source "$1"
+}
 
-WHO=$(whoami)
-[ -r "$CACHE/p10k-instant-prompt-$WHO.zsh" ] && source "$CACHE/p10k-instant-prompt-$WHO.zsh"
-[ -r "$CACHE/p10k-dump-$WHO.zsh" ] && source "$CACHE/p10k-dump-$WHO.zsh"
+trysource "$XDG_CACHE_HOME/p10k-instant-prompt-$USER.zsh"
+trysource "$XDG_CACHE_HOME/p10k-dump-$USER.zsh"
+trysource "$ZDOTDIR/p10k.zsh"
 
-source "$CONFIG/zsh/functions.zsh"
-source "$CONFIG/zsh/p10k.zsh"
+ZSH="$ZDOTDIR/omz"
+ZSH_CUSTOM="$ZDOTDIR/lib"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
+export ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
+export ZCOMPDUMP="$ZSH_CACHE_DIR/.zcompdump"
+CASE_SENSITIVE=false
+HYPHEN_INSENSITIVE=true
+ENABLE_CORRECTION=false
+SHELL_SESSIONS_DISABLE=1
 
-[ -r "$HOME/env.zsh" ] && source "$HOME/env.zsh"
+HISTFILE="$XDG_DATA_HOME/.zsh_history"
+HIST_STAMPS="mm/dd/yyyy"
+HISTCONTROL="ignoreboth"
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt append_history
+setopt extended_history
 
 setopt interactivecomments
-setopt HIST_SAVE_NO_DUPS
-_comp_options+=(globdots)
-autoload -U compinit
-compinit
+setopt autocd
+setopt auto_param_slash
+
+export plugins=(
+  bun
+  brew
+  deno
+  docker
+  dotenv
+  gh
+  iterm2
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  colored-man-pages
+  rust
+  fzf
+  nmap
+  npm
+)
+
+zstyle ':omz:update' mode auto
+zstyle :omz:plugins:iterm2 shell-integration yes
+
+fpath+="$ZSH_CUSTOM/plugins/zsh-completions/src"
+fpath+=/opt/homebrew/share/zsh/site-functions
+
+trysource "$ZDOTDIR/omz/oh-my-zsh.sh"
+
+trysource "$ZDOTDIR/local.zshrc"
+
+trysource "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+
+if which gh &>/dev/null; then
+  eval $(gh completion -s zsh)
+fi
+
+trysource "$XDG_CONFIG_HOME/op/plugins.sh"
+trysource "$XDG_DATA_HOME/iterm/.iterm2_shell_integration.zsh"
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR/.zcompcache"
+
 bindkey "^X^_" redo
 bindkey -v
 
-command -v direnv &>/dev/null && eval "$(direnv hook zsh)"
+alias g="git"
+alias v="nvim"
+alias rg="ranger"
+alias ls="ls -phFHAtG --color"
+alias mkdir="mkdir -p"
 
-export plugins=(
-  zsh-autosuggestions
-  zsh-completions
-  zsh-syntax-highlighting
-)
-
-fpath+=$ZSH_CUSTOM/plugins/zsh-completions/src
-
-. "$CONFIG/zsh/omz/oh-my-zsh.sh"
+if which bat &>/dev/null; then
+  alias cat="bat"
+fi
