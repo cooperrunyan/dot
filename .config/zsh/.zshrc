@@ -72,7 +72,6 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR/.zcompcache"
 
 bindkey "^X^_" redo
-bindkey -v
 
 alias g="git"
 alias v="nvim"
