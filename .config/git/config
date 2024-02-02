@@ -14,7 +14,7 @@
   defaultBranch = main
 
 [core]
-  editor = nvim
+  editor = code --wait
   filemode = false
 
 [pull]
@@ -39,6 +39,9 @@
 [url "https://www.github.com/"]
   insteadOf = "g:"
 
+[url "https://www.github.com/cooperrunyan/"]
+  insteadOf = "c:"
+
 [alias]
   amend = commit --all --amend --reuse-message=HEAD
   unstage = reset --hard HEAD
@@ -60,6 +63,7 @@
 
 [commit]
   gpgsign = true
+  status = false
 
 [log]
   abbrevCommit = true
@@ -71,3 +75,6 @@
 [pretty]
   line = format:%C(bold blue)%h%C(reset) %C(bold green)%<(12,trunc)%an%C(reset): %<(55,trunc)%s %C(dim white)%ar%C(reset)%C(bold yellow)%d%C(reset)
 
+[push]
+  autoSetupRemote = true
+  default = current
