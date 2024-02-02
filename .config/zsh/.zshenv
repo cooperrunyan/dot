@@ -21,6 +21,7 @@ export DENO_INSTALL="$XDG_DATA_HOME/deno"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/.npmrc"
 export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
+export NODE_REPL_HISTORY="$XDG_DATA_HOME/node/repl_history"
 export YARN_GLOBAL_FOLDER="$XDG_DATA_HOME/yarn"
 export YARN_CACHE_FOLDER="$XDG_CACHE_HOME/yarn"
 export YARN_ENABLE_GLOBAL_CACHE=true
@@ -30,6 +31,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export PATH="$CARGO_HOME/bin:$PATH"
 
 export QMK_HOME="$XDG_DATA_HOME/qmk_firmware"
 
