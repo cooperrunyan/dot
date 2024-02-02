@@ -56,12 +56,9 @@
 [gpg]
   format = ssh
 
-# [gpg "ssh"]
-#   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-
 [commit]
   gpgsign = true
 
 [user]
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKxUnSW3/NqUVdH0kn14c22eGtrHCaLyn/82WiaGye0g
+  signingkey = ~/.ssh/id_ed25519.pub
 
