@@ -28,7 +28,7 @@
   precomposeunicode = false
   untrackedCache = true
   excludesFile = ~/.config/git/global.gitignore
-	fsmonitor = true
+  fsmonitor = true
 
 [color]
   ui = auto
@@ -54,12 +54,12 @@
   b = branch
   db = branch -D
   yolo = !git commit -m \"(yolo) $(curl -s https://whatthecommit.com/index.txt)\"
-  lg = log --graph --abbrev-commit --decorate --format=line
-	staash = stash --all
-	wdiff = diff --word-diff
-	cf = config
-	cfg = config --global
-	ac = !git add -A && git commit -m
+  lg = log --graph --abbrev-commit --decorate --oneline
+  staash = stash --all
+  wdiff = diff --word-diff
+  cf = config
+  cfg = config --global
+  ac = !git add -A && git commit -m
 
 [gpg]
   format = ssh
@@ -78,15 +78,12 @@
   initialDecorationSet = all
   date = relative
 
-[pretty]
-  line = format:%C(bold blue)%h%C(reset) %C(bold green)%<(12,trunc)%an%C(reset): %<(55,trunc)%s %C(dim white)%ar%C(reset)%C(bold yellow)%d%C(reset)
-
 [push]
   autoSetupRemote = true
   default = current
 [rerere]
-	enabled = true
+  enabled = true
 [column]
-	ui = auto
+  ui = auto
 [branch]
-	sort = -committerdate
+  sort = -committerdate
