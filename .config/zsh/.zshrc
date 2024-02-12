@@ -31,6 +31,10 @@ setopt extended_history
 setopt interactivecomments
 setopt autocd
 setopt auto_param_slash
+setopt auto_menu
+setopt always_to_end
+setopt always_last_prompt
+setopt menu_complete
 
 export plugins=(
   bun
@@ -55,6 +59,15 @@ zstyle :omz:plugins:iterm2 shell-integration yes
 fpath+="$ZSH_CUSTOM/plugins/zsh-completions/src"
 fpath+=/opt/homebrew/share/zsh/site-functions
 
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR/.zcompcache"
+zstyle ':completion:*' complete-options true
+zstyle ':completion:*' menu select=
+
+# partial completion suggestions (ex: `cd /u/lo/b{tab}` -> 'usr/local/bin')
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
+
 trysource "$ZDOTDIR/omz/oh-my-zsh.sh"
 
 trysource "$ZDOTDIR/local.zshrc"
@@ -67,9 +80,6 @@ fi
 
 trysource "$XDG_CONFIG_HOME/op/plugins.sh"
 trysource "$XDG_DATA_HOME/iterm/.iterm2_shell_integration.zsh"
-
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path "$ZSH_CACHE_DIR/.zcompcache"
 
 bindkey "^X^_" redo
 

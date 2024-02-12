@@ -9,6 +9,9 @@ export USER_ZDOTDIR="$ZDOTDIR"
 export LANG="en_US.UTF-8"
 export EDITOR="code --wait"
 
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=40
+
 export HOMEBREW_NO_ENV_HINTS=1
 export CURL_HOME="$XDG_CONFIG_HOME/curl"
 export LESSHISTFILE="$XDG_DATA_HOME/.lesshst"
