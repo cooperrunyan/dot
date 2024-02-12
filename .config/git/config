@@ -24,10 +24,11 @@
   prune = true
 
 [core]
-  trustctime = false # Make `git rebase` safer on macOS
-  precomposeunicode = false # Prevent showing files whose names contain non-ASCII symbols as unversioned.
-  untrackedCache = true # Speed up commands involving untracked files such as `git status`.
+  trustctime = false
+  precomposeunicode = false
+  untrackedCache = true
   excludesFile = ~/.config/git/global.gitignore
+	fsmonitor = true
 
 [color]
   ui = auto
@@ -54,6 +55,11 @@
   db = branch -D
   yolo = !git commit -m \"(yolo) $(curl -s https://whatthecommit.com/index.txt)\"
   lg = log --graph --abbrev-commit --decorate --format=line
+	staash = stash --all
+	wdiff = diff --word-diff
+	cf = config
+	cfg = config --global
+	ac = !git add -A && git commit -m
 
 [gpg]
   format = ssh
@@ -78,3 +84,9 @@
 [push]
   autoSetupRemote = true
   default = current
+[rerere]
+	enabled = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
