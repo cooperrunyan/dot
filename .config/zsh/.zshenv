@@ -3,6 +3,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/Library/Caches"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+[[ -s "$ZDOTDIR/local.xdg.zshenv" ]] && source "$ZDOTDIR/local.xdg.zshenv"
+
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export USER_ZDOTDIR="$ZDOTDIR"
 
@@ -40,4 +42,4 @@ export QMK_HOME="$XDG_DATA_HOME/qmk_firmware"
 
 export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 
-[[ -f "$ZDOTDIR/local.zshenv" ]] && source "$ZDOTDIR/local.zshenv"
+[[ -s "$ZDOTDIR/local.zshenv" ]] && source "$ZDOTDIR/local.zshenv"
