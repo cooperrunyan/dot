@@ -9,7 +9,7 @@ trysource "$XDG_CACHE_HOME/p10k-dump-$USER.zsh"
 trysource "$ZDOTDIR/p10k.zsh"
 
 ZSH="$ZDOTDIR/omz"
-ZSH_CUSTOM="$ZDOTDIR/lib"
+ZSH_CUSTOM="$ZDOTDIR/custom"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 export ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"

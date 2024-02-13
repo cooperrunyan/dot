@@ -9,8 +9,6 @@ Desktop.ini
 .Spotlight-V100
 .Trashes
 **/.zsh_history
-**/custom/*
-!**/custom/example.sh
 **/nvim/**/packer_compiled.lua
 .config/nvim/plugin/packer_compiled.lua
 
@@ -23,3 +21,4 @@ Desktop.ini
 .config/nvim/lazy-lock.json
 
 .config/zsh/.zcalc_history
+**/iterm2/AppSupport
