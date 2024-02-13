@@ -8,17 +8,17 @@ Desktop.ini
 ._*
 .Spotlight-V100
 .Trashes
-**/.zsh_history
-**/nvim/**/packer_compiled.lua
-.config/nvim/plugin/packer_compiled.lua
 
 .config/git/custom.gitconfig
 **/.zcompdump
 
-**/zsh/local.z*
+**/zsh/local*.z*
 
 .config/nvim/queries
 .config/nvim/lazy-lock.json
 
-.config/zsh/.zcalc_history
+**/*_history
 **/iterm2/AppSupport
+
+.config/fish/fish_variables
+.config/fish/**/*.local.fish

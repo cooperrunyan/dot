@@ -1,0 +1,38 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# add_newline = false
+format = """$status$cmd_duration$directory
+$shlvl$character"""
+continuation_prompt = '[➜](white dimmed)  '
+
+[character]
+    success_symbol = '[➜](white)'
+    error_symbol   = '[➜](white)'
+
+[status]
+    disabled = false
+    format   = "[$symbol]($style) "
+    symbol   = "{!}"
+    style    = "bold red"
+
+[cmd_duration]
+    disabled           = false
+    format             = "[$duration]($style) "
+    min_time           = 500
+    show_milliseconds  = false
+    show_notifications = false
+    style              = "black"
+
+[directory]
+    format                    = "[$path]($style) "
+    read_only_style           = "none"
+    style                     = "blue"
+    truncate_to_repo          = false
+    fish_style_pwd_dir_length = 3
+    truncation_length         = 3
+
+[shlvl]
+    disabled = false
+    format   = "[{$shlvl}]($style) "
+    style    = "black"

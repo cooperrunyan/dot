@@ -316,7 +316,7 @@
   "Smart Cursor Color" : false,
   "BM Growl" : false,
   "Prompt Before Closing 2" : 0,
-  "Command" : "",
+  "Command" : "\/opt\/homebrew\/bin\/fish",
   "Selected Text Color" : {
     "Red Component" : 0.79607844352722168,
     "Color Space" : "sRGB",
@@ -353,7 +353,7 @@
   "Close Sessions On End" : 1,
   "HotKey Activated By Modifier" : false,
   "Default Bookmark" : "No",
-  "Custom Command" : "No",
+  "Custom Command" : "Custom Shell",
   "Ansi 9 Color" : {
     "Red Component" : 1,
     "Color Space" : "sRGB",
