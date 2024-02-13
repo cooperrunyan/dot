@@ -21,3 +21,5 @@ Desktop.ini
 
 .config/nvim/queries
 .config/nvim/lazy-lock.json
+
+.config/zsh/.zcalc_history

@@ -13,3 +13,9 @@ url = https://www.github.com/ohmyzsh/ohmyzsh.git
 [submodule "zsh-completions"]
 	path = .config/zsh/lib/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
+[submodule "fast-syntax-highlighting"]
+	path = .config/zsh/lib/plugins/fast-syntax-highlighting
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
+[submodule "zsh-calc"]
+	path = .config/zsh/lib/plugins/calc
+	url = https://github.com/arzzen/calc.plugin.zsh.git

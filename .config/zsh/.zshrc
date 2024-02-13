@@ -45,12 +45,13 @@ export plugins=(
   gh
   iterm2
   zsh-autosuggestions
-  zsh-syntax-highlighting
+  fast-syntax-highlighting
   colored-man-pages
   rust
   fzf
   nmap
   npm
+  calc
 )
 
 zstyle ':omz:update' mode auto
