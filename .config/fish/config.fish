@@ -40,12 +40,17 @@ set -x QMK_HOME "$XDG_DATA_HOME/qmk_firmware"
 if status is-interactive
     if command -sq starship
         function starship_transient_prompt_func
-            starship module line_break
             starship module character
         end
 
         starship init fish | source
         enable_transience
     end
+
+    function echo_prompt --on-event fish_postexec
+        if test $argv[1] != "clear"
+		    echo ""
+        end
+	end
 end
 

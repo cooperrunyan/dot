@@ -1,9 +1,9 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-# add_newline = false
-format = """$status$cmd_duration$directory
-$shlvl$character"""
+add_newline = false
+format = """($status$cmd_duration$directory
+$shlvl)$character"""
 continuation_prompt = '[➜](white dimmed)  '
 
 [character]
