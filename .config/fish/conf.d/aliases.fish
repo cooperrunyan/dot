@@ -5,6 +5,7 @@ if status is-interactive
   abbr = "math"
   alias ls "ls -phFHAtG --color"
   alias mkdir "mkdir -p"
+  abbr dev "code ~/dev/"
 
   if command -sq bat
       alias cat "bat"

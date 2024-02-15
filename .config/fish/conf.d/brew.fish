@@ -4,4 +4,8 @@ if test -d /opt/homebrew/bin
     fish_add_path -pP /opt/homebrew/bin
     fish_add_path -pP /opt/homebrew/sbin
     set -g fish_complete_path $fish_complete_path /opt/homebrew/share/fish/vendor_completions.d
+
+    if test -d /opt/homebrew/opt/ccache/libexec
+        fish_add_path -P /opt/homebrew/opt/ccache/libexec
+    end
 end
