@@ -3,7 +3,7 @@
 
 add_newline = false
 format = """($status$cmd_duration$directory
-$shlvl)$character"""
+)$character"""
 continuation_prompt = '[➜](white dimmed)  '
 
 [character]
