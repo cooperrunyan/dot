@@ -1,0 +1,6 @@
+#! /bin/bash
+# alias: brew purge
+#:  * `purge` [args...]
+#:    `brew purge` is an alias for `brew bundle cleanup --global --zap --formula --cask --tap --mas`
+brew bundle cleanup --global --zap --formula --cask --tap --mas $*
+

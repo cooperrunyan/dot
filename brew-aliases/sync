@@ -1,0 +1,6 @@
+#! /bin/bash
+# alias: brew sync
+#:  * `sync` [args...]
+#:    `brew sync` is an alias for `brew bundle install --global --no-lock --cleanup --zap --formula --cask --tap --mas`
+brew bundle install --global --no-lock --cleanup --zap --formula --cask --tap --mas $*
+

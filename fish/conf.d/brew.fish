@@ -1,5 +1,9 @@
 if test -d /opt/homebrew/bin
     set -x HOMEBREW_NO_ENV_HINTS 1
+
+    set -x HOMEBREW_BUNDLE_FILE_GLOBAL $HOME/.config/Brewfile
+
+
     eval (/opt/homebrew/bin/brew shellenv)
     fish_add_path -pP /opt/homebrew/bin
     fish_add_path -pP /opt/homebrew/sbin
