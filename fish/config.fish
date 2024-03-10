@@ -15,6 +15,8 @@ set -x GOPATH "$XDG_DATA_HOME/go"
 set -x GOMODCACHE "$XDG_CACHE_HOME/go-mod"
 set -x GOCACHE "$XDG_CACHE_HOME/go"
 
+set -x GNUPGHOME "$XDG_CONFIG_HOME/gnupg"
+
 set -x DENO_INSTALL "$XDG_DATA_HOME/deno"
 set -x NVM_DIR "$XDG_DATA_HOME/nvm"
 set -x NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME/.npmrc"
