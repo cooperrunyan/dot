@@ -1,6 +1,5 @@
 #! /bin/bash
 # alias: brew dump
 #:  * `dump` [args...]
-#:    `brew dump` is an alias for `brew bundle dump --global --force --describe --formula --cask --tap --mas`
-brew bundle dump --global --force --describe --formula --cask --tap --mas $*
-
+#:    `brew dump` is an alias for `brew bundle dump --global --force --formula --cask --tap --mas`
+brew bundle dump --global --force --formula --cask --tap --mas $*

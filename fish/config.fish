@@ -49,10 +49,16 @@ if status is-interactive
         enable_transience
     end
 
-    function echo_prompt --on-event fish_postexec
-        if test $argv[1] != "clear"
-		    echo ""
-        end
-	end
+    # function echo_prompt --on-event fish_postexec
+    #     if not string match -q -- $argv[1] "*clear"
+    #         echo ""
+    #     end
+    # end
+
+    if test -e "$XDG_DATA_HOME/.iterm_shell_integration.fish"
+        source "$XDG_DATA_HOME/.iterm_shell_integration.fish"
+    end
+
 end
 
+alias t tmux
