@@ -1,25 +1,44 @@
 [flags]
-hide_time = true
-hide_table_gap = true
-regex = true
-color = "default"
+  hide_table_gap = true
+  regex          = true
+  color          = "default"
+  hide_avg_cpu   = true
+  # basic            = true
+  temperature_type    = "f"
+  tree                = true
+  battery             = true
+  default_widget_type = "proc"
+  expanded            = true
+  mem_as_value        = true
+
+[processes]
+  columns = ["pid", "name", "cpu%", "mem%", "state", "time"]
 
 [[row]]
   ratio = 1
   [[row.child]]
     ratio = 2
-    type = "cpu"
-  [[row.child]]
-    ratio = 2
-    [[row.child.child]]
-      ratio = 2
-      type = "disk"
     [[row.child.child]]
       ratio = 1
-      type = "batt"
+      type  = "batt"
+    [[row.child.child]]
+      ratio = 4
+      type  = "temp"
   [[row.child]]
-    ratio = 4
-    type = "proc"
+    ratio = 5
+    [[row.child.child]]
+      ratio = 5
+      type  = "proc"
+    [[row.child.child]]
+      ratio = 2
+      type  = "disk"
 
-[processes]
-columns = ["pid", "name", "cpu%", "mem%", "state", "time"]
+      # [processes]
+      # columns = ["pid", "name", "cpu%", "mem%", "state", "time"]
+
+[disk_filter]
+  is_list_ignored = true
+  list            = ["/dev/disk3s[^1]"]
+  regex           = true
+  case_sensitive  = false
+  whole_word      = false
