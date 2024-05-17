@@ -22,3 +22,5 @@ Desktop.ini
 
 .config/fish/fish_variables
 .config/fish/**/*.local.fish
+
+fish/functions/*bass*

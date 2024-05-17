@@ -4,11 +4,11 @@ return {
   { "ap/vim-css-color" },
   { "yorickpeterse/nvim-pqf" },
   { "ku1ik/vim-pasta" },
-  {
-    "CosmicNvim/cosmic-ui",
-    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    opts = { border_style = "rounded" },
-  },
+  -- {
+  --   "CosmicNvim/cosmic-ui",
+  --   dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+  --   opts = { border_style = "rounded" },
+  -- },
 
   {
     "simrat39/rust-tools.nvim",

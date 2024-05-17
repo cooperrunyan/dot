@@ -5,7 +5,7 @@ local diagnostics = {
   -- symbols = { error = " ", warn = " ", hint = "󰌶 ", info = "󰋽 " },
   symbols = { error = " ", warn = " ", hint = "", info = "" },
   colored = true,
-  -- update_in_insert = true,
+  update_in_insert = true,
   -- always_visible = true,
 }
 

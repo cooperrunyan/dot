@@ -18,19 +18,27 @@ local c = function(...)
   k("c", ...)
 end
 
-n("<S-u>", "<cmd>redo<CR>")
-n("<leader>q", ":wa|qa!<CR>")
-n("<S-w>", "<cmd>w<CR>")
+local s = { silent = true }
+
+n("U", "<cmd>redo<CR>")
+n("Q", "<cmd>qa<CR>")
+n("W", "<cmd>w<CR>")
 n("<leader>wa", "<cmd>wa<CR>")
 
-n("<S-CR>", "o<esc>")
+i("<M-CR>", "<c-o><cmd>call append(line('.'), '')<CR>", s)
+i("<M-S-CR>", "<c-o><cmd>call append(line('.')-1, '')<CR>", s)
 
-v("J", ":m '>+1<CR>gv=gv", { silent = true })
-v("K", ":m '>-2<CR>gv=gv", { silent = true })
+n("<M-CR>", "<cmd>call append(line('.'), '')<CR>", s)
+n("<M-S-CR>", "<cmd>call append(line('.')-1, '')<CR>", s)
+n("<C-CR>", "o<esc>", s)
+n("<C-S-CR>", "O<esc>", s)
+
+-- v("J", ":m '>+1<CR>gv=gv", { silent = true })
+-- v("K", ":m '>-2<CR>gv=gv", { silent = true })
 
 v("p", '"_dP')
-n("<leader>yc", ":t .<cr>kgccj", { remap = true })
-n("<leader>yp", ":t .<cr>")
+n("<leader>yc", "<cmd>t .<cr>kgccj", { remap = true })
+n("<leader>yp", "<cmd>t .<cr>", s)
 -- n("<leader>p", '"+p')
 -- n("<leader>yy", '"+yy')
 -- v("<leader>y", '"+y')
@@ -73,8 +81,8 @@ n("<leader>r", vim.lsp.buf.rename)
 n("gd", vim.lsp.buf.declaration)
 n("gK", vim.lsp.buf.signature_help)
 
-n("Q", "@q")
-x("Q", ":norm @q<CR>")
+n("<leader>Q", "@q")
+x("<leader>Q", ":norm @q<CR>")
 n("x", '"_x')
 i("<c-x>", '<C-o>"_x')
 
@@ -96,3 +104,4 @@ i("<C-p>", "<C-o>P")
 
 i("<C-CR>", "<C-o>o")
 i("<S-CR>", "<C-o>o")
+i("<C-S-CR>", "<C-o>O")
