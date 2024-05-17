@@ -121,6 +121,8 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 
+
+
 autoload -Uz compinit && compinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
@@ -148,14 +150,6 @@ bindkey "^X^_" redo
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
-alias g="git"
-alias v="nvim"
-alias b="brew"
-alias rg="ranger"
-alias ls="ls -phFHAtG --color"
-alias mkdir="mkdir -p"
-
-cmd_exists "bat" && alias cat="bat"
 
 export QMK_HOME="$XDG_DATA_HOME/qmk_firmware"
 
@@ -170,3 +164,20 @@ if [ -e "/Applications/1Password.app" ]; then
 fi
 
 setopt interactivecomments
+
+source "$ZDOTDIR/abbr.zsh"
+
+alias -g dev=~/dev
+alias -g cfg=~/.config
+alias -g lcl=~/.local
+alias -g h="\$HOME"
+
+abbr g="git"
+abbr v="nvim"
+abbr b="brew"
+abbr rg="ranger"
+alias ls="ls -phFHAtG --color"
+alias mkdir="mkdir -p"
+
+cmd_exists "bat" && abbr cat="bat"
+
