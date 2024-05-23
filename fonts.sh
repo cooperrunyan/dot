@@ -14,7 +14,7 @@ fi
 
 for font in "${fonts[@]}"; do
   zip="$font.zip"
-  url="https://github.com/ryanoasis/nerd-fonts/releases/donload/v$version/$zip"
+  url="https://github.com/ryanoasis/nerd-fonts/releases/download/v$version/$zip"
   echo "Downloading $url"
   wget "$url"
   unzip "$zip" -d "$fonts_dir"
