@@ -9,7 +9,7 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
 
 
-ZDOTDIR=${ZDOTDIR:-"$XDG_CONFIG_HOME/zsh"}
+ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 USER_ZDOTDIR="$ZDOTDIR"
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 FPATH="$ZSH_CACHE_DIR/completions:${FPATH}"
@@ -158,7 +158,7 @@ if [ -e "/Applications/1Password.app" ]; then
   export GIT_CONFIG_VALUE_0="/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 fi
 
-if_src "$ZDOTDIR/abbr.zsh"
+source "$ZDOTDIR/abbr.zsh"
 
 cmd_exists "bat" && abbr cat="bat"
 
@@ -166,6 +166,7 @@ abbr g="git"
 abbr v="nvim"
 abbr b="brew"
 abbr rg="ranger"
+abbr chx="chmod +x"
 alias ls="ls -phFHAtG --color"
 alias mkdir="mkdir -p"
 
