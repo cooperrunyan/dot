@@ -169,10 +169,11 @@ abbr rg="ranger"
 abbr chx="chmod +x"
 alias ls="ls -phFHAtG --color"
 alias mkdir="mkdir -p"
+alias bat="bat --style=plain --theme=Nord"
+alias fzf="fzf --preview='bat --color=always --style=plain --theme=Nord {}'"
+alias du="du -h"
 
 
 if_src "$ZDOTDIR/.p10k.zsh"
 
 
-if_src /opt/ros/humble/setup.zsh
-if_src /usr/share/gazebo/setup.sh
