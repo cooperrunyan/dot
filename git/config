@@ -59,7 +59,8 @@
   wdiff = diff --word-diff
   ignore = rm --cached -r
   amend = commit --all --amend --no-edit
-  lg = log --graph --abbrev-commit --decorate --oneline
+  lg = log --graph --decorate --all --pretty="%C(auto)%h %C(brightblack)%ad%C(reset) $C(auto) %>|(-1) % d%C(reset)%n%C(bold blue)%an%C(no bold) %C(dim black)%ae%C(reset)%n%n%w(72,4,4)%s%n%n"
+  who = shortlog -se
 
 [gpg]
   format = ssh
