@@ -77,8 +77,8 @@ export PATH="$CARGO_HOME/bin:$PATH"
 export QMK_HOME="$XDG_DATA_HOME/qmk_firmware"
 
 
-HISTSIZE=10000
-HISTFILE="${XDG_CACHE_HOME}/zsh/.zsh_history"
+HISTSIZE=100000
+HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory
@@ -88,10 +88,6 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
-
-bindkey "^X^_" redo
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
 
 setopt interactivecomments
 
@@ -113,6 +109,11 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+bindkey -M vicmd 'k' history-search-backward
+bindkey -M vicmd 'j' history-search-forward
+
 
 zinit snippet OMZP::bun
 zinit snippet OMZP::brew
@@ -121,6 +122,7 @@ zinit snippet OMZP::rust
 zinit snippet OMZP::fzf
 zinit snippet OMZP::arduino-cli
 zinit snippet OMZP::ssh-agent
+zinit snippet OMZP::urltools
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::clipboard.zsh
@@ -158,15 +160,15 @@ if [ -e "/Applications/Visual Studio Code.app" ]; then
   export EDITOR="code --wait"
 fi
 
-if [ -e "/Applications/1Password.app" ]; then
-  export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+# if [ -e "/Applications/1Password.app" ]; then
+#   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
-  if_src "$XDG_CONFIG_HOME/op/plugins.sh"
+#   if_src "$XDG_CONFIG_HOME/op/plugins.sh"
 
-  export GIT_CONFIG_COUNT=1
-  export GIT_CONFIG_KEY_0="gpg.ssh.program"
-  export GIT_CONFIG_VALUE_0="/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-fi
+#   export GIT_CONFIG_COUNT=1
+#   export GIT_CONFIG_KEY_0="gpg.ssh.program"
+#   export GIT_CONFIG_VALUE_0="/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+# fi
 
 source "$ZDOTDIR/abbr.zsh"
 
