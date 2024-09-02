@@ -104,6 +104,7 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 
+
 source "$ZINIT_HOME/zinit.zsh"
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -117,11 +118,17 @@ zinit snippet OMZP::bun
 zinit snippet OMZP::brew
 zinit snippet OMZP::dotenv
 zinit snippet OMZP::rust
+zinit snippet OMZP::fzf
+zinit snippet OMZP::arduino-cli
+zinit snippet OMZP::ssh-agent
 zinit snippet OMZP::colored-man-pages
 zinit snippet OMZL::completion.zsh
 zinit snippet OMZL::clipboard.zsh
 zinit snippet OMZL::compfix.zsh
 
+zstyle :omz:plugins:ssh-agent ssh-add-args --apple-use-keychain --apple-load-keychain
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent lazy yes
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
