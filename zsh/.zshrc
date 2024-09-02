@@ -108,6 +108,7 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern regexp)
 
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
@@ -173,6 +174,9 @@ fi
 source "$ZDOTDIR/abbr.zsh"
 
 cmd_exists "bat" && abbr cat="bat"
+
+calc() python3 -c "from math import *; import numpy as np; print($*);"
+aliases[=]='noglob calc'
 
 abbr g="git"
 abbr v="nvim"
