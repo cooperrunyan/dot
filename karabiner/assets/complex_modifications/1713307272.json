@@ -1,0 +1,1 @@
+{"title":"F3 for PiP in Arc","rules":[{"description":"F3 for PiP in Arc","manipulators":[{"type":"basic","from":{"key_code":"f3"},"to":[{"key_code":"semicolon","modifiers":["left_gui","left_control","left_shift","left_alt"]}],"conditions":[{"type":"frontmost_application_if","bundle_identifiers":["^company\\.thebrowser\\.Browser$"]}]}]}]}

@@ -1,0 +1,1 @@
+{"title":"Use CMD+. to toggle PiP in Firefox","rules":[{"description":"Use CMD+. to toggle PiP in Firefox","manipulators":[{"type":"basic","from":{"key_code":"f3"},"to":[{"key_code":"close_bracket","modifiers":["option","left_command","left_control"]}],"conditions":[{"type":"frontmost_application_if","bundle_identifiers":["^company\\.thebrowser\\.Browser$"]}]}]}]}

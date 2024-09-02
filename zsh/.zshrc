@@ -12,7 +12,10 @@ export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
 ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 USER_ZDOTDIR="$ZDOTDIR"
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
+! [[ -d "$ZSH_CACHE_DIR/completions" ]] && mkdir "$ZSH_CACHE_DIR/completions"
+
 FPATH="$ZSH_CACHE_DIR/completions:${FPATH}"
+
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
 export ZCOMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
 
@@ -172,6 +175,34 @@ alias mkdir="mkdir -p"
 alias bat="bat --style=plain --theme=Nord"
 alias fzf="fzf --preview='bat --color=always --style=plain --theme=Nord {}'"
 alias du="du -h"
+
+function rename() {
+  match="$1"
+  match="${match//\\d/[0-9]}"
+
+  e="s:$match:$2:g"
+
+  start=3
+  dry=false
+
+  if [[ "${@[$start]}" == "--dry" ]]; then
+   ((start++));
+   dry=true
+  fi
+
+  for (( i=$start; i <= "$#"; i++ )); do
+    f="${@[$i]}"
+
+    name="$(echo "$f" | sed -re "$e")"
+
+    if [[ "$dry" == "true" ]]; then
+      echo "$name"
+    else
+      mkdir -p "$(sed -re "s:/[^/]+\$::g" <<< "$name")"
+      mv "$f" "$name"
+    fi
+  done
+}
 
 
 if_src "$ZDOTDIR/.p10k.zsh"
