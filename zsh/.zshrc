@@ -156,9 +156,10 @@ cmd_exists "gh" && eval $(gh completion -s zsh)
 if_src "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
 if_src "$XDG_DATA_HOME/iterm/.iterm2_shell_integration.zsh"
 
-if [ -e "/Applications/Visual Studio Code.app" ]; then
+if [ -e "/Applications/Visual Studio Code.app" ] || cmd_exists code; then
   export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
-  export EDITOR="code --wait"
+  export EDITOR="code --wait -n"
+  alias edit="$EDITOR"
 fi
 
 # if [ -e "/Applications/1Password.app" ]; then
