@@ -10,7 +10,7 @@ Desktop.ini
 .Trashes
 
 .config/git/custom.gitconfig
-**/.zcompdump
+**/.zcompdump*
 
 **/zsh/local*.z*
 

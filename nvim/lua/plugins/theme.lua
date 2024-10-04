@@ -1,5 +1,15 @@
 return {
   {
+     "nyoom-engineering/oxocarbon.nvim",
+     priority = 1000,
+     enabled = true,
+     lazy = false,
+    dependencies = { {
+      "LazyVim/LazyVim",
+      opts = { colorscheme = "oxocarbon" },
+    } },
+  },
+  {
     "sontungexpt/witch",
     priority = 1000,
     enabled = false,
@@ -48,7 +58,7 @@ return {
   },
   {
     "olivercederborg/poimandres.nvim",
-    enabled = true,
+    enabled = false,
     opts = function()
       local p = require("poimandres.palette")
       local blend = require("poimandres.utils").blend
@@ -58,12 +68,13 @@ return {
         disable_float_background = true,
         disable_italics = true,
         groups = {
-          border = "background1",
+          border = "background2",
         },
         highlight_groups = {
           CursorLine = { bg = p.background2 },
           Visual = { bg = p.background1 },
           MiniIndentscopeSymbol = { fg = p.background1 },
+          WinSeparator = { fg = p.background1 },
           Comment = { fg = blend(p.background1, p.blueGray3, 0.25) },
         },
       }

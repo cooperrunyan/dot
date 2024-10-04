@@ -193,27 +193,38 @@ alias du="du -h"
 function rename() {
   match="$1"
   match="${match//\\d/[0-9]}"
+  match="${match//\\D/[^0-9]}"
 
   e="s:$match:$2:g"
 
   start=3
-  dry=false
+  dry=-1
 
-  if [[ "${@[$start]}" == "--dry" ]]; then
-   ((start++));
-   dry=true
-  fi
+  for (( i=0; i <= "$#"; i++ )); do
+    if [[ "${@[$i]}" == "--dry" ]]; then
+      ((start++));
+      dry=$i
+      break
+    fi
+  done
 
-  for (( i=$start; i <= "$#"; i++ )); do
+  for (( i=3; i <= "$#"; i++ )); do
+    if [[ "$dry" == "$i" ]]; then
+      continue
+    fi
+
     f="${@[$i]}"
 
     name="$(echo "$f" | sed -re "$e")"
 
-    if [[ "$dry" == "true" ]]; then
-      echo "$name"
-    else
-      mkdir -p "$(sed -re "s:/[^/]+\$::g" <<< "$name")"
-      mv "$f" "$name"
+    if [[ "$name" != "$f" ]]; then
+      if [[ "$dry" != "-1" ]]; then
+        echo "(not actually)" Rename \"$f\" to \"$name\"
+      else
+        # mkdir -p "$(sed -re "s:/[^/]+\$::g" <<< "$name")"
+        mv "$f" "$name"
+        echo Rename \"$f\" to \"$name\"
+      fi
     fi
   done
 }

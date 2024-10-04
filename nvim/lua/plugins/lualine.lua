@@ -47,7 +47,7 @@ return {
       disabled_filetypes = {
         ToggleTerm = {},
       },
-      theme = "poimandres",
+      theme = "oxocarbon",
       section_separators = { left = "", right = "" },
       component_separators = { left = "", right = "" },
     },
