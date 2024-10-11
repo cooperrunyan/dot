@@ -24,7 +24,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.yaml" },
     -- { import = "lazyvim.plugins.extras.lsp.none-ls" },
     { cond = not vim.g.vscode, import = "plugins" },
-    { cond = vim.g.vscode, import = "vsc" }
+    { cond = not not vim.g.vscode, import = "vsc" }
   },
   defaults = {
     lazy = false,
