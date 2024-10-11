@@ -24,3 +24,5 @@ Desktop.ini
 .config/fish/**/*.local.fish
 
 fish/functions/*bass*
+
+zmk/artifacts
