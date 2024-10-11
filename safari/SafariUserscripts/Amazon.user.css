@@ -1,0 +1,58 @@
+/* ==UserStyle==
+@name        Amazon
+@description This is your new file, start writing code
+@match       https://*.amazon.com/*
+==/UserStyle== */
+
+#nav-main > .nav-fill,
+#desktop-banner,
+#icp-nav-flyout,
+#navFooter,
+#nav-al-profile,
+.nav-flyout-sidePanel,
+#wishlist-page > ul[role="tablist"],
+#nav-subnav,
+#control-bar > :has(#view-switcher-buttons),
+#control-bar span.control-bar:has(form),
+#my-lists-tab #content-right .list-header-container ~ hr,
+#endOfListMarker,
+li[role="listitem"] .a-row:has([class*="savingsBadgeWrapper"]),
+li[role="listitem"] .a-row:has(.a-declarative),
+li[role="listitem"] .a-row:has(.p13n-best-seller),
+li[role="listitem"] .a-row:has([class*="p13n-ac-"]),
+li[role="listitem"] .a-row:has(.a-price) ~ .a-row:has(.a-text-strike),
+#activeCartViewForm > [data-name="Active Items Header"],
+#activeCartViewForm .sc-free-returns,
+#activeCartViewForm li:has(.sc-gift-option),
+#paymentOptions_PriceblockMessaging_feature_div,
+#averageCustomerReviews_feature_div,
+#ask_feature_div,
+#acBadge_feature_div,
+#climatePledgeFriendlyATF_feature_div,
+#zeitgeistBadge_feature_div,
+#socialProofingBadge_feature_div,
+hr:has(~ #desktop_unifiedPrice),
+#offerDisplayFeatures_desktop,
+#tradeInInstantSavings_feature_div,
+#supportInformationODF_feature_div,
+#sellerCertificationsODF_feature_div,
+#tradeInInstantSavings_feature_div,
+#quantityLayoutHigh_feature_div,
+#voltageCompliance_feature_div,
+#mbb_feature_div,
+#desktop_productInsurance_feature_div,
+#addToWishlist_feature_div > hr,
+#imageBlock #canvasCaption,
+#iconfarmv2_feature_div,
+#tellAmazon_feature_div,
+#prodDetails .a-column:has(#productDetails_feedback_sections),
+.reviews-content .review-comments,
+#rhf-shoveler > .celwidget:has(.p13n-desktop-canaries-wrapper-data[data-input*="\"repeat-purchase-recommendations\""]),
+#va-related-videos-widget_feature_div,
+.apb-default-merchandised-search-1:has(.bxc-grid__image),
+.apb-default-merchandised-search-2:has(.bxc-grid__image),
+.apb-default-merchandised-search-15:has(.bxc-grid__image),
+.apb-default-merchandised-search-top-1:has(.bxc-grid__image)
+{
+    display: none !important;
+}

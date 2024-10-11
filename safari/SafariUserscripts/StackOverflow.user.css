@@ -1,0 +1,41 @@
+/* ==UserStyle==
+@name        StackOverflow
+@description This is your new file, start writing code
+@match       https://*.stackoverflow.com/*
+@match       https://*.stackexchange.com/*
+==/UserStyle== */
+
+#onetrust-consent-sdk,
+#announcement-banner,
+nav .js-freemium-cta,
+#footer,
+#left-sidebar,
+.s-sidebarwidget,
+#hot-network-questions,
+#answers.no-answers,
+#feed-link,
+#sidebar > div:has(#dfp-msb),
+#sidebar .s-modal.js-feed-link-modal,
+#post-form:has(.new-post-login),
+.bottom-notice,
+div:has(> .post-signature) > :not(:has(.user-info)),
+.votecell .js-saves-btn,
+.votecell .js-accepted-answer-indicator,
+.votecell .js-post-issue,
+#sidebar,
+body:has(nav a[href*="/users/login"]) .votecell .js-vote-down-btn,
+body:has(nav a[href*="/users/login"]) .votecell .js-vote-up-btn {
+    display: none !important;
+}
+
+#content {
+    border: none !important;
+}
+
+div:has(> .post-signature) {
+    justify-content: flex-start !important;
+}
+
+#mainbar {
+    width: calc(100% - var(--su-static24)) !important;
+}

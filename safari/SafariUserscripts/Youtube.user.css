@@ -1,0 +1,39 @@
+/* ==UserStyle==
+@name        Youtube
+@description This is your new file, start writing code
+@match       https://*.youtube.com/*
+==/UserStyle== */
+
+#guide #items .ytd-guide-section-renderer:has([title="Shorts"]),
+#guide #items .ytd-guide-section-renderer:has([title="Subscriptions"]),
+ytd-guide-collapsible-section-entry-renderer #header,
+ytd-guide-collapsible-section-entry-renderer ytd-guide-entry-renderer:has([title="Your channel"]),
+ytd-guide-collapsible-section-entry-renderer ytd-guide-entry-renderer:has([title="Playlists"]),
+ytd-guide-collapsible-section-entry-renderer ytd-guide-entry-renderer:has([title="Your videos"]),
+#guide #footer,
+#guide #sections ytd-guide-section-renderer:has([title="Music"]),
+#guide #sections ytd-guide-section-renderer:has([title="YouTube Premium"]),
+#guide #sections ytd-guide-section-renderer:has([title="Settings"]),
+#guide-section-title,
+#header:has(#chips-wrapper.ytd-feed-filter-chip-bar-renderer),
+ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+ytd-rich-section-renderer:has(#dismissible),
+#voice-search-button,
+ytd-topbar-menu-button-renderer:first-of-type,
+.ytp-miniplayer-button,
+.ytp-remote-button,
+.ytp-airplay-button,
+#actions yt-button-view-model:has([aria-label="Share"]),
+#actions yt-button-view-model:has([aria-label="Thanks"]),
+#actions yt-button-view-model:has([aria-label="Clip"]),
+ytd-video-description-transcript-section-renderer,
+ytd-video-description-infocards-section-renderer,
+ytd-video-description-course-section-renderer,
+#donation-shelf,
+ytd-watch-next-secondary-results-renderer #offer-module,
+ytd-watch-next-secondary-results-renderer yt-related-chip-cloud-renderer,
+#sponsor-button,
+#cinematics-container
+{
+    display: none !important;
+}
