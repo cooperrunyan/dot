@@ -1,0 +1,153 @@
+/* div:has(> .part.titlebar),
+.split-view-view:has(> .part.titlebar), */
+.sidebar .title-label h2,
+.extension-editor>.header .details .actions-status-container.list-layout .status,
+.extension-editor>.body>.content>.details>.additional-details-container,
+.extension-editor>.header .details .title .version,
+.extension-editor>.header .details .subtitle-entry:has(.rating) {
+    display: none !important;
+}
+
+
+
+/* .split-view-container:has(.part.titlebar)>.split-view-view[style*="top: 28px"] {
+    top: 0px !important;
+}
+
+.split-view-container:has(.part.titlebar)>.split-view-view.visible[style*="top: 28px"] {
+    height: calc(100% - 22px) !important;
+} */
+
+.shadow-root-host,
+.monaco-editor,
+.mac,
+.mac:lang(zh-Hans),
+.mac:lang(zh-Hant),
+.mac:lang(ja),
+.mac:lang(ko),
+.windows,
+.windows:lang(zh-Hans),
+.windows:lang(zh-Hant),
+.windows:lang(ja),
+.windows:lang(ko),
+.linux,
+.linux:lang(zh-Hans),
+.linux:lang(zh-Hant),
+.linux:lang(ja),
+.linux:lang(ko),
+* {
+    font-family: 'GeistMono Nerd Font', 'Geist Mono', Menlo, Monaco, 'Courier New', monospace
+}
+
+.monaco-workbench:not(.fullscreen) .editor-group-top .tabs-and-actions-container .monaco-scrollable-element,
+.monaco-workbench:not(.fullscreen) .statusbar,
+.monaco-workbench:not(.fullscreen) .auxiliarybar .inline-auxiliarybar-placeholder,
+.monaco-workbench:not(.fullscreen) .sidebar .composite.title .title-label {
+    -webkit-app-region: drag;
+    cursor: move;
+}
+
+.monaco-workbench:not(.fullscreen) .auxiliarybar .inline-auxiliarybar-placeholder,
+.monaco-workbench:not(.fullscreen) .sidebar .composite.title .title-label {
+    display: flex;
+    flex: 1;
+}
+
+.monaco-workbench:not(.fullscreen) .auxiliarybar .title-actions,
+.monaco-workbench:not(.fullscreen) .sidebar .composite.title .title-actions {
+    flex: unset;
+}
+
+.monaco-workbench .part.editor>.content div.editor-group-container.empty>div.tabs {
+    display: block;
+    width: 100%;
+    height: var(--editor-group-tab-height, 32px);
+    position: absolute;
+    top: 0;
+}
+
+.no-custom-title-bar-visibility div.monaco-workbench .has-composite-bar {
+    padding-left: 4px !important
+}
+
+.line-numbers,
+.sticky-line-number-inner {
+    margin-left: 2px;
+    font-size: 0.9em !important
+}
+
+.statusbar:focus {
+    outline: none !important
+}
+
+.monaco-workbench .part.statusbar.status-border-top:after {
+    height: calc(1rem / 16) !important
+}
+
+.monaco-workbench .part.editor>.content .editor-group-container>.title>.tabs-and-actions-container.empty {
+    display: flex !important;
+    background: transparent !important;
+    --tabs-border-bottom-color: none !important;
+
+}
+
+.title.tabs:has(.tabs-and-actions-container.empty) {
+    background-color: transparent !important
+}
+
+.monaco-workbench .part>.content,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .tabs-container>.tab .tab-label a,
+.monaco-workbench .part.editor>.content .editor-group-container>.title .title-label a {
+    font-size: 12px !important
+}
+
+.statusbar,
+.activitybar,
+.tabs-container {
+    -webkit-app-region: drag;
+}
+
+.statusbar .statusbar-item,
+.activitybar a,
+.tabs-container>* {
+    -webkit-app-region: no-drag !important
+}
+
+.no-activity-bar.nosidebar:not(.sidebar-right):not(.fullscreen) .inline-tabs-placeholder {
+    padding-left: 0 !important
+}
+
+.extension-editor {
+    margin-inline: max(16px, auto) !important;
+    max-width: min(100%, 882px) !important
+}
+
+.extension-editor>.body>.content>.details>.readme-container {
+    max-width: 100% !important
+}
+
+.extension-editor>.header>.icon-container .icon {
+    height: 64px !important;
+    width: 64px !important;
+}
+
+.extension-editor>.header .details .subtitle {
+    padding-top: 4px !important
+}
+
+.extension-editor>.header .details .description {
+    margin-top: 4px !important;
+    opacity: .6
+}
+
+.extension-editor>.header .details .actions-status-container.list-layout {
+    margin-top: 16px !important
+}
+
+.extensions-viewlet.mini>.extensions .extension-list-item>.icon-container>.icon {
+    display: unset !important
+}
+
+.extensions-viewlet>.header {
+    padding-inline: 12px;
+}
