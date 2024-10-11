@@ -7,5 +7,5 @@ return {
     { "tpope/vim-surround" },
     { "vim-scripts/ReplaceWithRegister" },
     { "othree/eregex.vim" },
-      { "j-hui/fidget.nvim" },
+    { "j-hui/fidget.nvim" },
 }
