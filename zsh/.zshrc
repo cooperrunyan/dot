@@ -1,7 +1,8 @@
 #!/bin/zsh
 
 cache_home=".cache"
-[[ -d "$HOME/Library/Caches" ]] && cache_home="Library/Caches"
+uname=$(uname)
+[[ $uname == "Darwin" ]] && cache_home="Library/Caches"
 
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/$cache_home"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
@@ -12,20 +13,16 @@ export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
 ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 USER_ZDOTDIR="$ZDOTDIR"
 export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
-! [[ -d "$ZSH_CACHE_DIR/completions" ]] && mkdir "$ZSH_CACHE_DIR/completions"
+[[ -d "$ZSH_CACHE_DIR/completions" ]] && FPATH="$ZSH_CACHE_DIR/completions:${FPATH}"
 
-FPATH="$ZSH_CACHE_DIR/completions:${FPATH}"
+# ! [[ -d "$ZSH_CACHE_DIR/completions" ]] && mkdir "$ZSH_CACHE_DIR/completions"
+# FPATH="$ZSH_CACHE_DIR/completions:${FPATH}"
 
 export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
 export ZCOMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
 
 if_src() {
   [[ -s "$1" ]] && source "$1"
-}
-
-cmd_exists() {
-  which "$1" &>/dev/null && return 0
-  return 1
 }
 
 if_src "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -37,7 +34,8 @@ if [[ -f "/opt/homebrew/bin/brew" ]]; then
   export HOMEBREW_NO_ENV_HINTS=1
 
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+  FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH"
+  # FPATH="$HOMEBREW_PREFIX/share/zsh-completions:$FPATH"
   export OPENSSL_ROOT_DIR=$(brew --prefix openssl)
 
   if [[ -d "/opt/homebrew/opt/ccache/libexec" ]]; then
@@ -45,7 +43,28 @@ if [[ -f "/opt/homebrew/bin/brew" ]]; then
   fi
 fi
 
+autoload -Uz undo redo run-help push-input accept-and-hold yank yank-pop quote-region kill-buffer backward-kill-word set-mark-command
+bindkey '^u' undo
+bindkey '^r' redo
+# bindkey '^h' run-help
+bindkey '^[p' push-input
+# bindkey '^p' yank
+# bindkey '^g' yank-pop
+bindkey "^\'" quote-region
+bindkey '^k' kill-buffer
+bindkey '\Es' set-mark-command
+bindkey '^n' forward-word
+bindkey '^b' backward-word
 
+delregion() {
+  if ((REGION_ACTIVE)) then
+     zle kill-region
+  else
+    zle backward-delete-char
+  fi
+}
+zle -N delregion
+bindkey '^?' delregion
 
 export LANG="en_US.UTF-8"
 
@@ -99,8 +118,6 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-
-
 source "$ZINIT_HOME/zinit.zsh"
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
@@ -149,15 +166,18 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 
-cmd_exists "fzf" && eval "$(fzf --zsh)"
-cmd_exists "zoxide" && eval "$(zoxide init --cmd cd zsh)"
-cmd_exists "gh" && eval $(gh completion -s zsh)
+[[ $uname == "Darwin" ]] && which fzf &>/dev/null && eval "$(fzf --zsh)"
+which zoxide &>/dev/null && eval "$(zoxide init --cmd cd zsh)"
+which gh &>/dev/null && eval $(gh completion -s zsh)
 
 if_src "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
 if_src "$XDG_DATA_HOME/iterm/.iterm2_shell_integration.zsh"
 
-if [ -e "/Applications/Visual Studio Code.app" ] || cmd_exists code; then
+if [ -e "/Applications/Visual Studio Code.app" ]; then
   export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
+fi
+
+if which code &>/dev/null; then
   export EDITOR="code --wait -n"
   alias edit="$EDITOR"
 fi
@@ -174,10 +194,10 @@ fi
 
 source "$ZDOTDIR/abbr.zsh"
 
-cmd_exists "bat" && abbr cat="bat"
+which bat &>/dev/null && abbr cat="bat"
 
 calc() python3 -c "from math import *; import numpy as np; print($*);"
-aliases[=]='noglob calc'
+aliases[=]='noglob nocorrect calc'
 
 abbr g="git"
 abbr v="nvim"
