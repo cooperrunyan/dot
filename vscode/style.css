@@ -4,10 +4,10 @@
 .extension-editor>.header .details .actions-status-container.list-layout .status,
 .extension-editor>.body>.content>.details>.additional-details-container,
 .extension-editor>.header .details .title .version,
-.extension-editor>.header .details .subtitle-entry:has(.rating) {
+.extension-editor>.header .details .subtitle-entry:has(.rating),
+.window-title .command-center {
     display: none !important;
 }
-
 
 
 /* .split-view-container:has(.part.titlebar)>.split-view-view[style*="top: 28px"] {

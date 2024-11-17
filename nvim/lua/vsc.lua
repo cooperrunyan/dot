@@ -1,4 +1,13 @@
-vim.opt.hlsearch = false
+-- vim.opt.hlsearch = false
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  desc = 'Hightlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank { higroup = 'Search', timeout = 200 }
+  end,
+})
 
 return {
   { "jghauser/mkdir.nvim" },

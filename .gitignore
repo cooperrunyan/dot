@@ -9,7 +9,7 @@ Desktop.ini
 .Spotlight-V100
 .Trashes
 
-.config/git/custom.gitconfig
+git/custom.gitconfig
 **/.zcompdump*
 
 **/zsh/local*.z*
@@ -26,3 +26,5 @@ Desktop.ini
 fish/functions/*bass*
 
 zmk/artifacts
+
+nvim/lazy-lock.json
