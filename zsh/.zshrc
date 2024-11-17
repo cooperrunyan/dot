@@ -2,6 +2,7 @@
 
 if_src() {
   [[ -s "$1" ]] && source "$1"
+  return 0
 }
 
 if_src "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -145,7 +146,7 @@ autoload -Uz compinit && compinit
 zinit cdreplay -q
 
 
-[[ $uname == "Darwin" ]] && which fzf &>/dev/null && eval "$(fzf --zsh)"
+[[ $(uname) == "Darwin" ]] && which fzf &>/dev/null && fzf --zsh &>/dev/null && eval "$(fzf --zsh)"
 which zoxide &>/dev/null && eval "$(zoxide init --cmd cd zsh)"
 which gh &>/dev/null && eval $(gh completion -s zsh)
 
@@ -175,8 +176,8 @@ source "$ZDOTDIR/abbr.zsh"
 
 which bat &>/dev/null && abbr cat="bat"
 
-calc() python3 -c "from math import *; import numpy as np; print($*);"
-aliases[=]='noglob calc'
+_calc() python3 -c "from math import *; import numpy as np; print($*);"
+alias calc='noglob _calc'
 
 alias gr="noglob grep -iE"
 
@@ -232,6 +233,6 @@ function rename() {
 }
 
 
-if_src "$ZDOTDIR/.p10k.zsh"
+ if_src "$ZDOTDIR/.p10k.zsh"
 
 
