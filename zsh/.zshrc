@@ -144,7 +144,18 @@ zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu no
+zstyle ':completion:*' menu yes select
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' list-dirs-first true
+zstyle ':completion:*' accept-exact-dirs true
+# zstyle ':completion:*' file-list true
+zstyle ':completion:*' file-sort time
+# use sudo to gain permissions to stat a file if command is run w sudo
+# zstyle ':completion:*' gain-privileges true
+zstyle ':completion:*' list-separator ':'
+
+zstyle ':completion:*:*:cd:*:directory-stack' force-list always
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
 
 autoload -Uz compinit
 if ! [[ -f "$ZDOTDIR/.zcompdump" ]] || [ $(date +'%j') != $(stat -f '%Sm' -t '%j' "$ZDOTDIR/.zcompdump") ]; then
