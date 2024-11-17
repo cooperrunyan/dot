@@ -2,61 +2,117 @@
 
 self="$(dirname "$(realpath "$0")")"
 
+perfect=1
+
 cmd_exists() {
   command -v "$1" >/dev/null 2>&1 && return 0
   return 1
 }
 
-if ! cmd_exists stow; then
-  if cmd_exists brew; then
-    echo "Installing GNU Stow via homebrew (brew install stow)"
-    ! brew install stow && exit 1
-  elif cmd_exists apt; then
-    echo "Installing GNU Stow via apt (sudo apt install stow)"
-    ! sudo apt install stow && exit 1
+verbose=
+if grep -iE '( |^)(\-v|\-\-verbose)( |$)' <<<"$*" >/dev/null 2>&1; then
+  verbose=1
+fi
+
+verbose=0
+target_dir=$(dirname "$self")
+
+while true; do
+  case "$1" in
+  -v | --verbose)
+    verbose=1
+    ;;
+  -c | --config)
+    shift
+    target_dir="$1"
+    ;;
+  "")
+    break
+    ;;
+  esac
+  shift
+done
+
+ftarget_dir="${target_dir/$HOME/\$HOME}"
+fself="${self/$HOME/\$HOME}"
+
+log_cmd() {
+  perfect=0
+  if [ "$verbose" = "1" ]; then
+    echo ""
+    echo "$2:"
+    echo "  - $1"
   else
-    echo "Install GNU Stow" && exit 1
+    echo "$1"
   fi
+}
+
+pkg_manager_name=
+pkg_manager_command=
+pkg_manager_executable=
+
+if [[ $(uname) == "Darwin" ]]; then
+  pkg_manager_executable="brew"
+  pkg_manager_name="Homebrew"
+  pkg_manager_command="brew install"
+
+  if ! cmd_exists $pkg_manager_executable; then
+    log_cmd "/bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\"" "Install homebrew"
+  fi
+
+elif cmd_exists apt; then
+  pkg_manager_executable="apt"
+  pkg_manager_name="apt"
+  pkg_manager_command="sudo apt update && sudo apt install -y"
 fi
 
-dot=$(dirname "$self")
-
-# shellcheck disable=SC3037
-printf '%s' "Install dotfiles in $dot? [Y/n] "
-read -r a
-if [ "$a" = "n" ]; then
-  read -r a
-  dot=$(realpath "$a")
-fi
-
-echo "Setting up dotfiles in $dot"
-stow "$self" -t "$dot"
-
-if cmd_exists zsh; then
-  echo "Changing shell to zsh"
-  chsh -s "$(which zsh)"
-fi
-
-if [ -f "$HOME/.zshrc" ]; then
-  zshrc_content="source \"${dot/$HOME/\$HOME}/zsh/.zshrc\""
-
-  # shellcheck disable=SC2088
-  echo "~/.zshrc already exists. Do you want to:"
-  echo "    0 - Append 'source \"$dot/zsh/.zshrc\"' to the existing file. (default)"
-  echo "    1 - Rename existing file and create a new one that sources $dot/zsh/.zshrc"
-  echo "    2 - Replace the existing .zshrc"
-
-  read -r a
-
-  if [ "$a" = 2 ]; then
-    echo "$zshrc_content" >"$HOME/.zshrc"
-
-  elif [ "$a" = 1 ]; then
-    mv "$HOME/.zshrc" "$HOME/.zshrc.old"
-    echo "$zshrc_content" >"$HOME/.zshrc"
+log_install() {
+  if [ "$pkg_manager_name" = "" ]; then
+    echo ""
+    echo "# Install $2"
+    echo ""
   else
-    echo "$zshrc_content" >>"$HOME/.zshrc"
+    log_cmd "$pkg_manager_command $1" "Install ($pkg_manager_name) $2"
   fi
-else
-  echo "$zshrc_content" >"$HOME/.zshrc"
+}
+
+conditional_log_install() {
+  chk_exec="$1"
+  pkg_name="$1"
+  descr="$2"
+  if [ $# = 3 ]; then
+    pkg_name="$2"
+    descr="$3"
+  fi
+
+  if ! cmd_exists "$chk_exec"; then
+    log_install "$pkg_name" "$descr"
+  fi
+}
+
+conditional_log_install "stow" "GNU Stow"
+conditional_log_install "zsh" "zsh"
+
+if ! [ "$(realpath "$target_dir/zsh")" = "$self/zsh" ]; then
+  log_cmd "stow \"$self\" -t \"$target_dir\"" "Symlink dotfiles $fself to $ftarget_dir"
 fi
+
+if ! finger "$(whoami)" | grep -E "Shell: /.*/zsh" >/dev/null 2>&1; then
+  log_cmd "chsh -s \"\$(which zsh)\"" "Switch user login shell to ZSH"
+fi
+
+if ! [[ -f "$HOME/.zshrc" ]] && grep -E '(.|source) (\"|$'"'"').*/\.zshrc\2' <"$HOME/.zshrc" >/dev/null 2>&1; then
+  log_cmd "echo \"[[ -f \\\"$ftarget_dir/zsh/.zshrc\\\" ]] && source \\\"$ftarget_dir/zsh/.zshrc\\\" >> \"\$HOME/.zshrc\"" "Source .zshrc"
+fi
+
+if ! [[ -f "$HOME/.zshenv" ]] && grep -E '(.|source) (\"|$'"'"').*/\.zshenv\2' <"$HOME/.zshenv" >/dev/null 2>&1; then
+  log_cmd "echo \"[[ -f \\\"$ftarget_dir/zsh/.zshenv\\\" ]] && source \\\"$ftarget_dir/zsh/.zshenv\\\" >> \"\$HOME/.zshenv\"" "Source .zshenv"
+fi
+
+if ! bash "$self/fonts.sh" --check >/dev/null 2>&1; then
+  pr="${self/$HOME/~}"
+  [ "$self" = "$(pwd)" ] && pr="."
+  log_cmd "bash $pr/fonts.sh" "Install fonts"
+fi
+
+if [ "$perfect" = 1 ] && [ "$verbose" = 1 ]; then echo "Already set up"; fi

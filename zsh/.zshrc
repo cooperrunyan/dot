@@ -1,26 +1,5 @@
 #!/bin/zsh
 
-cache_home=".cache"
-uname=$(uname)
-[[ $uname == "Darwin" ]] && cache_home="Library/Caches"
-
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/$cache_home"}
-export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
-export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
-
-
-ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-USER_ZDOTDIR="$ZDOTDIR"
-export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
-[[ -d "$ZSH_CACHE_DIR/completions" ]] && FPATH="$ZSH_CACHE_DIR/completions:${FPATH}"
-
-# ! [[ -d "$ZSH_CACHE_DIR/completions" ]] && mkdir "$ZSH_CACHE_DIR/completions"
-# FPATH="$ZSH_CACHE_DIR/completions:${FPATH}"
-
-export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
-export ZCOMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
-
 if_src() {
   [[ -s "$1" ]] && source "$1"
 }
@@ -197,14 +176,17 @@ source "$ZDOTDIR/abbr.zsh"
 which bat &>/dev/null && abbr cat="bat"
 
 calc() python3 -c "from math import *; import numpy as np; print($*);"
-aliases[=]='noglob nocorrect calc'
+aliases[=]='noglob calc'
+
+alias gr="noglob grep -iE"
 
 abbr g="git"
 abbr v="nvim"
 abbr b="brew"
 abbr rg="ranger"
 abbr chx="chmod +x"
-alias ls="ls -phFHAtG --color"
+alias ls="ls -phFHtG --color"
+alias sudo="sudo -E"
 alias mkdir="mkdir -p"
 alias bat="bat --style=plain --theme=Nord"
 alias fzf="fzf --preview='bat --color=always --style=plain --theme=Nord {}'"
