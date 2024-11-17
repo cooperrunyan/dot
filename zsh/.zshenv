@@ -1,5 +1,9 @@
 #!/bin/zsh
 
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 cache_home=".cache"
 uname=$(uname)
 [[ $uname == "Darwin" ]] && cache_home="Library/Caches"
@@ -17,5 +21,5 @@ export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 # ! [[ -d "$ZSH_CACHE_DIR/completions" ]] && mkdir "$ZSH_CACHE_DIR/completions"
 # FPATH="$ZSH_CACHE_DIR/completions:${FPATH}"
 
-export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
-export ZCOMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
+# export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
+# export ZCOMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"

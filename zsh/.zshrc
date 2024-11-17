@@ -1,27 +1,15 @@
 #!/bin/zsh
 
-if_src() {
-  [[ -s "$1" ]] && source "$1"
-  return 0
-}
-
-if_src "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
-if_src "${XDG_CACHE_HOME}/p10k-dump-${(%):-%n}.zsh"
-
-
-if [[ -f "/opt/homebrew/bin/brew" ]]; then
-  export HOMEBREW_BUNDLE_FILE_GLOBAL="$XDG_CONFIG_HOME/Brewfile"
-  export HOMEBREW_NO_ENV_HINTS=1
-
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-  FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:$FPATH"
-  # FPATH="$HOMEBREW_PREFIX/share/zsh-completions:$FPATH"
-  export OPENSSL_ROOT_DIR=$(brew --prefix openssl)
-
-  if [[ -d "/opt/homebrew/opt/ccache/libexec" ]]; then
-    PATH="$PATH:/opt/homebrew/opt/ccache/libexec"
-  fi
+if [[ -n "$ZSH_PROF_DEBUG" ]]; then
+  zmodload zsh/zprof
 fi
+
+[[ -s "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
+# [[ -s "${XDG_CACHE_HOME}/p10k-dump-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME}/p10k-dump-${(%):-%n}.zsh"
+
+
+POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+
 
 autoload -Uz undo redo run-help push-input accept-and-hold yank yank-pop quote-region kill-buffer backward-kill-word set-mark-command
 bindkey '^u' undo
@@ -75,6 +63,8 @@ export PATH="$CARGO_HOME/bin:$PATH"
 
 export QMK_HOME="$XDG_DATA_HOME/qmk_firmware"
 
+export HOMEBREW_BUNDLE_FILE_GLOBAL="$XDG_CONFIG_HOME/Brewfile"
+export HOMEBREW_NO_ENV_HINTS=1
 
 HISTSIZE=100000
 HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
@@ -100,11 +90,29 @@ fi
 
 source "$ZINIT_HOME/zinit.zsh"
 
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+[[ -d "$ZSH_CACHE_DIR/completions" ]] && zinit add-fpath "$ZSH_CACHE_DIR/completions"
+
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+  zinit add-fpath "$HOMEBREW_PREFIX/share/zsh/site-functions"
+  export OPENSSL_ROOT_DIR=$(brew --prefix openssl)
+
+  if [[ -d "/opt/homebrew/opt/ccache/libexec" ]]; then
+    PATH="$PATH:/opt/homebrew/opt/ccache/libexec"
+  fi
+fi
+
+zinit ice depth=1 lucid nocd
+zinit load romkatv/powerlevel10k
 
 zinit light zsh-users/zsh-syntax-highlighting
+
+zinit ice blockf
 zinit light zsh-users/zsh-completions
+
+zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
+
+typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern regexp)
 
 bindkey '^[[A' history-search-backward
@@ -113,18 +121,16 @@ bindkey -M vicmd 'k' history-search-backward
 bindkey -M vicmd 'j' history-search-forward
 
 
-zinit snippet OMZP::bun
-zinit snippet OMZP::brew
-zinit snippet OMZP::dotenv
-zinit snippet OMZP::rust
-zinit snippet OMZP::fzf
-zinit snippet OMZP::arduino-cli
+# zinit snippet OMZP::bun
+# zinit snippet OMZP::brew
+# zinit snippet OMZP::rust
+# zinit snippet OMZP::fzf
+
+zinit ice wait lucid
 zinit snippet OMZP::ssh-agent
-zinit snippet OMZP::urltools
+
+zinit ice wait lucid
 zinit snippet OMZP::colored-man-pages
-zinit snippet OMZL::completion.zsh
-zinit snippet OMZL::clipboard.zsh
-zinit snippet OMZL::compfix.zsh
 
 zstyle :omz:plugins:ssh-agent ssh-add-args --apple-use-keychain --apple-load-keychain
 zstyle :omz:plugins:ssh-agent quiet yes
@@ -140,18 +146,23 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 
-autoload -Uz compinit && compinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+autoload -Uz compinit
+if ! [[ -f "$ZDOTDIR/.zcompdump" ]] || [ $(date +'%j') != $(stat -f '%Sm' -t '%j' "$ZDOTDIR/.zcompdump") ]; then
+  compinit
+else
+  compinit -C
+fi
+
+# (( ${+_comps} )) && _comps[zinit]=_zinit
 
 zinit cdreplay -q
 
 
-[[ $(uname) == "Darwin" ]] && which fzf &>/dev/null && fzf --zsh &>/dev/null && eval "$(fzf --zsh)"
-which zoxide &>/dev/null && eval "$(zoxide init --cmd cd zsh)"
+which fzf &>/dev/null && fzf --zsh &>/dev/null && eval "$(fzf --zsh)"
 which gh &>/dev/null && eval $(gh completion -s zsh)
 
-if_src "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
-if_src "$XDG_DATA_HOME/iterm/.iterm2_shell_integration.zsh"
+# [[ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ]] && source "$HOMEBREW_PREFIX/opt/nvm/nvm.sh"
+# [ "$LC_TERMINAL" = "iTerm2" ] && [[ -s "$XDG_DATA_HOME/iterm/.iterm2_shell_integration.zsh" ]] && source "$XDG_DATA_HOME/iterm/.iterm2_shell_integration.zsh"
 
 if [ -e "/Applications/Visual Studio Code.app" ]; then
   export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
@@ -165,7 +176,7 @@ fi
 # if [ -e "/Applications/1Password.app" ]; then
 #   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
-#   if_src "$XDG_CONFIG_HOME/op/plugins.sh"
+#   [[ -s "$XDG_CONFIG_HOME/op/plugins.sh" ]] && source "$XDG_CONFIG_HOME/op/plugins.sh"
 
 #   export GIT_CONFIG_COUNT=1
 #   export GIT_CONFIG_KEY_0="gpg.ssh.program"
@@ -232,7 +243,17 @@ function rename() {
   done
 }
 
+zshrc_benchmark() {
+  for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done
+}
 
- if_src "$ZDOTDIR/.p10k.zsh"
+zshrc_prof() {
+  ZSH_PROF_DEBUG=1 zsh -i -c exit
+}
 
 
+ [[ -s "$ZDOTDIR/.p10k.zsh" ]] && source "$ZDOTDIR/.p10k.zsh";
+
+if [[ -n "$ZSH_PROF_DEBUG" ]]; then
+  zprof
+fi
