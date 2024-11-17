@@ -8,7 +8,7 @@
 #guide #items .ytd-guide-section-renderer:has([title="Subscriptions"]),
 ytd-guide-collapsible-section-entry-renderer #header,
 ytd-guide-collapsible-section-entry-renderer ytd-guide-entry-renderer:has([title="Your channel"]),
-ytd-guide-collapsible-section-entry-renderer ytd-guide-entry-renderer:has([title="Playlists"]),
+/* ytd-guide-collapsible-section-entry-renderer ytd-guide-entry-renderer:has([title="Playlists"]), */
 ytd-guide-collapsible-section-entry-renderer ytd-guide-entry-renderer:has([title="Your videos"]),
 #guide #footer,
 #guide #sections ytd-guide-section-renderer:has([title="Music"]),
@@ -19,7 +19,7 @@ ytd-guide-collapsible-section-entry-renderer ytd-guide-entry-renderer:has([title
 ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
 ytd-rich-section-renderer:has(#dismissible),
 #voice-search-button,
-ytd-topbar-menu-button-renderer:first-of-type,
+/* ytd-topbar-menu-button-renderer:first-of-type, */
 .ytp-miniplayer-button,
 .ytp-remote-button,
 .ytp-airplay-button,
@@ -33,7 +33,15 @@ ytd-video-description-course-section-renderer,
 ytd-watch-next-secondary-results-renderer #offer-module,
 ytd-watch-next-secondary-results-renderer yt-related-chip-cloud-renderer,
 #sponsor-button,
-#cinematics-container
+#cinematics-container,
+[aria-label="Create"],
+li:has(a[href="#ps"]):not(:first-of-type),
+li:has(> .sbfl_a),
+ytd-merch-shelf-renderer
 {
     display: none !important;
+}
+
+#background.ytd-masthead {
+    height: 56px !important;
 }
