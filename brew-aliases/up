@@ -1,5 +1,0 @@
-#! /bin/bash
-# alias: brew up
-#:  * `up` [args...]
-#:    `brew up` is an alias for `brew update && brew upgrade`
-brew update && brew upgrade
