@@ -8,21 +8,6 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "F3 for PiP in Safari",
-                        "manipulators": [
-                            {
-                                "from": { "key_code": "f3" },
-                                "to": [
-                                    {
-                                        "key_code": "p",
-                                        "modifiers": ["left_gui", "left_control", "left_shift"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "fn jkl;",
                         "manipulators": [
                             {
@@ -102,7 +87,7 @@
                                 "from": {
                                     "key_code": "f1",
                                     "modifiers": {
-                                        "mandatory": ["left_control"],
+                                        "mandatory": ["left_alt"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -124,7 +109,7 @@
                                 "from": {
                                     "key_code": "f2",
                                     "modifiers": {
-                                        "mandatory": ["left_control"],
+                                        "mandatory": ["left_alt"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -189,10 +174,6 @@
                 {
                     "from": { "key_code": "f4" },
                     "to": [{ "key_code": "f4" }]
-                },
-                {
-                    "from": { "key_code": "f5" },
-                    "to": [{ "key_code": "f5" }]
                 }
             ],
             "name": "Default profile",
