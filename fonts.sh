@@ -66,7 +66,7 @@ else
     [ "$check" = 1 ] && exit 1
 
     zip="$font.zip"
-    url="https://github.com/ryanoasis/nerd-fonts/releases/download/latest/$zip"
+    url="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/$zip"
     if [[ ! -d "$fonts_dir" ]]; then
       if ! mkdir -p "$fonts_dir"; then exit 1; fi
     fi

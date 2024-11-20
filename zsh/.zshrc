@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 if [[ -n "$ZSH_PROF_DEBUG" ]]; then
   zmodload zsh/zprof
@@ -126,7 +126,7 @@ bindkey -M vicmd 'j' history-search-forward
 # zinit snippet OMZP::rust
 # zinit snippet OMZP::fzf
 
-zinit ice wait lucid
+# zinit ice wait lucid
 zinit snippet OMZP::ssh-agent
 
 zinit ice wait lucid
@@ -158,7 +158,7 @@ zstyle ':completion:*:*:cd:*:directory-stack' force-list always
 zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
 
 autoload -Uz compinit
-if ! [[ -f "$ZDOTDIR/.zcompdump" ]] || [ $(date +'%j') != $(stat -f '%Sm' -t '%j' "$ZDOTDIR/.zcompdump") ]; then
+if ! [[ -f "$ZDOTDIR/.zcompdump" ]] || [ $(date +'%j') != $(stat -f '%Sm' -t '%j' "$ZDOTDIR/.zcompdump" 2>/dev/null) ]; then
   compinit
 else
   compinit -C
