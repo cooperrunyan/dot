@@ -158,7 +158,7 @@ zstyle ':completion:*:*:cd:*:directory-stack' force-list always
 zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
 
 autoload -Uz compinit
-if ! [[ -f "$ZDOTDIR/.zcompdump" ]] || [ $(date +'%j') != $(stat -f '%Sm' -t '%j' "$ZDOTDIR/.zcompdump" 2>/dev/null) ]; then
+if ! [[ -f "$ZDOTDIR/.zcompdump" ]] || [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' "$ZDOTDIR/.zcompdump" 2>/dev/null)" ]; then
   compinit
 else
   compinit -C
