@@ -1,25 +1,29 @@
 theme = "ayu_dark"
 
 [editor]
-line-number = "relative"
-cursorline = true
-continue-comments = true
-preview-completion-insert = true
-completion-replace = false
-bufferline = 'multiple'
-end-of-line-diagnostics = 'hint'
+  line-number               = "relative"
+  cursorline                = true
+  continue-comments         = true
+  preview-completion-insert = true
+  completion-replace        = false
+  # bufferline = 'multiple'
+  end-of-line-diagnostics = 'hint'
+  popup-border            = "all"
 
-[editor.inline-diagnostics]
-cursor-line = "error"
+  [editor.inline-diagnostics]
+    cursor-line = "warning"
 
-[editor.cursor-shape]
-insert = "bar"
-normal = "block"
-select = "underline"
+  [editor.cursor-shape]
+    insert = "bar"
+    normal = "block"
+    select = "underline"
 
-[editor.lsp]
-display-progress-messages = true
-snippets = false
+  [editor.lsp]
+    display-progress-messages = false
+    snippets                  = false
 
-[editor.file-picker]
-hidden = false
+  [editor.file-picker]
+    hidden = true
+
+[keys.insert]
+  C-space = "completion"
