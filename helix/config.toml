@@ -1,4 +1,4 @@
-theme = "ayu_dark"
+theme = "github_dark"
 
 [editor]
   line-number               = "relative"
@@ -6,12 +6,17 @@ theme = "ayu_dark"
   continue-comments         = true
   preview-completion-insert = true
   completion-replace        = false
-  # bufferline = 'multiple'
-  end-of-line-diagnostics = 'hint'
-  popup-border            = "all"
+  bufferline                = 'multiple'
+  end-of-line-diagnostics   = 'hint'
+  popup-border              = "all"
+  shell                     = ["zsh", "-c"]
+
 
   [editor.inline-diagnostics]
-    cursor-line = "warning"
+    cursor-line = "hint"
+
+  [editor.soft-wrap]
+    enable = true
 
   [editor.cursor-shape]
     insert = "bar"
@@ -20,10 +25,20 @@ theme = "ayu_dark"
 
   [editor.lsp]
     display-progress-messages = false
-    snippets                  = false
+    # snippets                  = false
 
   [editor.file-picker]
     hidden = true
 
 [keys.insert]
   C-space = "completion"
+
+[keys.normal.space.t]
+  # o = ":sh ! (ps aux | grep sioyek | grep -v grep) && sioyek --reuse-window --execute-command toggle_synctex"
+  # s = ":sh (ps aux | grep sioyek | grep -v grep) && sioyek --nofocus --reuse-window --execute-command fit_to_page_width"
+  # c = ":sh killall sioyek"
+  C = ":sh skim_toggle_continuous"
+  b = ":sh skim_toggle_split"
+  c = ":sh killall Skim"
+  h = ":sh minimize_app Skim"
+  s = ":sh unminimize_app Skim"

@@ -1,38 +1,54 @@
 [[language]]
-  name             = "javascript"
-  shebangs         = ["deno"]
-  roots            = ["deno.json", "deno.jsonc"]
-  file-types       = ["js"]
+  name = "javascript"
+  shebangs = ["deno"]
+  roots = ["deno.json", "deno.jsonc"]
+  file-types = ["js"]
   language-servers = ["deno-lsp"]
-  formatter = { command = 'biome', args = ["format", "--stdin-file-path", "buffer.js"] }
-  auto-format      = true
+  formatter = { command = 'biome', args = [
+    "format",
+    "--stdin-file-path",
+    "buffer.js",
+  ] }
+  auto-format = true
 
 [[language]]
-  name             = "typescript"
-  shebangs         = ["deno"]
-  roots            = ["deno.json", "deno.jsonc"]
-  file-types       = ["ts"]
+  name = "typescript"
+  shebangs = ["deno"]
+  roots = ["deno.json", "deno.jsonc"]
+  file-types = ["ts"]
   language-servers = ["deno-lsp"]
-  formatter = { command = 'biome', args = ["format", "--stdin-file-path", "buffer.ts"] }
-  auto-format      = true
+  formatter = { command = 'biome', args = [
+    "format",
+    "--stdin-file-path",
+    "buffer.ts",
+  ] }
+  auto-format = true
 
 [[language]]
-  name             = "jsx"
-  shebangs         = ["deno"]
-  roots            = ["deno.json", "deno.jsonc"]
-  file-types       = ["jsx"]
+  name = "jsx"
+  shebangs = ["deno"]
+  roots = ["deno.json", "deno.jsonc"]
+  file-types = ["jsx"]
   language-servers = ["deno-lsp"]
-  formatter = { command = 'biome', args = ["format", "--stdin-file-path", "buffer.jsx"] }
-  auto-format      = true
+  formatter = { command = 'biome', args = [
+    "format",
+    "--stdin-file-path",
+    "buffer.jsx",
+  ] }
+  auto-format = true
 
 [[language]]
-  name             = "tsx"
-  shebangs         = ["deno"]
-  roots            = ["deno.json", "deno.jsonc"]
-  file-types       = ["tsx"]
+  name = "tsx"
+  shebangs = ["deno"]
+  roots = ["deno.json", "deno.jsonc"]
+  file-types = ["tsx"]
   language-servers = ["deno-lsp"]
-  formatter = { command = 'biome', args = ["format", "--stdin-file-path", "buffer.tsx"] }
-  auto-format      = true
+  formatter = { command = 'biome', args = [
+    "format",
+    "--stdin-file-path",
+    "buffer.tsx",
+  ] }
+  auto-format = true
 
 [[language]]
   name             = "python"
@@ -50,6 +66,7 @@
 [[language]]
   name        = "latex"
   auto-format = true
+  indent      = { tab-width = 2, unit = " " }
 
 
 [language-server.deno-lsp]
@@ -67,19 +84,57 @@
     # suggest = { imports = { hosts = { "https://deno.land" = true, "https://crux.land" = true, "https://x.nest.land" = true } } }
 
 [language-server.texlab.config.texlab]
+  [language-server.texlab.config.texlab.forwardSearch]
+    executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
+    args       = ["-g", "-z", "-r", "-n", "%l", "%p", "%f"]
+    # executable = "sioyek"
+    # args = [
+    #   "--nofocus",
+    #   "--reuse-window",
+    #   "--execute-command",
+    #   "toggle_synctex",
+    #   "--inverse-search",
+    #   "texlab inverse-search -i \"%%1\" -l %%2",
+    #   "--forward-search-file",
+    #   "%f",
+    #   "--forward-search-line",
+    #   "%l",
+    #   "%p",
+    # ]
+
   [language-server.texlab.config.texlab.build]
     onSave = true
+    forwardSearchAfter = true
     auxDirectory = "aux"
     logDirectory = "log"
-    args = ["-pdf", "-interaction=nonstopmode", "-synctex=1", "%f", "-auxdir=aux"]
+    args = [
+      "-pdf",
+      "-interaction=nonstopmode",
+      "-synctex=1",
+      "%f",
+      "-auxdir=aux",
+    ]
+
+    # executable = "tectonic"
+    # args = [
+    #   "-X",
+    #   "compile",
+    #   "%f",
+    #   "--synctex",
+    #   "--keep-logs",
+    #   "--keep-intermediates",
+    #   # "--outdir=build",
+    #   "-Zshell-escape",
+    # ]
 
   [language-server.texlab.config.texlab.chktex]
     onOpenAndSave = true
-    onEdit = true
+    onEdit        = true
 
   [language-server.texlab.config.texlab.latexindent]
-    replacement = "-rv"
-
+    # replacement      = "-rv"
+    modifyLineBreaks = true
+    local            = "/Users/cooperrunyan/.config/latexindent.yaml"
 
 
 [language-server.pyright.config.python.analysis]
