@@ -151,3 +151,7 @@
 
   [language-server.rust-analyzer.config.cargo]
     features = "all"
+
+[language-server.clangd.config]
+  args         = ["-std=c++20"]
+  enableConfig = true
