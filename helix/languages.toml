@@ -84,55 +84,34 @@
     # suggest = { imports = { hosts = { "https://deno.land" = true, "https://crux.land" = true, "https://x.nest.land" = true } } }
 
 [language-server.texlab.config.texlab]
+  diagnosticsDelay = 0
+
+  [language-server.texlab.config.texlab.completion]
+    matcher = 'prefix'
+
   [language-server.texlab.config.texlab.forwardSearch]
     executable = "/Applications/Skim.app/Contents/SharedSupport/displayline"
     args       = ["-g", "-z", "-r", "-n", "%l", "%p", "%f"]
-    # executable = "sioyek"
-    # args = [
-    #   "--nofocus",
-    #   "--reuse-window",
-    #   "--execute-command",
-    #   "toggle_synctex",
-    #   "--inverse-search",
-    #   "texlab inverse-search -i \"%%1\" -l %%2",
-    #   "--forward-search-file",
-    #   "%f",
-    #   "--forward-search-line",
-    #   "%l",
-    #   "%p",
-    # ]
 
   [language-server.texlab.config.texlab.build]
     onSave = true
     forwardSearchAfter = true
-    auxDirectory = "aux"
-    logDirectory = "log"
+    auxDirectory = "build/artifacts"
+    pdfDirectory = "build"
     args = [
       "-pdf",
       "-interaction=nonstopmode",
       "-synctex=1",
       "%f",
-      "-auxdir=aux",
+      "-auxdir=build/artifacts",
+      "-outdir=build",
     ]
-
-    # executable = "tectonic"
-    # args = [
-    #   "-X",
-    #   "compile",
-    #   "%f",
-    #   "--synctex",
-    #   "--keep-logs",
-    #   "--keep-intermediates",
-    #   # "--outdir=build",
-    #   "-Zshell-escape",
-    # ]
 
   [language-server.texlab.config.texlab.chktex]
     onOpenAndSave = true
     onEdit        = true
 
   [language-server.texlab.config.texlab.latexindent]
-    # replacement      = "-rv"
     modifyLineBreaks = true
     local            = "/Users/cooperrunyan/.config/latexindent.yaml"
 
@@ -155,3 +134,8 @@
 [language-server.clangd.config]
   args         = ["-std=c++20"]
   enableConfig = true
+
+[language-server.taplo.config]
+  # Workaround for nonsense of being nonfunctional outside git directories
+  # (https://github.com/helix-editor/helix/issues/3897#issuecomment-2361674437)
+  root_dir = [".git", "*.toml"]
