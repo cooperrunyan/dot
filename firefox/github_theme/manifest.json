@@ -1,0 +1,22 @@
+{
+  "description": "Github Light/Dark theme according to system preference",
+  "homepage_url": "https://google.com/search?q=never+gonna+give+you+up",
+  "manifest_version": 2,
+  "name": "Github Theme",
+  "permissions": ["theme"],
+  "background": {
+    "scripts": ["background.js"]
+  },
+ "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["darkModeListener.js"]
+    }
+  ],
+  "version": "1.0",
+  "browser_specific_settings": {
+    "gecko": {
+      "strict_min_version": "55.0a2"
+    }
+  }
+}

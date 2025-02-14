@@ -1,0 +1,12 @@
+/* ==UserStyle==
+@name        Duckduckgo
+@description This is your new file, start writing code
+@match       https://*.duckduckgo.com/*
+==/UserStyle== */
+
+div:has(> [data-testid="feedback-prompt"]),
+#header-logo-wrapper .header__logo,
+#header div:has(> [href="https://duckduckgo.com/updates"])
+{
+    display: none !important;
+}

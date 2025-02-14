@@ -1,0 +1,25 @@
+/* ==UserStyle==
+@name        Ads
+@description This is your new file, start writing code
+@match       <all_urls>
+==/UserStyle== */
+
+[id*="google_ads"],
+[id$="_ad"],
+[data-report*="Report Ad"],
+[class*="-ads"]:not(.no-ads),
+[class*="_ads"],
+[class^="ads"],
+[class^="ad-"],
+[class^="ad_"],
+[class*=" ads"],
+[class*=" ad-"],
+[class*=" ad_"],
+.adsbygoogle,
+:has(> [id*="google_ads"]:only-child),
+:has(> [id$="_ad"]:only-child),
+:has(> [data-report*="Report Ad"]:only-child),
+:has(> .adsbygoogle:only-child)
+{
+    display: none !important;
+}

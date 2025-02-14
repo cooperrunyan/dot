@@ -41,6 +41,7 @@ zle -N delregion
 bindkey '^?' delregion
 
 export LANG="en_US.UTF-8"
+export TERMINFO="$XDG_DATA_HOME/terminfo"
 
 export CURL_HOME="$XDG_CONFIG_HOME/curl"
 export LESSHISTFILE="$XDG_CACHE_HOME/.lesshst"
@@ -208,15 +209,15 @@ fi
 # fi
 export EDITOR="hx"
 
-# if [ -e "/Applications/1Password.app" ]; then
-#   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+if [ -e "/Applications/1Password.app" ]; then
+  export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
-#   [[ -s "$XDG_CONFIG_HOME/op/plugins.sh" ]] && source "$XDG_CONFIG_HOME/op/plugins.sh"
+  [[ -s "$XDG_CONFIG_HOME/op/plugins.sh" ]] && source "$XDG_CONFIG_HOME/op/plugins.sh"
 
-#   export GIT_CONFIG_COUNT=1
-#   export GIT_CONFIG_KEY_0="gpg.ssh.program"
-#   export GIT_CONFIG_VALUE_0="/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-# fi
+  export GIT_CONFIG_COUNT=1
+  export GIT_CONFIG_KEY_0="gpg.ssh.program"
+  export GIT_CONFIG_VALUE_0="/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+fi
 
 source "$ZDOTDIR/abbr.zsh"
 
