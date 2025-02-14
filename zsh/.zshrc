@@ -4,6 +4,12 @@ if [[ -n "$ZSH_PROF_DEBUG" ]]; then
   zmodload zsh/zprof
 fi
 
+if [[ $(uname) == "Darwin" ]]; then
+    export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/Library/Caches"}
+else
+    export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
+fi
+
 [[ -s "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 # [[ -s "${XDG_CACHE_HOME}/p10k-dump-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME}/p10k-dump-${(%):-%n}.zsh"
 
@@ -84,6 +90,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 
 setopt interactivecomments
+setopt globdots
 
 
 ZINIT_HOME=${ZINIT_HOME:-"$XDG_DATA_HOME/zinit/zinit.git"}
@@ -94,6 +101,10 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 source "$ZINIT_HOME/zinit.zsh"
+
+if [ -d "$ZSH_CACHE_DIR" ] && [ ! -d "$ZSH_CACHE_DIR/completions" ]; then
+  mkdir "$ZSH_CACHE_DIR/completions"
+fi
 
 [[ -d "$ZSH_CACHE_DIR/completions" ]] && zinit add-fpath "$ZSH_CACHE_DIR/completions"
 
@@ -120,10 +131,13 @@ zinit light zsh-users/zsh-autosuggestions
 typeset -g ZSH_AUTOSUGGEST_USE_ASYNC=true
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern regexp)
 
+zmodload zsh/complist 
+
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 bindkey -M vicmd 'k' history-search-backward
 bindkey -M vicmd 'j' history-search-forward
+bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 
 # zinit snippet OMZP::bun
@@ -137,7 +151,10 @@ zinit snippet OMZP::ssh-agent
 zinit ice wait lucid
 zinit snippet OMZP::colored-man-pages
 
-zstyle :omz:plugins:ssh-agent ssh-add-args --apple-use-keychain --apple-load-keychain
+if [[ "$(uname)" == "Darwin" ]]; then
+  zstyle :omz:plugins:ssh-agent ssh-add-args --apple-use-keychain --apple-load-keychain
+fi
+
 zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent lazy yes
 
@@ -147,26 +164,27 @@ zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
 # partial completion suggestions (ex: `cd /u/lo/b{tab}` -> 'usr/local/bin')
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-zstyle ':completion:*' menu yes select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' list-colors '=(#b)*(│ *)==90' "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu yes=long select
 zstyle ':completion:*' verbose true
+zstyle ':completion:*' force-list always
 zstyle ':completion:*' list-dirs-first true
 zstyle ':completion:*' accept-exact-dirs true
-# zstyle ':completion:*' file-list true
+zstyle ':completion:*' complete-options true
 zstyle ':completion:*' file-sort time
-# use sudo to gain permissions to stat a file if command is run w sudo
-# zstyle ':completion:*' gain-privileges true
-zstyle ':completion:*' list-separator ':'
+zstyle ':completion:*' list-separator "│"
+zstyle ':completion:*' special-dirs false
 
 zstyle ':completion:*:*:cd:*:directory-stack' force-list always
-zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+zstyle ':completion:*:*:cd:*:directory-stack' menu select
 
+compdump="$XDG_CACHE_HOME/zsh/.zcompdump"
 autoload -Uz compinit
-if ! [[ -f "$ZDOTDIR/.zcompdump" ]] || [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' "$ZDOTDIR/.zcompdump" 2>/dev/null)" ]; then
-  compinit
+if ! [[ -f "$compdump" ]] || [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' "$compdump" 2>/dev/null)" ]; then
+  compinit -d "$compdump"
 else
-  compinit -C
+  compinit -C -d "$compdump"
 fi
 
 # (( ${+_comps} )) && _comps[zinit]=_zinit
@@ -184,10 +202,11 @@ if [ -e "/Applications/Visual Studio Code.app" ]; then
   export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin:$PATH"
 fi
 
-if which code &>/dev/null; then
-  export EDITOR="code --wait -n"
-  alias edit="$EDITOR"
-fi
+# if which code &>/dev/null; then
+#   export EDITOR="code --wait -n"
+#   alias edit="$EDITOR"
+# fi
+export EDITOR="hx"
 
 # if [ -e "/Applications/1Password.app" ]; then
 #   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
@@ -213,11 +232,11 @@ abbr v="nvim"
 abbr b="brew"
 abbr rg="ranger"
 abbr chx="chmod +x"
-alias ls="ls -phFHtG --color"
+alias ls="ls -phAFHtG --color"
 alias sudo="sudo -E"
 alias mkdir="mkdir -p"
-alias bat="bat --style=plain --theme=Nord"
-alias fzf="fzf --preview='bat --color=always --style=plain --theme=Nord {}'"
+alias bat="bat --style=plain --theme=GitHub"
+alias fzf="fzf --preview='bat --color=always --style=plain --theme=GitHub {}'"
 alias du="du -h"
 
 function rename() {

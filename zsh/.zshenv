@@ -4,11 +4,12 @@ if [[ -f "/opt/homebrew/bin/brew" ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-cache_home=".cache"
-uname=$(uname)
-[[ $uname == "Darwin" ]] && cache_home="Library/Caches"
+if [[ $(uname) == "Darwin" ]]; then
+    export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/Library/Caches"}
+else
+    export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
+fi
 
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/$cache_home"}
 export XDG_DATA_HOME=${XDG_DATA_HOME:-"$HOME/.local/share"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
 export XDG_STATE_HOME=${XDG_STATE_HOME:-"$HOME/.local/state"}
