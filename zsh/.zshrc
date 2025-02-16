@@ -41,7 +41,7 @@ zle -N delregion
 bindkey '^?' delregion
 
 export LANG="en_US.UTF-8"
-export TERMINFO="$XDG_DATA_HOME/terminfo"
+# export TERMINFO="$XDG_DATA_HOME/terminfo"
 
 export CURL_HOME="$XDG_CONFIG_HOME/curl"
 export LESSHISTFILE="$XDG_CACHE_HOME/.lesshst"

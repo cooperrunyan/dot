@@ -2,6 +2,8 @@
 
 # Temporarily change options.
 
+ZLE_RPROMPT_INDENT=0
+
 'builtin' 'local' '-a' 'p10k_config_opts'
 [[ ! -o 'aliases'         ]] || p10k_config_opts+=('aliases')
 [[ ! -o 'sh_glob'         ]] || p10k_config_opts+=('sh_glob')
@@ -9,7 +11,7 @@
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
 icon_check="󰄴"
-icon_x=""
+icon_x=""
 icon_prompt=""
 
 
@@ -94,13 +96,13 @@ icon_prompt=""
   )
 
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+    # command_excecution_time
     status
-    command_excecution_time
     dir
   )
 
   typeset -g POWERLEVEL9K_MODE=nerdfont-v3
-  typeset -g POWERLEVEL9K_ICON_PADDING=moderate
+  typeset -g POWERLEVEL9K_ICON_PADDING=none
   typeset -g POWERLEVEL9K_BACKGROUND=
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_{LEFT,RIGHT}_WHITESPACE=""
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SUBSEGMENT_SEPARATOR='  '
