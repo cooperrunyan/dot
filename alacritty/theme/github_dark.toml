@@ -13,23 +13,23 @@
 # Normal colors
 [colors.normal]
   black   = '#161b22'
-  red     = '#f85149'
-  green   = '#56d364'
+  red     = '#f97583'
+  green   = '#7ee787'
   yellow  = '#ffa657'
-  blue    = '#a5d6ff'
+  blue    = '#79c0ff'
   magenta = '#d2a8ff'
-  cyan    = '#39c5cf'
-  white   = '#8b949e'
+  cyan    = '#a5d6ff'
+  white   = '#6e7681'
 
 # Bright colors
 [colors.bright]
-  black   = '#6e7681'
-  red     = '#f97583'
+  black   = '#30363d'
+  red     = '#f85149'
   green   = '#85e89d'
   yellow  = '#ffea7f'
-  blue    = '#a5d6ff'
+  blue    = '#49a0ff'
   magenta = '#d2a8ff'
-  cyan    = '#56d4dd'
+  cyan    = '#79e5ff'
   white   = '#fafbfc'
 
 [[colors.indexed_colors]]

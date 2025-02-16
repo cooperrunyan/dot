@@ -2,7 +2,7 @@
   import = ["~/.config/alacritty/theme/github_dark.toml"]
 
 [window]
-  dynamic_padding   = false
+  dynamic_padding   = true
   decorations       = "buttonless"
   title             = ""
   dynamic_title     = false
@@ -12,9 +12,10 @@
   padding           = { x = 8, y = 8 }
 
 [font]
-  normal = { family = "Geist Mono", style = "Regular" }
+  # normal = { family = "Geist Mono", style = "Regular" }
+  normal = { family = "GeistMono Nerd Font", style = "Regular" }
   size   = 14
-  offset = { y = 4, x = 0 }
+  offset = { y = 5, x = 0 }
 
 [terminal]
   shell = { program = "/opt/homebrew/bin/zsh", args = ["-l"] }
