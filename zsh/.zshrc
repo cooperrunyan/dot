@@ -236,8 +236,8 @@ abbr chx="chmod +x"
 alias ls="ls -phAFHtG --color"
 alias sudo="sudo -E"
 alias mkdir="mkdir -p"
-alias bat="bat --style=plain --theme=GitHub"
-alias fzf="fzf --preview='bat --color=always --style=plain --theme=GitHub {}'"
+alias bat="bat --style=plain --theme=Nord"
+alias fzf="fzf --preview='bat --color=always --style=plain --theme=Nord {}'"
 alias du="du -h"
 
 function rename() {

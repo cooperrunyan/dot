@@ -29,3 +29,5 @@ zmk/artifacts
 
 nvim/lazy-lock.json
 nvim/lazyvim.json
+
+firefox/**/*.zip
