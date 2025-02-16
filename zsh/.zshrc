@@ -231,6 +231,8 @@ alias gr="noglob grep -iE"
 abbr g="git"
 abbr v="nvim"
 abbr b="brew"
+abbr2 brew i nstall
+abbr2 brew s earch
 abbr rg="ranger"
 abbr chx="chmod +x"
 alias ls="ls -phAFHtG --color"
