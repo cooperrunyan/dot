@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+
+osascript -e "$(cat <<EOF
+  tell application "Skim"
+  	if (count of documents) is 0 then return
+  	tell document 1
+  		if (auto scales of (get view settings)) then
+  			set view settings to {scale factor:1.0, auto scales:false}
+  		else
+  			set view settings to {auto scales:true}
+  		end if
+  	end tell
+  end tell
+EOF
+)"

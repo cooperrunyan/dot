@@ -233,7 +233,6 @@ abbr v="nvim"
 abbr b="brew"
 abbr2 brew i nstall
 abbr2 brew s earch
-abbr rg="ranger"
 abbr chx="chmod +x"
 alias ls="ls -phAFHtG --color"
 alias sudo="sudo -E"
@@ -242,45 +241,6 @@ alias bat="bat --style=plain --theme=Nord"
 alias fzf="fzf --preview='bat --color=always --style=plain --theme=Nord {}'"
 alias du="du -h"
 
-function rename() {
-  match="$1"
-  match="${match//\\d/[0-9]}"
-  match="${match//\\D/[^0-9]}"
-
-  e="s:$match:$2:g"
-
-  start=3
-  dry=-1
-
-  for (( i=0; i <= "$#"; i++ )); do
-    if [[ "${@[$i]}" == "--dry" ]]; then
-      ((start++));
-      dry=$i
-      break
-    fi
-  done
-
-  for (( i=3; i <= "$#"; i++ )); do
-    if [[ "$dry" == "$i" ]]; then
-      continue
-    fi
-
-    f="${@[$i]}"
-
-    name="$(echo "$f" | sed -re "$e")"
-
-    if [[ "$name" != "$f" ]]; then
-      if [[ "$dry" != "-1" ]]; then
-        echo "(not actually)" Rename \"$f\" to \"$name\"
-      else
-        # mkdir -p "$(sed -re "s:/[^/]+\$::g" <<< "$name")"
-        mv "$f" "$name"
-        echo Rename \"$f\" to \"$name\"
-      fi
-    fi
-  done
-}
-
 zshrc_benchmark() {
   for i in $(seq 1 10); do /usr/bin/time zsh -i -c exit; done
 }
@@ -288,7 +248,6 @@ zshrc_benchmark() {
 zshrc_prof() {
   ZSH_PROF_DEBUG=1 zsh -i -c exit
 }
-
 
  [[ -s "$ZDOTDIR/.p10k.zsh" ]] && source "$ZDOTDIR/.p10k.zsh";
 

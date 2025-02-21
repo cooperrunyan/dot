@@ -29,20 +29,28 @@ theme = "github_dark"
     # snippets                  = false
 
   [editor.file-picker]
-    hidden = true
+    hidden = false
 
 [keys.insert]
   C-space = "completion"
+  C-q     = ":buffer-close"
 
-[keys.normal.space.t]
-  # o = ":sh ! (ps aux | grep sioyek | grep -v grep) && sioyek --reuse-window --execute-command toggle_synctex"
-  # s = ":sh (ps aux | grep sioyek | grep -v grep) && sioyek --nofocus --reuse-window --execute-command fit_to_page_width"
-  # c = ":sh killall sioyek"
-  # C = ":sh skim_toggle_continuous"
-  r = ":sh skim_resize"
-  c = ":sh latexmk -c -quiet -auxdir=build/artifacts -outdir=build"
-  C = ":sh latexmk -C -quiet -auxdir=build/artifacts -outdir=build"
-  b = ":sh skim_toggle_split"
-  q = ":sh killall Skim"
-  h = ":sh minimize_app Skim"
-  s = ":sh unminimize_app Skim"
+[keys.normal]
+  F   = "file_picker_in_current_buffer_directory"
+  C-q = ":buffer-close"
+
+  [keys.normal.space.t]
+    # o = ":sh ! (ps aux | grep sioyek | grep -v grep) && sioyek --reuse-window --execute-command toggle_synctex"
+    # s = ":sh (ps aux | grep sioyek | grep -v grep) && sioyek --nofocus --reuse-window --execute-command fit_to_page_width"
+    # c = ":sh killall sioyek"
+    # C = ":sh skim_toggle_continuous"
+    r = ":sh skim_resize"
+    c = ":sh latexmk -c -quiet -auxdir=build/artifacts -outdir=build"
+    C = ":sh latexmk -C -quiet -auxdir=build/artifacts -outdir=build"
+    b = ":sh skim_toggle_split"
+    q = ":sh killall Skim"
+    h = ":sh minimize_app Skim"
+    s = ":sh unminimize_app Skim"
+
+  [keys.normal.space]
+    p = '@"ayR"apd'

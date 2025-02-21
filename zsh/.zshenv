@@ -25,5 +25,9 @@ export ZSH_CACHE_DIR="$XDG_CACHE_HOME/zsh"
 # export ZSH_COMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
 # export ZCOMPDUMP="$XDG_CACHE_HOME/zsh/.zcompdump"
  
-source "$ZDOTDIR/functions.zsh"
+export PATH="$PATH:$ZDOTDIR/bin"
+
+if [[ "$(uname)" == "Darwin" ]]; then
+  export PATH="$PATH:$ZDOTDIR/bin/applescripts"
+fi
 
