@@ -37,10 +37,10 @@
   interactive = always
   status = always
 
-[url "https://www.github.com/"]
+[url "git@github.com:"]
   insteadOf = "g:"
 
-[url "https://www.github.com/cooperrunyan/"]
+[url "git@github.com:cooperrunyan/"]
   insteadOf = "c:"
 
 [alias]
