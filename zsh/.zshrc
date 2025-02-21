@@ -78,6 +78,8 @@ export QMK_HOME="$XDG_DATA_HOME/qmk_firmware"
 export HOMEBREW_BUNDLE_FILE_GLOBAL="$XDG_CONFIG_HOME/Brewfile"
 export HOMEBREW_NO_ENV_HINTS=1
 
+export BAT_CONFIG_PATH="$XDG_CONFIG_HOME/bat.conf"
+
 HISTSIZE=100000
 HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
 SAVEHIST=$HISTSIZE
@@ -237,8 +239,9 @@ abbr chx="chmod +x"
 alias ls="ls -phAFHtG --color"
 alias sudo="sudo -E"
 alias mkdir="mkdir -p"
-alias bat="bat --style=plain --theme=Nord"
-alias fzf="fzf --preview='bat --color=always --style=plain --theme=Nord {}'"
+# alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+alias fzf="fzf --preview='bat --color=always --style=plain {}'"
 alias du="du -h"
 
 zshrc_benchmark() {
@@ -254,3 +257,7 @@ zshrc_prof() {
 if [[ -n "$ZSH_PROF_DEBUG" ]]; then
   zprof
 fi
+
+colortest() {
+  for i in {0..15}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+}
