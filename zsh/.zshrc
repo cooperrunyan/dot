@@ -147,7 +147,7 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 # zinit snippet OMZP::fzf
 
 # zinit ice wait lucid
-zinit snippet OMZP::ssh-agent
+# zinit snippet OMZP::ssh-agent
 
 zinit ice wait lucid
 zinit snippet OMZP::colored-man-pages

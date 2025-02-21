@@ -10,10 +10,13 @@ ZLE_RPROMPT_INDENT=0
 [[ ! -o 'no_brace_expand' ]] || p10k_config_opts+=('no_brace_expand')
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
-icon_check="󰄴"
-icon_x=""
-icon_prompt=""
+icon_check=󰄴
+icon_x=
 
+# icon_prompt=
+# icon_prompt=󰁔
+# icon_prompt=
+icon_prompt=
 
 () {
   emulate -L zsh -o extended_glob
