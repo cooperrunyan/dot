@@ -13,10 +13,10 @@ ZLE_RPROMPT_INDENT=0
 icon_check=󰄴
 icon_x=
 
-# icon_prompt=
+icon_prompt=
 # icon_prompt=󰁔
 # icon_prompt=
-icon_prompt=
+# icon_prompt=
 
 () {
   emulate -L zsh -o extended_glob
