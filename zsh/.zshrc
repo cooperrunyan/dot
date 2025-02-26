@@ -209,7 +209,7 @@ fi
 #   export EDITOR="code --wait -n"
 #   alias edit="$EDITOR"
 # fi
-export EDITOR="hx"
+export EDITOR="nvim"
 
 if [ -e "/Applications/1Password.app" ]; then
   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
@@ -240,7 +240,7 @@ alias ls="ls -phAFHtG --color"
 alias sudo="sudo -E"
 alias mkdir="mkdir -p"
 # alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+# alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 alias fzf="fzf --preview='bat --color=always --style=plain {}'"
 alias du="du -h"
 

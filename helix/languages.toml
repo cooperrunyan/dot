@@ -37,18 +37,18 @@
   ] }
   auto-format = true
 
-# [[language]]
-#   name = "tsx"
-#   shebangs = ["deno"]
-#   roots = ["deno.json", "deno.jsonc"]
-#   file-types = ["tsx"]
-#   language-servers = ["deno-lsp"]
-#   formatter = { command = 'biome', args = [
-#     "format",
-#     "--stdin-file-path",
-#     "buffer.tsx",
-#   ] }
-#   auto-format = true
+  # [[language]]
+  #   name = "tsx"
+  #   shebangs = ["deno"]
+  #   roots = ["deno.json", "deno.jsonc"]
+  #   file-types = ["tsx"]
+  #   language-servers = ["deno-lsp"]
+  #   formatter = { command = 'biome', args = [
+  #     "format",
+  #     "--stdin-file-path",
+  #     "buffer.tsx",
+  #   ] }
+  #   auto-format = true
 
 [[language]]
   name             = "python"
