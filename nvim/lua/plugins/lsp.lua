@@ -74,6 +74,7 @@ return {
 				"efm",
 				"html",
 				"jsonls",
+				"pyright",
 			},
 			servers = {
 				lua_ls = {

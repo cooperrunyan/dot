@@ -146,7 +146,7 @@ return {
 		event = "VeryLazy",
 		opts = {
 			modes = { insert = true, command = true, terminal = false },
-			skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
+			-- skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
 			skip_ts = { "string" },
 			skip_unbalanced = true,
 			markdown = true,
@@ -156,7 +156,7 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
 		keys = {
-			{ "<leader>g", group = "Git" },
+			-- { "<leader>g", group = "Git" },
 			{ "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", desc = "Toggle git blame" },
 			{
 				"<leader>gd",
