@@ -7,6 +7,7 @@ return {
 			python = { "isort", "black" },
 			rust = { lsp_format = "prefer" },
 			javascript = { "prettierd", "prettier", stop_after_first = true },
+			markdown = { "deno_fmt" },
 		},
 		format_on_save = {
 			timeout_ms = 500,

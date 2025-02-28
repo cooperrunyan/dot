@@ -39,7 +39,7 @@ return {
 					sources = { "nvim_diagnostic" },
 					sections = { "error", "warn", "hint", "info" },
 					-- symbols = { error = " ", warn = " ", hint = "󰌶 ", info = "󰋽 " },
-					symbols = { error = " ", warn = " ", info = " ", hint = "󰌶 " },
+					symbols = { error = " ", warn = " ", info = " ", hint = " " },
 					colored = true,
 					update_in_insert = true,
 					-- always_visible = true,

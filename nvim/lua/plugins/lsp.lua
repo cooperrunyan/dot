@@ -1,4 +1,5 @@
 return {
+	{ import = "plugins.lang" },
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufRead", "VeryLazy" },
@@ -9,7 +10,8 @@ return {
 		opts = {
 			diagnostics = {
 				underline = true,
-				update_in_insert = false,
+				update_in_insert = true,
+				virtual_lines = true,
 				-- virtual_text = {
 				--   spacing = 4,
 				--   source = "if_many",
@@ -18,10 +20,26 @@ return {
 				severity_sort = true,
 				signs = {
 					text = {
-						[vim.diagnostic.severity.ERROR] = "",
-						[vim.diagnostic.severity.WARN] = "",
-						[vim.diagnostic.severity.HINT] = "󰌶",
-						[vim.diagnostic.severity.INFO] = "",
+						-- [vim.diagnostic.severity.ERROR] = " ",
+						-- [vim.diagnostic.severity.WARN] = " ",
+						-- [vim.diagnostic.severity.HINT] = " ",
+						-- [vim.diagnostic.severity.INFO] = " ",
+						[vim.diagnostic.severity.ERROR] = "",
+						[vim.diagnostic.severity.WARN] = "",
+						[vim.diagnostic.severity.HINT] = "",
+						[vim.diagnostic.severity.INFO] = "",
+					},
+					linehl = {
+						[vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
+						[vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
+						[vim.diagnostic.severity.HINT] = "DiagnosticHintLine",
+						[vim.diagnostic.severity.INFO] = "DiagnosticInfoLine",
+					},
+					numhl = {
+						[vim.diagnostic.severity.ERROR] = "DiagnosticErrorNumLine",
+						[vim.diagnostic.severity.WARN] = "DiagnosticWarnNumLine",
+						[vim.diagnostic.severity.HINT] = "DiagnosticHintNumLine",
+						[vim.diagnostic.severity.INFO] = "DiagnosticInfoNumLine",
 					},
 				},
 			},
@@ -78,45 +96,14 @@ return {
 					},
 				},
 
-				taplo = {},
-				yamlls = {},
-				marksman = {},
-				texlab = {
-					settings = {
-						texlab = {
-							diagnosticsDelay = 0,
-							completion = {
-								matcher = "prefix",
-							},
-							forwardSearch = {
-								executable = "/Applications/Skim.app/Contents/SharedSupport/displayline",
-								args = { "-g", "-z", "-r", "-n", "%l", "%p", "%f" },
-							},
-							build = {
-								onSave = true,
-								forwardSearchAfter = true,
-								auxDirectory = "build/artifacts",
-								pdfDirectory = "build",
-								args = {
-									"-pdf",
-									"-interaction=nonstopmode",
-									"-synctex=1",
-									"%f",
-									"-auxdir=build/artifacts",
-									"-outdir=build",
-								},
-							},
-							chktex = {
-								onOpenAndSave = true,
-								onEdit = true,
-							},
-							latexindent = {
-								modifyLineBreaks = true,
-								["local"] = "~/.config/latexindent.yaml",
-							},
-						},
+				taplo = {
+					config_file = {
+						enabled = true,
+						path = vim.env.XDG_CONFIG_HOME .. "/taplo.toml",
 					},
 				},
+				yamlls = {},
+				marksman = {},
 				biome = {},
 				cssls = {},
 				denols = {},
@@ -242,6 +229,16 @@ return {
 					end
 				end
 			end)
+		end,
+	},
+	{
+		"simrat39/rust-tools.nvim",
+		opts = function(_, opts)
+			if opts.tools == nil then
+				opts.tools = {}
+			end
+			opts.tools.on_initialized = function() end
+			return opts
 		end,
 	},
 }

@@ -46,7 +46,7 @@ else
 	k("n", ">", ">>", { silent = true, remap = false, desc = "Indent selection" })
 	k("n", "<", "<<", { silent = true, remap = false, desc = "Unindent selection" })
 	k("v", ">", ">gv", { silent = true, remap = false, desc = "Indent selection" })
-	k("v", "<", ">gv", { silent = true, remap = false, desc = "Unindent selection" })
+	k("v", "<", "<gv", { silent = true, remap = false, desc = "Unindent selection" })
 end
 
 k({ "n", "x" }, "k", "gk", { remap = true, silent = true })
@@ -62,9 +62,9 @@ k("n", "<M-S-CR>", "<cmd>call append(line('.')-1, '')<CR>", { silent = true, des
 k("n", "<C-CR>", "o<esc>", { silent = true, desc = "Insert and move to line below cursor" })
 k("n", "<C-S-CR>", "O<esc>", { silent = true, desc = "Insert and move to line above cursor" })
 
-k("n", "<leader>p", '"+p', { silent = true, desc = "Paste system clipboare" })
-k("n", "<leader>yy", '"+yy', { silent = true, desc = "Copy to system clipboare" })
-k("v", "<leader>y", '"+y', { silent = true, desc = "Copy to system clipboare" })
+k("n", "<leader>p", '"+p', { silent = true, desc = "Paste system clipboard" })
+k("n", "<leader>yy", '"+yy', { silent = true, desc = "Copy to system clipboard" })
+k("v", "<leader>y", '"+y', { silent = true, desc = "Copy to system clipboard" })
 
 k({ "n", "v", "i" }, "<C-L>", "<cmd>wincmd l<CR>", { silent = true, desc = "Focus window left" })
 k({ "n", "v", "i" }, "<C-J>", "<cmd>wincmd j<CR>", { silent = true, desc = "Focus window down" })
