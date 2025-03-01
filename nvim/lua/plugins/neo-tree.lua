@@ -13,31 +13,31 @@ return {
 			function()
 				require("neo-tree.command").execute({ action = "focus" })
 			end,
-			desc = "Explorer NeoTree (Root Dir)",
+			desc = "Focus File Tree",
 		},
 		{
 			"<leader>E",
 			function()
 				require("neo-tree.command").execute({ toggle = true })
 			end,
-			desc = "Explorer NeoTree (cwd)",
+			desc = "Toggle File Tree",
 		},
 		-- { "<leader>e", "<leader>fe", desc = "Explorer NeoTree (Root Dir)", remap = true },
 		-- { "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
-		{
-			"<leader>ge",
-			function()
-				require("neo-tree.command").execute({ source = "git_status", toggle = true })
-			end,
-			desc = "Git Explorer",
-		},
-		{
-			"<leader>be",
-			function()
-				require("neo-tree.command").execute({ source = "buffers", toggle = true })
-			end,
-			desc = "Buffer Explorer",
-		},
+		-- {
+		-- 	"<leader>ge",
+		-- 	function()
+		-- 		require("neo-tree.command").execute({ source = "git_status", toggle = true })
+		-- 	end,
+		-- 	desc = "Git Explorer",
+		-- },
+		-- {
+		-- 	"<leader>be",
+		-- 	function()
+		-- 		require("neo-tree.command").execute({ source = "buffers", toggle = true })
+		-- 	end,
+		-- 	desc = "Buffer Explorer",
+		-- },
 	},
 	deactivate = function()
 		vim.cmd([[Neotree close]])

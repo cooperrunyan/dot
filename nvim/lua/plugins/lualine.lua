@@ -1,71 +1,72 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	config = function(_, opts)
-		local lazy_status = require("lazy.status")
-		opts.sections.lualine_x = {
-			{ lazy_status.updates, cond = lazy_status.has_updates },
-		}
-		require("lualine").setup(opts)
-	end,
 	event = "VeryLazy",
-	opts = {
-		options = {
-			disabled_filetypes = {
-				ToggleTerm = {},
-			},
-			theme = "github_dark_default",
-			section_separators = { left = "", right = "" },
-			component_separators = { left = "", right = "" },
-		},
-		sections = {
-			lualine_a = {
-				{
-					"mode",
-					right_padding = 2,
-					fmt = function(str)
-						return str:sub(1, 1)
-					end,
+	opts = function()
+		local lazy_status = require("lazy.status")
+		local lazy = { lazy_status.updates, cond = lazy_status.has_updates }
+
+		local branch = { "branch", icons_enabled = true, icon = "" }
+
+		local mode = {
+			"mode",
+			right_padding = 2,
+			fmt = function(str)
+				return str:sub(1, 1)
+			end,
+		}
+
+		local diagnostics = {
+			"diagnostics",
+			sources = { "nvim_diagnostic" },
+			sections = { "error", "warn", "hint" },
+			symbols = { error = " ", warn = " ", info = " ", hint = " " },
+			colored = true,
+			update_in_insert = true,
+			-- always_visible = true,
+		}
+
+		local no_fmt = function()
+			if vim.g.disable_autoformat or vim.b.disable_autoformat then
+				return "no_fmt"
+			end
+			return ""
+		end
+
+		return {
+			options = {
+				disabled_filetypes = {
+					ToggleTerm = {},
 				},
+				theme = "github_dark_default",
+				section_separators = { left = "", right = "" },
+				component_separators = { left = "", right = "" },
 			},
-			lualine_b = { {
-				"branch",
-				icons_enabled = true,
-				icon = "",
-			} },
-			lualine_c = {
-				"location",
-				{
-					"diagnostics",
-					sources = { "nvim_diagnostic" },
-					sections = { "error", "warn", "hint", "info" },
-					-- symbols = { error = " ", warn = " ", hint = "󰌶 ", info = "󰋽 " },
-					symbols = { error = " ", warn = " ", info = " ", hint = " " },
-					colored = true,
-					update_in_insert = true,
-					-- always_visible = true,
-				},
+			sections = {
+				lualine_a = { mode },
+				lualine_b = { branch },
+				lualine_c = { "location", diagnostics },
+				lualine_x = { "searchcount", no_fmt, lazy },
+				lualine_y = { "filetype" },
+				lualine_z = { "filename" },
 			},
-			lualine_x = {},
-			lualine_y = { "filetype" },
-			lualine_z = { "filename" },
-		},
-		inactive_sections = {
-			lualine_a = {},
-			lualine_b = {},
-			lualine_c = { "filetype" },
-			lualine_x = { "filename" },
-			lualine_y = {},
-			lualine_z = {},
-		},
-		extensions = {
-			"neo-tree",
-			"mason",
-			"trouble",
-			"man",
-			"nvim-dap-ui",
-			"lazy",
-			"quickfix",
-			"toggleterm",
-		},
-	},
+			inactive_sections = {
+				lualine_a = {},
+				lualine_b = {},
+				lualine_c = { "filetype" },
+				lualine_x = { "filename" },
+				lualine_y = {},
+				lualine_z = {},
+			},
+			extensions = {
+				"neo-tree",
+				"mason",
+				"trouble",
+				"man",
+				"nvim-dap-ui",
+				"lazy",
+				"quickfix",
+				"toggleterm",
+			},
+		}
+	end,
 }

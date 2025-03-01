@@ -10,7 +10,8 @@ vim.opt.splitbelow = true
 
 vim.opt.swapfile = false
 
-vim.opt.relativenumber = true
+-- vim.opt.relativenumber = true
+vim.opt.nu = true
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 0
 

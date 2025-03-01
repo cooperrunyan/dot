@@ -9,14 +9,26 @@ return {
 		},
 		opts = {
 			diagnostics = {
+				icons = {
+					[vim.diagnostic.severity.ERROR] = " ",
+					[vim.diagnostic.severity.WARN] = " ",
+					[vim.diagnostic.severity.HINT] = " ",
+					[vim.diagnostic.severity.INFO] = " ",
+				},
 				underline = true,
 				update_in_insert = true,
 				virtual_lines = true,
-				-- virtual_text = {
-				--   spacing = 4,
-				--   source = "if_many",
-				--   prefix = "●",
-				-- },
+				virtual_text = {
+					virt_text_pos = "right_align",
+					prefix = "",
+					-- source = "if_many"
+					-- prefix = function(d, i, tot)
+					-- 	if tot > 1 then
+					-- 		return "󰝤"
+					-- 	end
+					-- 	return vim.g.diagnostic_icons[d.severity]
+					-- end,
+				},
 				severity_sort = true,
 				signs = {
 					text = {
@@ -123,17 +135,24 @@ return {
 		},
 		config = function(_, opts)
 			-- diagnostics signs
-			if vim.fn.has("nvim-0.10.0") == 0 then
-				if type(opts.diagnostics.signs) ~= "boolean" then
-					for severity, icon in pairs(opts.diagnostics.signs.text) do
-						local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
-						name = "DiagnosticSign" .. name
-						vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-					end
-				end
-			end
+			-- if vim.fn.has("nvim-0.10.0") == 0 then
+			-- 	if type(opts.diagnostics.signs) ~= "boolean" then
+			-- 		for severity, icon in pairs(opts.diagnostics.signs.text) do
+			-- 			local name = vim.diagnostic.severity[severity]:lower():gsub("^%l", string.upper)
+			-- 			name = "DiagnosticSign" .. name
+			-- 			vim.fn.sign_define(name, {
+			--            text = icon,
+			--            texthl = "DiagnosticSign" .. name,
+			--            linehl = "DiagnosticLine" .. name,
+			--            numhl = "DiagnosticNum" .. name,
+			--
+			--          })
+			-- 		end
+			-- 	end
+			-- end
 
 			vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+			vim.g.diagnostic_icons = opts.diagnostics.icons
 
 			local servers = opts.servers
 			local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
