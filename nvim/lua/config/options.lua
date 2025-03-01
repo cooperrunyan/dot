@@ -15,6 +15,8 @@ vim.opt.nu = true
 vim.opt.scrolloff = 4
 vim.opt.sidescrolloff = 0
 
+vim.opt.breakindent = true
+
 vim.opt.autoindent = true
 vim.opt.gdefault = true
 vim.opt.hlsearch = true

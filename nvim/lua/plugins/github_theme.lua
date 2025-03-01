@@ -53,6 +53,7 @@ return {
 				NeoTreeGitModified = { fg = "palette.yellow" },
 				NeoTreeGitConflict = { fg = "palette.red" },
 				NeoTreeGitDeleted = { fg = "palette.red" },
+				TelescopeBorder = { link = "FloatBorder" },
 			},
 		},
 	},

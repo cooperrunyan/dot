@@ -19,7 +19,7 @@ return {
 				update_in_insert = true,
 				virtual_lines = true,
 				virtual_text = {
-					virt_text_pos = "right_align",
+					-- virt_text_pos = "right_align",
 					prefix = "",
 					-- source = "if_many"
 					-- prefix = function(d, i, tot)

@@ -19,6 +19,12 @@ return {
 	},
 	{
 		"echasnovski/mini.comment",
+		event = "BufRead",
+		keys = {
+			{ "<leader>C" },
+			{ "<leader>c" },
+			{ "<leader>c", mode = "v" },
+		},
 		opts = {
 			options = {},
 			mappings = {
@@ -42,36 +48,12 @@ return {
 				desc = "Flash",
 			},
 			{
-				"S",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").treesitter()
-				end,
-				desc = "Flash Treesitter",
-			},
-			{
 				"r",
 				mode = "o",
 				function()
 					require("flash").remote()
 				end,
 				desc = "Remote Flash",
-			},
-			{
-				"R",
-				mode = { "o", "x" },
-				function()
-					require("flash").treesitter_search()
-				end,
-				desc = "Treesitter Search",
-			},
-			{
-				"<c-s>",
-				mode = { "c" },
-				function()
-					require("flash").toggle()
-				end,
-				desc = "Toggle Flash Search",
 			},
 		},
 	},
@@ -156,7 +138,6 @@ return {
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
 		keys = {
-			-- { "<leader>g", group = "Git" },
 			{ "<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", desc = "Toggle git blame" },
 			{
 				"<leader>gd",
