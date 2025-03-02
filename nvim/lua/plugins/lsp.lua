@@ -112,7 +112,7 @@ return {
 				taplo = {
 					config_file = {
 						enabled = true,
-						path = vim.env.XDG_CONFIG_HOME .. "/taplo.toml",
+						path = (os.getenv("XDG_CONFIG_HOME") or "~/.config") .. "/taplo.toml",
 					},
 				},
 				yamlls = {},
