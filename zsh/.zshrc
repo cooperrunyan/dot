@@ -4,6 +4,8 @@ if [[ -n "$ZSH_PROF_DEBUG" ]]; then
   zmodload zsh/zprof
 fi
 
+source "$ZDOTDIR/.zshenv"
+
 if [[ $(uname) == "Darwin" ]]; then
     export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/Library/Caches"}
 else
