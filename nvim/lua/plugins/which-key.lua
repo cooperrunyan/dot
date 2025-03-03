@@ -23,8 +23,8 @@ return {
 			{ "ge", "G", mode = "nxo", silent = true, desc = "End of file" },
 			{ "L", "g$", mode = "ox", silent = true, desc = "End of line" },
 			{ "H", "g^", mode = "ox", silent = true, desc = "Start of line" },
-			{ "k", "gk", mode = "nox", silent = true, remap = false },
-			{ "j", "gj", mode = "nox", silent = true, remap = false },
+			{ "k", "gk", mode = "nx", silent = true, remap = false },
+			{ "j", "gj", mode = "nx", silent = true, remap = false },
 
 			{ "J", ":m '>+1<CR>gv=gv", mode = "x", silent = true, desc = "Move selection up" },
 			{ "K", ":m '<-2<CR>gv=gv", mode = "x", silent = true, desc = "Move selection down" },

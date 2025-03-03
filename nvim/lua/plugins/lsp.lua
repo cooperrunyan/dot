@@ -122,6 +122,8 @@ return {
 				denols = {},
 				bashls = {},
 				vtsls = {},
+
+				efm = { enabled = false },
 			},
 			setup = {
 				-- example to setup with typescript.nvim

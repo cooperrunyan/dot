@@ -1,5 +1,6 @@
 return {
 	"nvim-lualine/lualine.nvim",
+	-- enabled = false,
 	event = "VeryLazy",
 	opts = function()
 		local lazy_status = require("lazy.status")
