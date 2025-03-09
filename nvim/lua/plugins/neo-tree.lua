@@ -48,7 +48,7 @@ return {
 		open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
 		close_if_last_window = true,
 		filesystem = {
-			bind_to_cwd = false,
+			bind_to_cwd = true,
 			follow_current_file = { enabled = true },
 			use_libuv_file_watcher = true,
 			filtered_items = {
@@ -87,6 +87,7 @@ return {
 				expander_collapsed = "",
 				expander_expanded = "",
 				expander_highlight = "NeoTreeExpander",
+				last_indent_marker = "╰",
 			},
 			diagnostics = {
 				error = " ",
@@ -96,9 +97,9 @@ return {
 			},
 			icon = {
 				folder_closed = " ",
-				folder_open = " ",
+				folder_open = " ",
 				folder_empty = "󰉖 ",
-				folder_empty_open = "󰷏 ",
+				folder_empty_open = " ",
 				provider = function(icon, node, _)
 					if node.type == "file" or node.type == "terminal" then
 						local success, web_devicons = pcall(require, "nvim-web-devicons")

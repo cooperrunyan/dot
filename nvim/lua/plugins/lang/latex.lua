@@ -2,6 +2,9 @@ return {
 	{
 		"lervag/vimtex",
 		lazy = false, -- lazy-loading will disable inverse search
+		dependencies = {
+			{ "L3MON4D3/LuaSnip" },
+		},
 		config = function()
 			vim.g.vimtex_mappings_disable = { ["n"] = { "K" } }
 			vim.g.vimtex_view_method = "skim"
@@ -29,6 +32,44 @@ return {
 			vim.cmd("filetype plugin indent on")
 			vim.cmd("syntax enable")
 
+			local ls = require("luasnip")
+
+			local s = ls.snippet
+			local sn = ls.snippet_node
+			local t = ls.text_node
+			local i = ls.insert_node
+			local f = ls.function_node
+			local d = ls.dynamic_node
+			local fmt = require("luasnip.extras.fmt").fmt
+			local fmta = require("luasnip.extras.fmt").fmta
+			local rep = require("luasnip.extras").rep
+
+			local as = function(trig, ...)
+				return s({ trig = trig, snippetType = "autosnippet" }, ...)
+			end
+
+			local in_mathzone = function()
+				return vim.fn["vimtex#syntax#in_mathzone"]() == 1
+			end
+
+			ls.add_snippets("tex", {
+				as("\\frac", { t("\\frac{ "), i(1), t(" }{ "), i(2), t(" }") }, { condition = in_mathzone() }),
+				as("\\[", { t("\\[ "), i(1), t(" \\]") }),
+				as("\\left", { t("\\left( "), i(1), t(" \\right)") }, { condition = in_mathzone() }),
+				as("$$", { t("$ "), i(1), t(" $") }),
+				as(
+					"\\begin",
+					fmta(
+						[[
+              \\begin{<>}
+                  <>
+              \\end{<>}
+            ]],
+						{ i(1), i(2), rep(1) }
+					)
+				),
+			})
+
 			local group = vim.api.nvim_create_augroup("vimtex_mac", {})
 
 			vim.api.nvim_create_autocmd("BufWritePost", {
@@ -36,6 +77,7 @@ return {
 				desc = "Build on save",
 				pattern = { "*.tex" },
 				command = "VimtexCompile",
+				once = true,
 			})
 
 			vim.api.nvim_create_autocmd("User", {

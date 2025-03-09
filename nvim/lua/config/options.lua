@@ -13,7 +13,7 @@ vim.opt.swapfile = false
 -- vim.opt.relativenumber = true
 vim.opt.nu = true
 vim.opt.scrolloff = 4
-vim.opt.sidescrolloff = 0
+-- vim.opt.sidescrolloff = 0
 
 vim.opt.breakindent = true
 
@@ -29,15 +29,17 @@ vim.opt.expandtab = true
 vim.opt.autowrite = true
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
-vim.opt.wrap = true
+-- vim.opt.wrap = true
 vim.opt.mousescroll = "ver:3,hor:0"
 vim.opt.fillchars = "eob: "
 vim.opt.expandtab = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.showmatch = true
 
+vim.g.vimtex_syntax_enabled = 0
+
 -- vim.opt.iskeyword:append("-")
-vim.opt.shortmess:append({ I = true })
+-- vim.opt.shortmess:append({ I = true })
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = "rounded",

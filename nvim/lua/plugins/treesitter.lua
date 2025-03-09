@@ -14,6 +14,7 @@ return {
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true },
+			playground = { enable = true },
 			ensure_installed = {
 				"bash",
 				"c",
@@ -39,6 +40,7 @@ return {
 				"vimdoc",
 				"xml",
 				"yaml",
+				"latex",
 			},
 			incremental_selection = {
 				enable = true,

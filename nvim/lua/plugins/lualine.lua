@@ -1,7 +1,9 @@
 return {
 	"nvim-lualine/lualine.nvim",
-	-- enabled = false,
 	event = "VeryLazy",
+	dependencies = {
+		{ "andrewferrier/wrapping.nvim", optional = true },
+	},
 	opts = function()
 		local lazy_status = require("lazy.status")
 		local lazy = { lazy_status.updates, cond = lazy_status.has_updates }
@@ -33,6 +35,15 @@ return {
 			return ""
 		end
 
+		local okwrap, wrapping = pcall(require, "wrapping")
+
+		local wrap = function()
+			if not okwrap then
+				return
+			end
+			return wrapping.get_current_mode() or ""
+		end
+
 		return {
 			options = {
 				disabled_filetypes = {
@@ -46,7 +57,7 @@ return {
 				lualine_a = { mode },
 				lualine_b = { branch },
 				lualine_c = { "location", diagnostics },
-				lualine_x = { "searchcount", no_fmt, lazy },
+				lualine_x = { "searchcount", no_fmt, wrap, lazy },
 				lualine_y = { "filetype" },
 				lualine_z = { "filename" },
 			},

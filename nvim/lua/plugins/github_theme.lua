@@ -33,13 +33,8 @@ return {
 				},
 			},
 			hide_end_of_buffer = true,
-			modules = {
-				cmp = { enable = true },
-				diagnostic = { enable = true },
-				fzf = { enable = true },
-				gitsigns = { enable = true },
-				whichkey = { enable = true },
-				neotree = { enable = true },
+			inverse = {
+				match_paren = true,
 			},
 		},
 		groups = {
@@ -54,6 +49,13 @@ return {
 				NeoTreeGitConflict = { fg = "palette.red" },
 				NeoTreeGitDeleted = { fg = "palette.red" },
 				TelescopeBorder = { link = "FloatBorder" },
+
+				-- Special = { link = "@constant" },
+				-- Special = { link = "@function" },
+
+				["@label.latex"] = { link = "@string" },
+				["@punctuation.delimiter.latex"] = { link = "@conceal" },
+				["@punctuation.bracket.latex"] = { link = "@operator.latex" },
 			},
 		},
 	},

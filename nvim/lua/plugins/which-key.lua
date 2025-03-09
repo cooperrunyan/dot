@@ -1,3 +1,10 @@
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+-- 	pattern = "help,qf,netrw",
+-- 	callback = function()
+-- 		vim.keymap.set("n", "q", "<C-w>c", { silent = true, buffer = true })
+-- 	end,
+-- })
+
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
@@ -12,6 +19,9 @@ return {
 			mappings = false,
 		},
 		spec = {
+			{ "Q", "q", mode = "n", silent = true, remap = false, hidden = true },
+			{ "q", ":q<CR>", mode = "n", silent = true, remap = false, hidden = true },
+
 			{ "<leader>g", group = "Git" },
 			{ "<leader>f", group = "Picker" },
 			{ "<leader>x", group = "Diagnostic" },
@@ -29,8 +39,8 @@ return {
 			{ "J", ":m '>+1<CR>gv=gv", mode = "x", silent = true, desc = "Move selection up" },
 			{ "K", ":m '<-2<CR>gv=gv", mode = "x", silent = true, desc = "Move selection down" },
 
-			{ "<C-q>", ":q<CR>", mode = "nxi", silent = true, desc = "Close buffer" },
-			{ "<D-s>", ":w<CR>", mode = "nxic", silent = true, desc = "Write buffer" },
+			{ "<C-q>", ":q<CR>", mode = "nx", silent = true, desc = "Close buffer" },
+			{ "<D-s>", ":w<CR>", mode = "nx", silent = true, desc = "Write buffer" },
 
 			{ "p", '"_dP', mode = "x", silent = true, desc = "Paste over selection" },
 			{ "c", '"_c', mode = "x", silent = true, desc = "Change selection" },

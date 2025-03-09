@@ -1,4 +1,8 @@
 return {
+	{
+		"andrewferrier/wrapping.nvim",
+		opts = {},
+	},
 	{ "j-hui/fidget.nvim", event = { "VeryLazy" } },
 	{
 		"akinsho/toggleterm.nvim",
@@ -104,11 +108,27 @@ return {
 		},
 		version = "*",
 		opts = {
-			keymap = { preset = "super-tab" },
+			keymap = {
+				-- preset = "super-tab",
+				["<C-j>"] = { "select_next", "fallback" },
+				["<C-k>"] = { "select_prev", "fallback" },
+				["<down>"] = { "select_next", "fallback" },
+				["<up>"] = { "select_prev", "fallback" },
+			},
+			cmdline = {
+				keymap = {
+					preset = "super-tab",
+					["<C-j>"] = { "select_next" },
+					["<C-k>"] = { "select_prev" },
+				},
+			},
 			appearance = {
 				use_nvim_cmp_as_default = true,
 				-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				nerd_font_variant = "normal",
+			},
+			snippets = {
+				preset = "luasnip",
 			},
 
 			sources = {
