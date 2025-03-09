@@ -3,7 +3,8 @@ return {
 	cmd = "Neotree",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+		"echasnovski/mini.icons",
+		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 		-- { "3rd/image.nvim", opts = {} }, -- Optional image support in preview window: See `# Preview Mode` for more information
 	},
@@ -60,6 +61,7 @@ return {
 			},
 		},
 		window = {
+			width = 35,
 			mappings = {
 				["l"] = "open",
 				["h"] = "close_node",

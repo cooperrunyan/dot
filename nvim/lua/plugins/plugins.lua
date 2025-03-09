@@ -95,55 +95,6 @@ return {
 		},
 	},
 	{
-		"saghen/blink.compat",
-		version = "*",
-		lazy = true,
-		opts = {},
-	},
-	{
-		"saghen/blink.cmp",
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-			"micangl/cmp-vimtex",
-		},
-		version = "*",
-		opts = {
-			keymap = {
-				-- preset = "super-tab",
-				["<C-j>"] = { "select_next", "fallback" },
-				["<C-k>"] = { "select_prev", "fallback" },
-				["<down>"] = { "select_next", "fallback" },
-				["<up>"] = { "select_prev", "fallback" },
-			},
-			cmdline = {
-				keymap = {
-					preset = "super-tab",
-					["<C-j>"] = { "select_next" },
-					["<C-k>"] = { "select_prev" },
-				},
-			},
-			appearance = {
-				use_nvim_cmp_as_default = true,
-				-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-				nerd_font_variant = "normal",
-			},
-			snippets = {
-				preset = "luasnip",
-			},
-
-			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
-				providers = {
-					vimtex = {
-						name = "vimtex",
-						module = "blink.compat.source",
-					},
-				},
-			},
-		},
-		opts_extend = { "sources.default" },
-	},
-	{
 		"echasnovski/mini.pairs",
 		event = "VeryLazy",
 		opts = {

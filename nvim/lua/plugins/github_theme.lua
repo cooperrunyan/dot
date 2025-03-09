@@ -16,7 +16,11 @@ return {
 			DiagnosticHintNumLine = { bg = palette.neutral.subtle },
 			DiagnosticInfoLine = { bg = palette.accent.subtle },
 			DiagnosticInfoNumLine = { bg = palette.accent.subtle, fg = palette.accent.fg },
-			Yanked = { bg = palette.success.muted },
+			FloatBorder = { fg = palette.border.subtle },
+			-- Yanked = { bg = palette.success.muted },
+			Yanked = { bg = palette.scale.gray[7] },
+			Search = { bg = palette.scale.gray[8] },
+			Visual = { bg = palette.scale.gray[8] },
 		})
 
 		require("github-theme").setup(opts)
@@ -28,9 +32,7 @@ return {
 		options = {
 			darken = {
 				floats = false,
-				sidebars = {
-					enable = false,
-				},
+				sidebars = { enable = false },
 			},
 			hide_end_of_buffer = true,
 			inverse = {
@@ -49,6 +51,12 @@ return {
 				NeoTreeGitConflict = { fg = "palette.red" },
 				NeoTreeGitDeleted = { fg = "palette.red" },
 				TelescopeBorder = { link = "FloatBorder" },
+				-- Pmenu = { link = "FloatBorder" },
+				PmenuSel = { link = "Visual" },
+				BlinkCmpMenuBorder = { link = "FloatBorder" },
+				BlinkCmpDocBorder = { link = "FloatBorder" },
+				BlinkCmpDocSeparator = { link = "FloatBorder" },
+				BlinkCmpDocCursorLine = { link = "Visual" },
 
 				-- Special = { link = "@constant" },
 				-- Special = { link = "@function" },

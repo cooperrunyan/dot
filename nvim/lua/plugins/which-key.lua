@@ -60,10 +60,10 @@ return {
 			{ "<leader>p", '"+p', mode = "nx", silent = true, desc = "Paste system clipboard" },
 			{ "<leader>y", '"+y', mode = "x", silent = true, desc = "Copy to system clipboard" },
 
-			{ "<C-L>", ":wincmd l<CR>", mode = "nxi", silent = true, desc = "Focus left" },
-			{ "<C-J>", ":wincmd j<CR>", mode = "nxi", silent = true, desc = "Focus down" },
-			{ "<C-K>", ":wincmd k<CR>", mode = "nxi", silent = true, desc = "Focus up" },
-			{ "<C-H>", ":wincmd h<CR>", mode = "nxi", silent = true, desc = "Focus right" },
+			{ "<C-L>", ":wincmd l<CR>", mode = "nx", silent = true, desc = "Focus left" },
+			{ "<C-J>", ":wincmd j<CR>", mode = "nx", silent = true, desc = "Focus down" },
+			{ "<C-K>", ":wincmd k<CR>", mode = "nx", silent = true, desc = "Focus up" },
+			{ "<C-H>", ":wincmd h<CR>", mode = "nx", silent = true, desc = "Focus right" },
 
 			{ "<leader>s", group = "Split" },
 			{ "<leader>ss", "<C-w>v", silent = true, desc = "Split vertically" },

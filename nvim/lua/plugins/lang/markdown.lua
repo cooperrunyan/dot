@@ -20,7 +20,7 @@ return {
 	},
 	{ "bullets-vim/bullets.vim", ft = "markdown", event = { "VeryLazy" } },
 	{
-		enabled = true,
+		enabled = false,
 		"MeanderingProgrammer/markdown.nvim",
 		ft = "markdown",
 	},
