@@ -52,8 +52,11 @@ return {
 
 			{ "<leader>r", vim.lsp.buf.rename, mode = "nx", silent = true, desc = "Rename symbol" },
 			{ "<leader>a", vim.lsp.buf.code_action, mode = "nx", silent = true, desc = "Code action" },
-			{ "gr", vim.lsp.buf.references, silent = true, desc = "Go to references" },
-			{ "gd", vim.lsp.buf.declaration, silent = true, desc = "Go to declaration" },
+			-- { "gr", vim.lsp.buf.references, silent = true, desc = "Go to references" },
+			{ "gD", vim.lsp.buf.declaration, silent = true, desc = "Go to declaration" },
+			-- { "gd", vim.lsp.buf.definition, silent = true, desc = "Go to definition" },
+			-- { "gt", vim.lsp.buf.type_definition, silent = true, desc = "Go to type definition" },
+			-- { "gi", vim.lsp.buf.implementation, silent = true, desc = "Go to implementation" },
 			{ "K", vim.lsp.buf.hover, silent = true, desc = "Hover" },
 			{ "H", vim.lsp.buf.signature_help, silent = true, desc = "Signature help" },
 

@@ -16,31 +16,12 @@ return {
 				["<down>"] = { "select_next", "fallback" },
 				["<up>"] = { "select_prev", "fallback" },
 				-- ["<esc>"] = { "cancel", "fallback" },
-				["<Tab>"] = {
-					function(cmp)
-						if require("luasnip").locally_jumpable(1) then
-							return cmp.snippet_forward()
-						else
-							return cmp.select_and_accept()
-						end
-					end,
-					"snippet_forward",
-					"fallback",
-				},
-				["<CR>"] = {
-					function(cmp)
-						if require("luasnip").locally_jumpable(1) then
-							return cmp.accept()
-						end
-					end,
-					"fallback",
-				},
 			},
 			term = { enabled = true },
 			cmdline = {
 				enabled = true,
 				keymap = {
-					preset = "super-tab",
+					preset = "default",
 					["<C-j>"] = { "select_next" },
 					["<C-k>"] = { "select_prev" },
 				},
@@ -62,7 +43,8 @@ return {
 				menu = {
 					scrollbar = false,
 					border = "rounded",
-					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+					-- winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+					winhighlight = "Normal:NormalFloat",
 				},
 				documentation = {
 					window = { border = "rounded" },
