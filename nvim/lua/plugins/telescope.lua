@@ -28,9 +28,9 @@ return {
 			{ "<leader>fH", ":Telescope command_history<cr>", desc = "Command history", silent = true },
 			{ "<leader>fs", ":Telescope symbols<cr>", desc = "Symbols", silent = true },
 			{ "gr", ":Telescope lsp_references<cr>", desc = "Go to references", silent = true },
-			{ "gi", ":Telescope lsp_implementations<cr>", desc = "Go to implementation", silent = true },
-			{ "gd", ":Telescope lsp_definitions<cr>", desc = "Go to definition", silent = true },
-			{ "gt", ":Telescope lsp_type_definitions<cr>", desc = "Go to type definition", silent = true },
+			-- { "gi", ":Telescope lsp_implementations<cr>", desc = "Go to implementation", silent = true },
+			-- { "gd", ":Telescope lsp_definitions<cr>", desc = "Go to definition", silent = true },
+			-- { "gt", ":Telescope lsp_type_definitions<cr>", desc = "Go to type definition", silent = true },
 			{ "<leader><space>", false },
 		},
 		opts = function()

@@ -21,10 +21,10 @@ return {
 			Yanked = { bg = palette.scale.gray[7] },
 			Search = { bg = palette.scale.gray[8] },
 			Visual = { bg = palette.scale.gray[8] },
+			BlinkCmpSignatureHelpActiveParameter = { bg = palette.scale.gray[9] },
 		})
 
 		require("github-theme").setup(opts)
-
 		vim.cmd("colorscheme " .. opts.variant)
 	end,
 	opts = {
@@ -57,9 +57,9 @@ return {
 				BlinkCmpDocBorder = { link = "FloatBorder" },
 				BlinkCmpDocSeparator = { link = "FloatBorder" },
 				BlinkCmpSignatureHelpBorder = { link = "FloatBorder" },
-				BlinkCmpSignatureHelpActiveParameter = { link = "BlinkCmpKindField" },
 				CmpDocumentationBorder = { link = "FloatBorder" },
 				BlinkCmpDocCursorLine = { link = "Visual" },
+				LspSignatureActiveParameter = { link = "BlinkCmpSignatureHelpActiveParameter" },
 
 				-- Special = { link = "@constant" },
 				-- Special = { link = "@function" },

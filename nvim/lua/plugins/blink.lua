@@ -5,6 +5,7 @@ return {
 			"rafamadriz/friendly-snippets",
 			"nvim-tree/nvim-web-devicons",
 			"micangl/cmp-vimtex",
+			{ "xzbdmw/colorful-menu.nvim" },
 		},
 		version = "*",
 		opts = {
@@ -13,8 +14,10 @@ return {
 				-- preset = "enter",
 				["<C-j>"] = { "select_next", "fallback" },
 				["<C-k>"] = { "select_prev", "fallback" },
+				["<C-h>"] = { "show_signature", "hide_signature", "fallback" },
 				["<down>"] = { "select_next", "fallback" },
 				["<up>"] = { "select_prev", "fallback" },
+				-- ["<tab>"] = { "accept", "snippet_forward", "fallback" },
 				-- ["<esc>"] = { "cancel", "fallback" },
 			},
 			term = { enabled = true },
@@ -37,14 +40,28 @@ return {
 			-- ghost_text = { enabled = true },
 			signature = {
 				enabled = true,
-				window = { border = "rounded" },
+				window = { border = "rounded", show_documentation = true },
 			},
 			completion = {
+				accept = { auto_brackets = { enabled = false } },
 				menu = {
 					scrollbar = false,
 					border = "rounded",
 					-- winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 					winhighlight = "Normal:NormalFloat",
+					draw = {
+						columns = { { "kind_icon" }, { "label", gap = 1 } },
+						components = {
+							label = {
+								text = function(ctx)
+									return require("colorful-menu").blink_components_text(ctx)
+								end,
+								highlight = function(ctx)
+									return require("colorful-menu").blink_components_highlight(ctx)
+								end,
+							},
+						},
+					},
 				},
 				documentation = {
 					window = { border = "rounded" },
@@ -52,9 +69,14 @@ return {
 				},
 				list = {
 					selection = {
-						-- preselect = false,
+						preselect = function()
+							return not require("blink.cmp").snippet_active()
+						end,
 						auto_insert = false,
 					},
+				},
+				trigger = {
+					-- show_in_snippet = false
 				},
 			},
 			sources = {

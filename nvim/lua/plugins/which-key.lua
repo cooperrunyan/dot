@@ -1,9 +1,7 @@
--- vim.api.nvim_create_autocmd({ "FileType" }, {
--- 	pattern = "help,qf,netrw",
--- 	callback = function()
--- 		vim.keymap.set("n", "q", "<C-w>c", { silent = true, buffer = true })
--- 	end,
--- })
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "gri")
+vim.keymap.del("n", "grn")
 
 return {
 	"folke/which-key.nvim",
@@ -31,6 +29,7 @@ return {
 			{ "x", '"_x', mode = "nx", silent = true, desc = "Delete under cursor" },
 
 			{ "ge", "G", mode = "nxo", silent = true, desc = "End of file" },
+			{ "gb", "<C-o>", mode = "n", silent = true, remap = false, desc = "Go back" },
 			{ "L", "g$", mode = "ox", silent = true, desc = "End of line" },
 			{ "H", "g^", mode = "ox", silent = true, desc = "Start of line" },
 			{ "k", "gk", mode = "nx", silent = true, remap = false },
@@ -54,11 +53,25 @@ return {
 			{ "<leader>a", vim.lsp.buf.code_action, mode = "nx", silent = true, desc = "Code action" },
 			-- { "gr", vim.lsp.buf.references, silent = true, desc = "Go to references" },
 			{ "gD", vim.lsp.buf.declaration, silent = true, desc = "Go to declaration" },
-			-- { "gd", vim.lsp.buf.definition, silent = true, desc = "Go to definition" },
-			-- { "gt", vim.lsp.buf.type_definition, silent = true, desc = "Go to type definition" },
+			{ "gd", vim.lsp.buf.definition, silent = true, desc = "Go to definition" },
+			{ "gt", vim.lsp.buf.type_definition, silent = true, desc = "Go to type definition" },
 			-- { "gi", vim.lsp.buf.implementation, silent = true, desc = "Go to implementation" },
-			{ "K", vim.lsp.buf.hover, silent = true, desc = "Hover" },
-			{ "H", vim.lsp.buf.signature_help, silent = true, desc = "Signature help" },
+			{
+				"K",
+				function()
+					vim.lsp.buf.hover({ border = "rounded" })
+				end,
+				silent = true,
+				desc = "Hover",
+			},
+			{
+				"H",
+				function()
+					vim.lsp.buf.signature_help({ border = "rounded" })
+				end,
+				silent = true,
+				desc = "Signature help",
+			},
 
 			{ "<leader>p", '"+p', mode = "nx", silent = true, desc = "Paste system clipboard" },
 			{ "<leader>y", '"+y', mode = "x", silent = true, desc = "Copy to system clipboard" },

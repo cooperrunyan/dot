@@ -169,9 +169,10 @@ return {
 				{},
 				vim.lsp.protocol.make_client_capabilities(),
 				has_cmp and cmp_nvim_lsp.default_capabilities() or {},
-				has_blink and blink.get_lsp_capabilities() or {},
+				-- has_blink and blink.get_lsp_capabilities() or {},
 				opts.capabilities or {}
 			)
+			capabilities = has_blink and blink.get_lsp_capabilities(capabilities) or capabilities
 
 			local function setup(server)
 				local server_opts = vim.tbl_deep_extend("force", {
