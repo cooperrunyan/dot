@@ -7,139 +7,145 @@ return {
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 		},
-		opts = {
-			ensure_installed = {
-				"lua_ls",
-				"taplo",
-				"yamlls",
-				"marksman",
-				"texlab",
-				"biome",
-				"clangd",
-				"cmake",
-				"cssls",
-				"denols",
-				"bashls",
-				"vtsls",
-				"glsl_analyzer",
-				"efm",
-				"html",
-				"jsonls",
-				"pyright",
-				"diagnosticls",
-				"dprint",
-				"ruff",
-				"rust_analyzer",
-				"ts_ls",
-			},
-			diagnostics = {
-				icons = {
-					[vim.diagnostic.severity.ERROR] = " ",
-					[vim.diagnostic.severity.WARN] = " ",
-					[vim.diagnostic.severity.HINT] = " ",
-					[vim.diagnostic.severity.INFO] = " ",
+		opts = function()
+			local util = require("lspconfig.util")
+
+			return {
+				ensure_installed = {
+					"lua_ls",
+					"taplo",
+					"yamlls",
+					"marksman",
+					"texlab",
+					"clangd",
+					"cmake",
+					"cssls",
+					"denols",
+					"bashls",
+					"glsl_analyzer",
+					"efm",
+					"html",
+					"jsonls",
+					"pyright",
+					"diagnosticls",
+					"dprint",
+					"ruff",
+					"rust_analyzer",
+					"biome",
+					-- "vtsls",
+					"ts_ls",
 				},
-				underline = true,
-				update_in_insert = true,
-				virtual_lines = true,
-				virtual_text = {
-					-- virt_text_pos = "right_align",
-					prefix = "",
-					-- source = "if_many"
-					-- prefix = function(d, i, tot)
-					-- 	if tot > 1 then
-					-- 		return "󰝤"
-					-- 	end
-					-- 	return vim.g.diagnostic_icons[d.severity]
-					-- end,
-				},
-				severity_sort = true,
-				signs = {
-					text = {
-						-- [vim.diagnostic.severity.ERROR] = " ",
-						-- [vim.diagnostic.severity.WARN] = " ",
-						-- [vim.diagnostic.severity.HINT] = " ",
-						-- [vim.diagnostic.severity.INFO] = " ",
-						[vim.diagnostic.severity.ERROR] = "",
-						[vim.diagnostic.severity.WARN] = "",
-						[vim.diagnostic.severity.HINT] = "",
-						[vim.diagnostic.severity.INFO] = "",
+				diagnostics = {
+					icons = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.HINT] = " ",
+						[vim.diagnostic.severity.INFO] = " ",
 					},
-					linehl = {
-						[vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
-						[vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
-						[vim.diagnostic.severity.HINT] = "DiagnosticHintLine",
-						[vim.diagnostic.severity.INFO] = "DiagnosticInfoLine",
+					underline = true,
+					update_in_insert = true,
+					-- virtual_lines = true,
+					virtual_text = {
+						prefix = "",
+						source = "if_many",
 					},
-					numhl = {
-						[vim.diagnostic.severity.ERROR] = "DiagnosticErrorNumLine",
-						[vim.diagnostic.severity.WARN] = "DiagnosticWarnNumLine",
-						[vim.diagnostic.severity.HINT] = "DiagnosticHintNumLine",
-						[vim.diagnostic.severity.INFO] = "DiagnosticInfoNumLine",
-					},
-				},
-			},
-			inlay_hints = { enabled = false },
-			codelens = { enabled = false },
-			capabilities = {
-				workspace = {
-					fileOperations = {
-						didRename = true,
-						willRename = true,
-					},
-				},
-			},
-			format = {
-				formatting_options = nil,
-				timeout_ms = nil,
-			},
-			servers = {
-				lua_ls = {
-					-- keys = {},
-					settings = {
-						Lua = {
-							workspace = { checkThirdParty = false },
-							codeLens = { enable = false },
-							completion = { callSnippet = "Replace" },
-							doc = { privateName = { "^_" } },
-							hint = {
-								enable = true,
-								setType = false,
-								paramType = true,
-								paramName = "Disable",
-								semicolon = "Disable",
-								arrayIndex = "Disable",
-							},
+					severity_sort = true,
+					signs = {
+						text = {
+							-- [vim.diagnostic.severity.ERROR] = " ",
+							-- [vim.diagnostic.severity.WARN] = " ",
+							-- [vim.diagnostic.severity.HINT] = " ",
+							-- [vim.diagnostic.severity.INFO] = " ",
+							[vim.diagnostic.severity.ERROR] = "",
+							[vim.diagnostic.severity.WARN] = "",
+							[vim.diagnostic.severity.HINT] = "",
+							[vim.diagnostic.severity.INFO] = "",
+						},
+						linehl = {
+							[vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
+							[vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
+							[vim.diagnostic.severity.HINT] = "DiagnosticHintLine",
+							[vim.diagnostic.severity.INFO] = "DiagnosticInfoLine",
+						},
+						numhl = {
+							[vim.diagnostic.severity.ERROR] = "DiagnosticErrorNumLine",
+							[vim.diagnostic.severity.WARN] = "DiagnosticWarnNumLine",
+							[vim.diagnostic.severity.HINT] = "DiagnosticHintNumLine",
+							[vim.diagnostic.severity.INFO] = "DiagnosticInfoNumLine",
 						},
 					},
 				},
-
-				taplo = {
-					config_file = {
-						enabled = true,
-						path = (os.getenv("XDG_CONFIG_HOME") or "~/.config") .. "/taplo.toml",
+				inlay_hints = { enabled = false },
+				codelens = { enabled = false },
+				capabilities = {
+					workspace = {
+						fileOperations = {
+							didRename = true,
+							willRename = true,
+						},
 					},
 				},
-				yamlls = {},
-				marksman = {},
-				biome = {},
-				cssls = {},
-				denols = {},
-				bashls = {},
-				vtsls = {},
+				format = {
+					formatting_options = nil,
+					timeout_ms = nil,
+				},
+				servers = {
+					lua_ls = {
+						-- keys = {},
+						settings = {
+							Lua = {
+								workspace = { checkThirdParty = false },
+								codeLens = { enable = false },
+								completion = { callSnippet = "Replace" },
+								doc = { privateName = { "^_" } },
+								hint = {
+									enable = true,
+									setType = false,
+									paramType = true,
+									paramName = "Disable",
+									semicolon = "Disable",
+									arrayIndex = "Disable",
+								},
+							},
+						},
+					},
 
-				efm = { enabled = false },
-			},
-			setup = {
-				-- example to setup with typescript.nvim
-				-- tsserver = function(_, opts)
-				--   require("typescript").setup({ server = opts })
-				--   return true
-				-- end,
-				-- Specify * to use this function as a fallback for any server
-				-- ["*"] = function(server, opts) end,
-			},
-		},
+					taplo = {
+						config_file = {
+							enabled = true,
+							path = (os.getenv("XDG_CONFIG_HOME") or "~/.config") .. "/taplo.toml",
+						},
+					},
+					yamlls = {},
+					marksman = {},
+					cssls = {},
+					biome = {
+						enabled = false,
+						root_dir = util.root_pattern({ "biome.json", "biome.jsonc", "package.json" }),
+					},
+					denols = {
+						root_dir = util.root_pattern({ "deno.json", "deno.jsonc" }),
+					},
+					bashls = {},
+					ts_ls = {},
+					dprint = {
+						filetypes = { "python" },
+					},
+					-- vtsls = {},
+
+					efm = { enabled = false },
+				},
+				setup = {
+					-- example to setup with typescript.nvim
+					-- tsserver = function(_, opts)
+					--   require("typescript").setup({ server = opts })
+					--   return true
+					-- end,
+					-- Specify * to use this function as a fallback for any server
+					-- ["*"] = function(server, opts) end,
+				},
+			}
+		end,
 		config = function(_, opts)
 			-- diagnostics signs
 			-- if vim.fn.has("nvim-0.10.0") == 0 then

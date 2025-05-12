@@ -35,19 +35,35 @@ return {
 		},
 		opts = function()
 			local actions = require("telescope.actions")
+			local themes = require("telescope.themes")
+			local utils = require("telescope.utils")
+			local entry_display = require("telescope.pickers.entry_display")
 
 			local layout_strategies = require("telescope.pickers.layout_strategies")
 			layout_strategies.horizontal_fused = function(picker, max_columns, max_lines, layout_config)
 				local layout = layout_strategies.horizontal(picker, max_columns, max_lines, layout_config)
 				layout.prompt.title = ""
 				layout.results.title = ""
+				layout.preview.title = ""
 				layout.results.height = layout.results.height + 1
-				layout.results.borderchars = { "─", "│", "─", "│", "╭", "┬", "┤", "├" }
-				layout.prompt.borderchars = { "─", "│", "─", "│", "╭", "╮", "┴", "╰" }
+				layout.results.borderchars = { "─", "│", "─", "│", "╭", "╮", "┤", "├" }
+				layout.prompt.borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
+				layout.preview.borderchars = { "─", "│", "─", " ", "─", "╮", "╯", "─" }
 				if layout.preview then
-					layout.preview.title = ""
-					layout.preview.borderchars = { "─", "│", "─", " ", "─", "╮", "╯", "─" }
+					layout.results.borderchars[6] = "┬"
+					layout.prompt.borderchars[7] = "┴"
 				end
+				return layout
+			end
+
+			layout_strategies.center_fused = function(picker, max_columns, max_lines, layout_config)
+				local layout = layout_strategies.center(picker, max_columns, max_lines, layout_config)
+				layout.prompt.title = ""
+				layout.results.title = ""
+				layout.preview.title = ""
+				layout.results.borderchars = { "─", "│", "─", "│", "├", "┤", "╯", "╰" }
+				layout.prompt.borderchars = { "─", "│", "─", "│", "╭", "╮", "│", "│" }
+				layout.preview.borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
 				return layout
 			end
 
@@ -56,18 +72,23 @@ return {
 					colorscheme = {
 						enable_preview = true,
 					},
+					diagnostics = themes.get_dropdown({
+						layout_strategy = "center_fused",
+						wrap_results = true,
+					}),
 				},
 				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown({}),
-					},
+					["ui-select"] = { themes.get_dropdown({ layout_strategy = "center_fused" }) },
 				},
 				defaults = {
 					prompt_prefix = " ",
 					layout_strategy = "horizontal_fused",
 					layout_config = {
 						horizontal = {
-							prompt_position = "bottom",
+							width = 0.9,
+						},
+						center = {
+							width = 0.6,
 						},
 					},
 					mappings = {

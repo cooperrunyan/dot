@@ -8,6 +8,21 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "F3 for PiP in Safari",
+                        "manipulators": [
+                            {
+                                "from": { "key_code": "f3" },
+                                "to": [
+                                    {
+                                        "key_code": "p",
+                                        "modifiers": ["left_gui", "left_control", "left_shift"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "fn jkl;",
                         "manipulators": [
                             {
@@ -198,10 +213,6 @@
                 {
                     "from": { "key_code": "right_option" },
                     "to": [{ "key_code": "right_command" }]
-                },
-                {
-                    "from": { "key_code": "left_control" },
-                    "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
                 }
             ],
             "virtual_hid_keyboard": {

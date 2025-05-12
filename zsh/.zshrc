@@ -4,13 +4,11 @@ if [[ -n "$ZSH_PROF_DEBUG" ]]; then
   zmodload zsh/zprof
 fi
 
-source "$ZDOTDIR/.zshenv"
-
-if [[ $(uname) == "Darwin" ]]; then
-    export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/Library/Caches"}
-else
-    export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
-fi
+# if [[ $(uname) == "Darwin" ]]; then
+#     export XDG_CACHE_HOME="$HOME/Library/Caches"
+# else
+#     export XDG_CACHE_HOME=${XDG_CACHE_HOME:-"$HOME/.cache"}
+# fi
 
 [[ -s "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME}/p10k-instant-prompt-${(%):-%n}.zsh"
 # [[ -s "${XDG_CACHE_HOME}/p10k-dump-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME}/p10k-dump-${(%):-%n}.zsh"
@@ -41,46 +39,6 @@ delregion() {
 }
 zle -N delregion
 bindkey '^?' delregion
-
-export LANG="en_US.UTF-8"
-# export TERMINFO="$XDG_DATA_HOME/terminfo"
-
-export CURL_HOME="$XDG_CONFIG_HOME/curl"
-export LESSHISTFILE="$XDG_CACHE_HOME/.lesshst"
-
-export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-
-export GOPATH="$XDG_DATA_HOME/go"
-export GOMODCACHE="$XDG_CACHE_HOME/go-mod"
-export GOCACHE="$XDG_CACHE_HOME/go"
-
-export DENO_INSTALL="$XDG_DATA_HOME/deno"
-export DENO_INSTALL_ROOT="$XDG_DATA_HOME/deno"
-export PATH="$PATH:$DENO_INSTALL_ROOT/bin"
-
-export TAPLO_CONFIG="$XDG_CONFIG_HOME/taplo.toml"
-
-export NVM_DIR="$XDG_DATA_HOME/nvm"
-export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/.npmrc"
-export NPM_CONFIG_CACHE="$XDG_CACHE_HOME/npm"
-export NODE_REPL_HISTORY="$XDG_CACHE_HOME/node/repl_history"
-export YARN_GLOBAL_FOLDER="$XDG_DATA_HOME/yarn"
-export YARN_CACHE_FOLDER="$XDG_CACHE_HOME/yarn"
-export YARN_ENABLE_GLOBAL_CACHE=true
-
-export BUN_INSTALL="$XDG_DATA_HOME/bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
-export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-export PATH="$CARGO_HOME/bin:$PATH"
-
-export QMK_HOME="$XDG_DATA_HOME/qmk_firmware"
-
-export HOMEBREW_BUNDLE_FILE_GLOBAL="$XDG_CONFIG_HOME/Brewfile"
-export HOMEBREW_NO_ENV_HINTS=1
-
-export BAT_CONFIG_PATH="$XDG_CONFIG_HOME/bat.conf"
 
 HISTSIZE=100000
 HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
@@ -211,7 +169,6 @@ fi
 #   export EDITOR="code --wait -n"
 #   alias edit="$EDITOR"
 # fi
-export EDITOR="nvim"
 
 if [ -e "/Applications/1Password.app" ]; then
   export SSH_AUTH_SOCK="$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
@@ -254,7 +211,7 @@ zshrc_prof() {
   ZSH_PROF_DEBUG=1 zsh -i -c exit
 }
 
- [[ -s "$ZDOTDIR/.p10k.zsh" ]] && source "$ZDOTDIR/.p10k.zsh";
+[[ -s "$ZDOTDIR/.p10k.zsh" ]] && source "$ZDOTDIR/.p10k.zsh";
 
 if [[ -n "$ZSH_PROF_DEBUG" ]]; then
   zprof
@@ -263,3 +220,6 @@ fi
 colortest() {
   for i in {0..15}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
 }
+
+# bun completions
+[ -s "/Users/cooperrunyan/.local/share/bun/_bun" ] && source "/Users/cooperrunyan/.local/share/bun/_bun"

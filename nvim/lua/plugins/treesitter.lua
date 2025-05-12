@@ -41,6 +41,7 @@ return {
 				"xml",
 				"yaml",
 				"latex",
+				"devicetree",
 			},
 			incremental_selection = {
 				enable = true,

@@ -30,7 +30,7 @@ vim.opt.autowrite = true
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 -- vim.opt.wrap = true
-vim.opt.mousescroll = "ver:3,hor:0"
+-- vim.opt.mousescroll = "ver:3,hor:0"
 vim.opt.fillchars = "eob: "
 vim.opt.expandtab = true
 vim.opt.signcolumn = "yes:1"
@@ -47,9 +47,4 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = "rounded",
-})
-
-vim.diagnostic.config({
-	update_in_insert = true,
-	float = { border = "rounded" },
 })

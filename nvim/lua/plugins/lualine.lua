@@ -48,6 +48,7 @@ return {
 			options = {
 				disabled_filetypes = {
 					ToggleTerm = {},
+					trouble = {},
 				},
 				theme = "github_dark_default",
 				section_separators = { left = "", right = "" },

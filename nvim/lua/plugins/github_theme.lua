@@ -36,7 +36,7 @@ return {
 			},
 			hide_end_of_buffer = true,
 			inverse = {
-				match_paren = true,
+				-- match_paren = true,
 			},
 		},
 		groups = {
@@ -60,6 +60,8 @@ return {
 				CmpDocumentationBorder = { link = "FloatBorder" },
 				BlinkCmpDocCursorLine = { link = "Visual" },
 				LspSignatureActiveParameter = { link = "BlinkCmpSignatureHelpActiveParameter" },
+
+				-- MatchParen = { link = "Visual" },
 
 				-- Special = { link = "@constant" },
 				-- Special = { link = "@function" },

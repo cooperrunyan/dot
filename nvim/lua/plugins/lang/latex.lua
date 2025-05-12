@@ -61,9 +61,9 @@ return {
 					"\\begin",
 					fmta(
 						[[
-              \\begin{<>}
+              \begin{<>}
                   <>
-              \\end{<>}
+              \end{<>}
             ]],
 						{ i(1), i(2), rep(1) }
 					)

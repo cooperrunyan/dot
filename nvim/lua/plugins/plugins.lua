@@ -67,6 +67,11 @@ return {
 			modes = {
 				lsp = {
 					win = { position = "right" },
+					preview = {
+						type = "split",
+						position = "right",
+						size = 0.3,
+					},
 				},
 			},
 		}, -- for default options, refer to the configuration section for custom setup.
@@ -95,14 +100,14 @@ return {
 		},
 	},
 	{
-		"echasnovski/mini.pairs",
-		event = "VeryLazy",
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
 		opts = {
-			modes = { insert = true, command = true, terminal = false },
-			-- skip_next = [=[[%w%%%'%[%"%.%`%$]]=],
-			skip_ts = { "string" },
-			skip_unbalanced = true,
-			markdown = true,
+			disable_in_macro = true,
+			ignored_next_char = [=[[%w%%%'%[%"%.%`%$]]=],
+			-- check_ts = true,
+			break_undo = true,
+			enable_check_bracket_line = true,
 		},
 	},
 	{
