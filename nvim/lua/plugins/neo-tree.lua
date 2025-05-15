@@ -53,10 +53,18 @@ return {
 			follow_current_file = { enabled = true },
 			use_libuv_file_watcher = true,
 			filtered_items = {
-				visible = true,
+				visible = false,
+				hide_dotfiles = false,
+				hide_gitignored = true,
 				never_show = {
 					".DS_Store",
 					".git",
+					"yarn.lock",
+					"bun.lockb",
+					"package-lock.json",
+					".mypy_cache",
+					".pytest_cache",
+					"__pycache__",
 				},
 			},
 		},
@@ -65,6 +73,7 @@ return {
 			mappings = {
 				["l"] = "open",
 				["h"] = "close_node",
+				["<leader>h"] = "toggle_hidden",
 				["<space>"] = "none",
 				["Y"] = {
 					function(state)
