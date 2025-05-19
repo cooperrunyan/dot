@@ -1,7 +1,7 @@
-vim.keymap.del("n", "grr")
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "gri")
-vim.keymap.del("n", "grn")
+-- vim.keymap.del("n", "grr")
+-- vim.keymap.del("n", "gra")
+-- vim.keymap.del("n", "gri")
+-- vim.keymap.del("n", "grn")
 
 return {
 	"folke/which-key.nvim",
@@ -24,6 +24,10 @@ return {
 			{ "<leader>f", group = "Picker" },
 			{ "<leader>x", group = "Diagnostic" },
 			{ "<leader>T", group = "Toggle" },
+
+			{ "<leader>c", "gcc", mode = "n", silent = true, remap = true, desc = "Comment line" },
+			{ "<leader>c", "gc", mode = "x", silent = true, remap = true, desc = "Comment" },
+			{ "<leader>C", "gc", mode = "n", silent = true, remap = true, desc = "Comment" },
 
 			{ "U", ":redo<CR>", mode = "nx", silent = true, desc = "Redo" },
 			{ "x", '"_x', mode = "nx", silent = true, desc = "Delete under cursor" },
@@ -94,6 +98,7 @@ return {
 			{ "<leader>tp", ":tabp<CR>", silent = true, desc = "Previous tab" },
 
 			{ "<ESC>", "<C-\\><C-n><C-w><C-p>", mode = "t", silent = true },
+			{ "<ESC>", ":nohl<cr>", mode = "n", silent = true, remap = false },
 
 			{ ">", ">>", mode = "n", silent = true, remap = false, desc = "Indent" },
 			{ "<", "<<", mode = "n", silent = true, remap = false, desc = "Unindent" },

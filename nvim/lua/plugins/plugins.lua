@@ -21,23 +21,23 @@ return {
 			},
 		},
 	},
-	{
-		"echasnovski/mini.comment",
-		event = "BufRead",
-		keys = {
-			{ "<leader>C" },
-			{ "<leader>c" },
-			{ "<leader>c", mode = "v" },
-		},
-		opts = {
-			options = {},
-			mappings = {
-				comment = "<leader>C",
-				comment_line = "<leader>c",
-				comment_visual = "<leader>c",
-			},
-		},
-	},
+	-- {
+	-- 	"echasnovski/mini.comment",
+	-- 	event = "BufRead",
+	-- 	keys = {
+	-- 		{ "<leader>C" },
+	-- 		{ "<leader>c" },
+	-- 		{ "<leader>c", mode = "v" },
+	-- 	},
+	-- 	opts = {
+	-- 		options = {},
+	-- 		mappings = {
+	-- 			comment = "<leader>C",
+	-- 			comment_line = "<leader>c",
+	-- 			comment_visual = "<leader>c",
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"folke/flash.nvim",
 		event = "VeryLazy",

@@ -17,7 +17,6 @@ return {
 			DiagnosticInfoLine = { bg = palette.accent.subtle },
 			DiagnosticInfoNumLine = { bg = palette.accent.subtle, fg = palette.accent.fg },
 			FloatBorder = { fg = palette.border.subtle },
-			-- Yanked = { bg = palette.success.muted },
 			Yanked = { bg = palette.scale.gray[7] },
 			Search = { bg = palette.scale.gray[8] },
 			Visual = { bg = palette.scale.gray[8] },

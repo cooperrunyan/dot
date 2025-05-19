@@ -32,7 +32,6 @@ vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 -- vim.opt.wrap = true
 -- vim.opt.mousescroll = "ver:3,hor:0"
 vim.opt.fillchars = "eob: "
-vim.opt.expandtab = true
 vim.opt.signcolumn = "yes:1"
 vim.opt.showmatch = true
 
