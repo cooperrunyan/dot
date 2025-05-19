@@ -14,6 +14,29 @@ return {
 			},
 		},
 	},
+	{
+		"akinsho/toggleterm.nvim",
+		keys = {
+			{ "<c-t>", desc = "Open terminal" },
+			{ "<leader>gt", desc = "Open Lazygit" },
+		},
+		opts = {
+			open_mapping = "<c-t>",
+			direction = "horizontal",
+			hide_numbers = true,
+		},
+	},
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+			"nvim-telescope/telescope.nvim", -- optional
+		},
+		keys = {
+			{ "G", ":Neogit<cr>", mode = "n", remap = false, silent = true, desc = "Git" },
+		},
+	},
 	-- {
 	-- 	"echasnovski/mini.comment",
 	-- 	event = "BufRead",
