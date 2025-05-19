@@ -48,6 +48,8 @@ return {
 		sources = { "filesystem", "buffers", "git_status" },
 		open_files_do_not_replace_types = { "terminal", "Trouble", "trouble", "qf", "Outline" },
 		close_if_last_window = true,
+		enable_cursor_hijack = true,
+		use_popups_for_input = false,
 		filesystem = {
 			bind_to_cwd = true,
 			follow_current_file = { enabled = true },
@@ -74,6 +76,12 @@ return {
 				["l"] = "open",
 				["h"] = "close_node",
 				["<leader>h"] = "toggle_hidden",
+				["<leader>l"] = {
+					function()
+						vim.cmd(":wincmd p<cr>")
+					end,
+					desc = "Return to previous window",
+				},
 				["<space>"] = "none",
 				["Y"] = {
 					function(state)
@@ -142,21 +150,21 @@ return {
 				},
 			},
 		},
-		event_handlers = {
-			{
-				event = "neo_tree_buffer_enter",
-				handler = function()
-					-- This effectively hides the cursor
-					vim.cmd("highlight! Cursor blend=100")
-				end,
-			},
-			{
-				event = "neo_tree_buffer_leave",
-				handler = function()
-					-- Make this whatever your current Cursor highlight group is.
-					vim.cmd("highlight! Cursor guifg=#0d1117 guibg=#e6edf3 blend=0")
-				end,
-			},
-		},
+		-- event_handlers = {
+		-- 	{
+		-- 		event = "neo_tree_buffer_enter",
+		-- 		handler = function()
+		-- 			-- This effectively hides the cursor
+		-- 			vim.cmd("highlight! Cursor blend=100")
+		-- 		end,
+		-- 	},
+		-- 	{
+		-- 		event = "neo_tree_buffer_leave",
+		-- 		handler = function()
+		-- 			-- Make this whatever your current Cursor highlight group is.
+		-- 			vim.cmd("highlight! Cursor guifg=#0d1117 guibg=#e6edf3 blend=0")
+		-- 		end,
+		-- 	},
+		-- },
 	},
 }

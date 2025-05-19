@@ -4,14 +4,7 @@ return {
 		opts = {},
 	},
 	{ "j-hui/fidget.nvim", event = { "VeryLazy" } },
-	{
-		"akinsho/toggleterm.nvim",
-		keys = { "<c-t>", desc = "Open terminal" },
-		opts = {
-			open_mapping = "<c-t>",
-			direction = "horizontal",
-		},
-	},
+
 	{ "yorickpeterse/nvim-pqf", event = { "VeryLazy" } },
 	{
 		"echasnovski/mini.ai",
