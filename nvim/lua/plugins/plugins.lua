@@ -1,10 +1,14 @@
 return {
+	{ import = "plugins.themes" },
 	{
 		"andrewferrier/wrapping.nvim",
 		opts = {},
 	},
 	{ "j-hui/fidget.nvim", event = { "VeryLazy" } },
-
+	{
+		"f-person/auto-dark-mode.nvim",
+		opts = {},
+	},
 	{ "yorickpeterse/nvim-pqf", event = { "VeryLazy" } },
 	{
 		"echasnovski/mini.ai",
