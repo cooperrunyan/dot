@@ -3,6 +3,9 @@
   name = cooperrunyan
   signingkey = ~/.ssh/id_ed25519.pub
 
+[include]
+  path = custom.gitconfig
+
 [author]
   name = cooperrunyan
   email = c@cooperrunyan.com
