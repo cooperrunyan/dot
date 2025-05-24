@@ -2,6 +2,14 @@ return {
 	{ import = "plugins.themes" },
 	{
 		"andrewferrier/wrapping.nvim",
+		cmd = {
+			"HardWrapMode",
+			"SoftWrapMode",
+			"ToggleWrapMode",
+		},
+		keys = {
+			{ "<leader>Tw", ":ToggleWrapMode<cr>", mode = "n", desc = "Toggle wrap mode" },
+		},
 		opts = {},
 	},
 	{ "j-hui/fidget.nvim", event = { "VeryLazy" } },
@@ -22,7 +30,6 @@ return {
 		"akinsho/toggleterm.nvim",
 		keys = {
 			{ "<c-t>", desc = "Open terminal" },
-			{ "<leader>gt", desc = "Open Lazygit" },
 		},
 		opts = {
 			open_mapping = "<c-t>",
@@ -33,12 +40,24 @@ return {
 	{
 		"NeogitOrg/neogit",
 		dependencies = {
-			"nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim", -- optional - Diff integration
-			"nvim-telescope/telescope.nvim", -- optional
+			"nvim-lua/plenary.nvim",
+			"sindrets/diffview.nvim",
+			"nvim-telescope/telescope.nvim",
 		},
 		keys = {
-			{ "G", ":Neogit<cr>", mode = "n", remap = false, silent = true, desc = "Git" },
+			{ "<leader>gg", ":Neogit<cr>", mode = "n", remap = false, silent = true, desc = "Git" },
+		},
+		opts = {
+			mappings = {
+				commit_editor = {
+					["<cr>"] = "Submit",
+					["<esc>"] = "Abort",
+				},
+				status = {
+					["l"] = "Toggle",
+					["S"] = "StageAll",
+				},
+			},
 		},
 	},
 	-- {

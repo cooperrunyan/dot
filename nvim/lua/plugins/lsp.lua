@@ -3,6 +3,9 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufRead", "VeryLazy" },
+		keys = {
+			{ "<leader>gs", ":ClangdSwitchSourcehHeader<cr>", mode = "n", silent = true, ft = { "c", "cpp" } },
+		},
 		dependencies = {
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -116,7 +119,32 @@ return {
 							path = (os.getenv("XDG_CONFIG_HOME") or "~/.config") .. "/taplo.toml",
 						},
 					},
-					yamlls = {},
+					yamlls = {
+						capabilities = {
+							textDocument = {
+								foldingRange = {
+									dynamicRegistration = false,
+									lineFoldingOnly = true,
+								},
+							},
+						},
+						settings = {
+							redhat = { telemetry = { enabled = false } },
+							yaml = {
+								keyOrdering = false,
+								format = { enable = true },
+								validate = true,
+							},
+						},
+					},
+					jsonls = {
+						settings = {
+							json = {
+								format = { enable = true },
+								validate = { enable = true },
+							},
+						},
+					},
 					marksman = {},
 					cssls = {},
 					biome = {
