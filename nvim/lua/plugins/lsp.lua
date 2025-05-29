@@ -4,7 +4,7 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufRead", "VeryLazy" },
 		keys = {
-			{ "<leader>gs", ":ClangdSwitchSourcehHeader<cr>", mode = "n", silent = true, ft = { "c", "cpp" } },
+			{ "<leader>gs", ":ClangdSwitchSourceHeader<cr>", mode = "n", silent = true, ft = { "c", "cpp" } },
 		},
 		dependencies = {
 			"mason.nvim",

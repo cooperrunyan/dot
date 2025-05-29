@@ -13,7 +13,7 @@ return {
 		opts_extend = { "ensure_installed" },
 		opts = {
 			highlight = { enable = true },
-			indent = { enable = true },
+			indent = { enable = true, disable = { "cpp" } },
 			playground = { enable = true },
 			ensure_installed = {
 				"bash",
