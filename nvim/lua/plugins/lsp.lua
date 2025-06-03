@@ -1,6 +1,11 @@
 return {
 	{ import = "plugins.lang" },
 	{
+		"b0o/SchemaStore.nvim",
+		-- lazy = true,
+		version = false,
+	},
+	{
 		"neovim/nvim-lspconfig",
 		event = { "BufRead", "VeryLazy" },
 		keys = {
@@ -9,6 +14,7 @@ return {
 		dependencies = {
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"b0o/SchemaStore.nvim",
 		},
 		opts = function()
 			local util = require("lspconfig.util")
@@ -142,6 +148,7 @@ return {
 							json = {
 								format = { enable = true },
 								validate = { enable = true },
+								schemas = require("schemastore").json.schemas(),
 							},
 						},
 					},
