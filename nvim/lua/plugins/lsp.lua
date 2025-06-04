@@ -70,18 +70,18 @@ return {
 							[vim.diagnostic.severity.HINT] = "",
 							[vim.diagnostic.severity.INFO] = "",
 						},
-						linehl = {
-							[vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
-							[vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
-							[vim.diagnostic.severity.HINT] = "DiagnosticHintLine",
-							[vim.diagnostic.severity.INFO] = "DiagnosticInfoLine",
-						},
-						numhl = {
-							[vim.diagnostic.severity.ERROR] = "DiagnosticErrorNumLine",
-							[vim.diagnostic.severity.WARN] = "DiagnosticWarnNumLine",
-							[vim.diagnostic.severity.HINT] = "DiagnosticHintNumLine",
-							[vim.diagnostic.severity.INFO] = "DiagnosticInfoNumLine",
-						},
+						-- linehl = {
+						-- 	[vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
+						-- 	[vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
+						-- 	[vim.diagnostic.severity.HINT] = "DiagnosticHintLine",
+						-- 	[vim.diagnostic.severity.INFO] = "DiagnosticInfoLine",
+						-- },
+						-- numhl = {
+						-- 	[vim.diagnostic.severity.ERROR] = "DiagnosticErrorNumLine",
+						-- 	[vim.diagnostic.severity.WARN] = "DiagnosticWarnNumLine",
+						-- 	[vim.diagnostic.severity.HINT] = "DiagnosticHintNumLine",
+						-- 	[vim.diagnostic.severity.INFO] = "DiagnosticInfoNumLine",
+						-- },
 					},
 				},
 				inlay_hints = { enabled = false },
@@ -162,12 +162,11 @@ return {
 						root_dir = util.root_pattern({ "deno.json", "deno.jsonc" }),
 					},
 					bashls = {},
-					ts_ls = {},
 					dprint = {
 						filetypes = { "python" },
 					},
-					-- vtsls = {},
-
+					ts_ls = { enabled = true },
+					vtsls = { enabled = false },
 					efm = { enabled = false },
 				},
 				setup = {

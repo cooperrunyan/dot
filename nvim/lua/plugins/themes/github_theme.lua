@@ -59,6 +59,7 @@ return {
 				BlinkCmpSignatureHelpBorder = { link = "FloatBorder" },
 				CmpDocumentationBorder = { link = "FloatBorder" },
 				BlinkCmpDocCursorLine = { link = "Visual" },
+				BlinkCmpGhostText = { link = "Comment" },
 				LspSignatureActiveParameter = { link = "BlinkCmpSignatureHelpActiveParameter" },
 
 				-- MatchParen = { link = "Visual" },

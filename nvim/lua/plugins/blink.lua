@@ -24,10 +24,17 @@ return {
 			cmdline = {
 				enabled = true,
 				keymap = {
-					preset = "default",
+					preset = "cmdline",
 					["<C-j>"] = { "select_next" },
 					["<C-k>"] = { "select_prev" },
-					["<tab>"] = { "accept", "fallback" },
+					["<C-space>"] = { "show", "cancel" },
+					["<down>"] = { "select_next", "fallback" },
+					["<up>"] = { "select_prev", "fallback" },
+					-- ["<tab>"] = { "accept", "fallback" },
+					["<tab>"] = { "show", "select_and_accept" },
+				},
+				completion = {
+					-- menu = { auto_show = true },
 				},
 			},
 			appearance = {
@@ -35,13 +42,16 @@ return {
 				-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				nerd_font_variant = "normal",
 			},
-			snippets = {
-				preset = "luasnip",
-			},
-			-- ghost_text = { enabled = true },
+			-- snippets = {
+			-- 	preset = "luasnip",
+			-- },
 			signature = {
 				enabled = true,
 				window = { border = "rounded", show_documentation = true },
+				trigger = {
+					enabled = true,
+					show_on_insert = true,
+				},
 			},
 			completion = {
 				accept = { auto_brackets = { enabled = false } },
@@ -51,7 +61,8 @@ return {
 					-- winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
 					winhighlight = "Normal:NormalFloat",
 					draw = {
-						columns = { { "kind_icon" }, { "label", gap = 1 } },
+						columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
+
 						components = {
 							label = {
 								text = function(ctx)
@@ -64,6 +75,7 @@ return {
 						},
 					},
 				},
+				ghost_text = { enabled = true },
 				documentation = {
 					window = { border = "rounded" },
 					auto_show = true,
@@ -81,7 +93,15 @@ return {
 				},
 			},
 			sources = {
-				default = { "lsp", "path", "snippets", "vimtex", "buffer" },
+				default = {
+					"lsp",
+					-- "cmdline",
+					"omni",
+					"vimtex",
+					"buffer",
+					"path",
+					"snippets",
+				},
 				providers = {
 					vimtex = {
 						name = "vimtex",
