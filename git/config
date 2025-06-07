@@ -17,8 +17,9 @@
   defaultBranch = main
 
 [core]
-  editor = code --wait
+  ; editor = code --wait
   filemode = false
+  pager = "less"
 
 [pull]
   rebase = true

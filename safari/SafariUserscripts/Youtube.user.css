@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name        Youtube
 @description This is your new file, start writing code
-@match       https://*.youtube.com/*
+@match       https://*.youtube.com/$
 ==/UserStyle== */
 
 #guide #items .ytd-guide-section-renderer:has([title="Shorts"]),
@@ -45,11 +45,10 @@ ytd-watch-next-secondary-results-renderer yt-related-chip-cloud-renderer,
 [aria-label="Create"],
 li:has(a[href="#ps"]):not(:first-of-type),
 li:has(> .sbfl_a),
-ytd-merch-shelf-renderer
-{
-    display: none !important;
+ytd-merch-shelf-renderer {
+  display: none !important;
 }
 
 #background.ytd-masthead {
-    height: 56px !important;
+  height: 56px !important;
 }

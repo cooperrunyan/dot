@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 export EDITOR="nvim"
+export LESS="FR"
 
 if [[ $(uname) == "Darwin" ]]; then
     export XDG_CACHE_HOME="$HOME/Library/Caches"
