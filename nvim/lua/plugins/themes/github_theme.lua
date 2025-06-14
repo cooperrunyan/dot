@@ -22,6 +22,7 @@ return {
 			Search = { bg = palette.scale.gray[8] },
 			Visual = { bg = palette.scale.gray[8] },
 			BlinkCmpSignatureHelpActiveParameter = { bg = palette.scale.gray[9] },
+			MatchParen = { bg = palette.scale.gray[9] },
 		})
 
 		require("github-theme").setup(opts)

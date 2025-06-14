@@ -8,7 +8,7 @@ return {
 			"ToggleWrapMode",
 		},
 		keys = {
-			{ "<leader>Tw", ":ToggleWrapMode<cr>", mode = "n", desc = "Toggle wrap mode" },
+			{ "<leader>tw", ":ToggleWrapMode<cr>", mode = "n", desc = "Toggle wrap mode" },
 		},
 		opts = {},
 	},
@@ -161,6 +161,7 @@ return {
 			},
 		},
 		opts = {
+			attach_to_untracked = true,
 			current_line_blame_opts = {
 				virt_text_pos = "right_align",
 				delay = 0,

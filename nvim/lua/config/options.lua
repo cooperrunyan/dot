@@ -37,13 +37,71 @@ vim.opt.showmatch = true
 
 vim.g.vimtex_syntax_enabled = 0
 
+vim.filetype.add({
+  pattern = {
+    ["*.urdf"] = "xml",
+    ["*.xacro"] = "xml",
+  },
+})
+
+vim.diagnostic.config({
+  icons = {
+    [vim.diagnostic.severity.ERROR] = " ",
+    [vim.diagnostic.severity.WARN] = " ",
+    [vim.diagnostic.severity.HINT] = " ",
+    [vim.diagnostic.severity.INFO] = " ",
+  },
+  underline = true,
+  update_in_insert = true,
+  virtual_lines = {
+    current_line = false,
+    format = function(diagnostic)
+      if diagnostic.source == "rustc" then
+        return nil
+      end
+      return diagnostic.message
+    end,
+  },
+  virtual_text = {
+    current_line = false,
+    prefix = "",
+    format = function(diagnostic)
+      if diagnostic.source ~= "rustc" then
+        return nil
+      end
+      return diagnostic.message
+    end,
+  },
+  severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "",
+      [vim.diagnostic.severity.WARN] = "",
+      [vim.diagnostic.severity.HINT] = "",
+      [vim.diagnostic.severity.INFO] = "",
+    },
+    linehl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
+      -- [vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
+      -- [vim.diagnostic.severity.HINT] = "DiagnosticHintLine",
+      -- [vim.diagnostic.severity.INFO] = "DiagnosticInfoLine",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticErrorNumLine",
+      [vim.diagnostic.severity.WARN] = "DiagnosticWarnNumLine",
+      [vim.diagnostic.severity.HINT] = "DiagnosticHintNumLine",
+      [vim.diagnostic.severity.INFO] = "DiagnosticInfoNumLine",
+    },
+  },
+})
+
 -- vim.opt.iskeyword:append("-")
 -- vim.opt.shortmess:append({ I = true })
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-	border = "rounded",
-})
-
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-	border = "rounded",
-})
+-- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+-- 	border = "rounded",
+-- })
+--
+-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+-- 	border = "rounded",
+-- })
