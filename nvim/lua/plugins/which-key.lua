@@ -104,6 +104,15 @@ return {
       { "<", "<<", mode = "n", silent = true, remap = false, desc = "Unindent" },
       { ">", ">gv", mode = "x", silent = true, remap = false, desc = "Indent" },
       { "<", "<gv", mode = "x", silent = true, remap = false, desc = "Unindent" },
+
+      {
+        "<leader>gs",
+        ":ClangdSwitchSourceHeader<cr>",
+        mode = "n",
+        silent = true,
+        remap = false,
+        desc = "Goto header/source",
+      },
     },
   },
   keys = {
