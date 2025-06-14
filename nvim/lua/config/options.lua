@@ -53,24 +53,24 @@ vim.diagnostic.config({
   },
   underline = true,
   update_in_insert = true,
-  virtual_lines = {
-    current_line = false,
-    format = function(diagnostic)
-      if diagnostic.source == "rustc" then
-        return nil
-      end
-      return diagnostic.message
-    end,
-  },
+  -- virtual_lines = {
+  --   current_line = false,
+  --   format = function(diagnostic)
+  --     if diagnostic.source == "rustc" then
+  --       return nil
+  --     end
+  --     return diagnostic.message
+  --   end,
+  -- },
   virtual_text = {
     current_line = false,
     prefix = "",
-    format = function(diagnostic)
-      if diagnostic.source ~= "rustc" then
-        return nil
-      end
-      return diagnostic.message
-    end,
+    -- format = function(diagnostic)
+    --   if diagnostic.source ~= "rustc" then
+    --     return nil
+    --   end
+    --   return diagnostic.message
+    -- end,
   },
   severity_sort = true,
   signs = {
