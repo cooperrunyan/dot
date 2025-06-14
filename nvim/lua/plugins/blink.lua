@@ -2,9 +2,9 @@ return {
   {
     "saghen/blink.cmp",
     dependencies = {
-      "rafamadriz/friendly-snippets",
+      -- "rafamadriz/friendly-snippets",
       "nvim-tree/nvim-web-devicons",
-      "micangl/cmp-vimtex",
+      -- "micangl/cmp-vimtex",
       { "xzbdmw/colorful-menu.nvim" },
     },
     version = "*",
