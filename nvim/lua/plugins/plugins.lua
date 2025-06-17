@@ -32,11 +32,49 @@ return {
     keys = {
       { "<c-t>", desc = "Open terminal" },
     },
+    cmd = { "ColconBuild" },
     opts = {
       open_mapping = "<c-t>",
       direction = "horizontal",
       hide_numbers = true,
     },
+    config = function(_, opts)
+      require("toggleterm").setup(opts)
+
+      vim.api.nvim_create_user_command("ColconBuild", function(a)
+        local ok, toggleterm = pcall(require, "toggleterm.terminal")
+
+        if not ok then
+          return
+        end
+
+        local Terminal = toggleterm.Terminal
+
+        -- local packages = table.concat(args.args, " ")
+        local cmd = "source /opt/ros/jazzy/setup.sh && colcon build --symlink-install"
+        if a.args ~= "" then
+          cmd = cmd .. " --packages-select " .. a.args
+        end
+
+        local term = Terminal:new({
+          cmd = cmd,
+          direction = "float",
+          env = {
+            AMENT_PREFIX_PATH = "",
+            COLCON_PREFIX_PATH = "",
+            CMAKE_PREFIX_PATH = "",
+            GZ_VERSION = "harmonic",
+          },
+          on_open = function(term)
+            vim.keymap.set("n", "q", function()
+              term:shutdown()
+            end, { noremap = true, silent = true, buffer = term.bufnr })
+          end,
+        })
+
+        term:open()
+      end, { desc = "Run colcon build", nargs = "*" })
+    end,
   },
   {
     "NeogitOrg/neogit",
