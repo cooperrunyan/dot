@@ -28,8 +28,8 @@ return {
       },
       groups = {
         all = {
-          -- MatchParen = { link = "Visual" },
-          MatchParen = { bg = palette.scale.gray[9] },
+          MatchParen = { link = "Visual" },
+          -- MatchParen = { bg = palette.scale.gray[9] },
           -- Special = { link = "@constant" },
           -- Special = { link = "@function" },
 
@@ -59,9 +59,11 @@ return {
           DiagnosticInfoLine = { bg = palette.accent.subtle },
           DiagnosticInfoNumLine = { bg = palette.accent.subtle, fg = palette.accent.fg },
           FloatBorder = { fg = palette.border.subtle },
+          MsgSeparator = { link = "FloatBorder" },
           Yanked = { bg = palette.scale.gray[7] },
           Search = { bg = palette.scale.gray[8] },
           Visual = { bg = palette.scale.gray[8] },
+          IncSearch = { bg = palette.scale.blue[6], fg = "none" },
           BlinkCmpSignatureHelpActiveParameter = { bg = palette.scale.gray[9] },
           LspSignatureActiveParameter = { link = "BlinkCmpSignatureHelpActiveParameter" },
           BlinkCmpMenuBorder = { link = "FloatBorder" },

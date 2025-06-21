@@ -13,6 +13,7 @@ git/custom.gitconfig
 **/.zcompdump*
 
 **/zsh/local*.z*
+**/zsh/.zsh_sessions
 
 .config/nvim/queries
 .config/nvim/lazy-lock.json
