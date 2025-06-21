@@ -35,12 +35,14 @@ vim.opt.fillchars = "eob: "
 vim.opt.signcolumn = "yes:1"
 vim.opt.showmatch = true
 
+vim.opt.background = "dark"
+
 vim.g.vimtex_syntax_enabled = 0
 
 vim.filetype.add({
-  pattern = {
-    ["*.urdf"] = "xml",
-    ["*.xacro"] = "xml",
+  extension = {
+    urdf = "xml",
+    xacro = "xml",
   },
 })
 
@@ -81,7 +83,7 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.INFO] = "",
     },
     linehl = {
-      [vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
+      -- [vim.diagnostic.severity.ERROR] = "DiagnosticErrorLine",
       -- [vim.diagnostic.severity.WARN] = "DiagnosticWarnLine",
       -- [vim.diagnostic.severity.HINT] = "DiagnosticHintLine",
       -- [vim.diagnostic.severity.INFO] = "DiagnosticInfoLine",

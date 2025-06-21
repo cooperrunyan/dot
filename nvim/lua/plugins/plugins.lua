@@ -32,7 +32,7 @@ return {
     keys = {
       { "<c-t>", desc = "Open terminal" },
     },
-    cmd = { "ColconBuild" },
+    cmd = { "ColconBuild", "ToggleTerm" },
     opts = {
       open_mapping = "<c-t>",
       direction = "horizontal",

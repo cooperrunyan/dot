@@ -75,7 +75,7 @@ return {
             },
           },
         },
-        ghost_text = { enabled = true },
+        ghost_text = { enabled = false },
         documentation = {
           window = { border = "rounded" },
           auto_show = true,

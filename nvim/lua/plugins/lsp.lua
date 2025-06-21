@@ -61,6 +61,7 @@ return {
         pyright = {},
         ruff = {},
         rust_analyzer = {},
+        lemminx = {},
         biome = { enabled = false },
         denols = {
           root_markers = { "deno.json", "deno.jsonc" },
@@ -143,6 +144,7 @@ return {
         -- "rust-analyzer",
         "stylelint-lsp",
         "typescript-language-server",
+        "lemminx",
         "tectonic",
         clangd = use_mason_clangd,
 

@@ -20,24 +20,33 @@ return {
       mode = "n",
       desc = "Toggle format on save (Global)",
     },
+    {
+      "<leader>ff",
+      function()
+        require("conform").format({ async = true })
+      end,
+      mode = "n",
+      desc = "Format file",
+    },
   },
   opts = {
+    log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
-      tex = { "tex-fmt", "latexindent", stop_after_first = true },
-      lua = { "stylua" },
-      -- python = { "isort", "black" },
-      python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+      tex = { "tex-fmt", "latexindent" },
+      lua = { "stylua", stop_after_first = false },
+      -- python = { "isort", "black", stop_after_first = false },
+      python = { "ruff_fix", "ruff_format", "ruff_organize_imports", stop_after_first = false },
       rust = { lsp_format = "prefer" },
       markdown = { "deno_fmt" },
-      javascript = { "biome", "prettier", stop_after_first = true },
-      typescript = { "biome", "prettier", stop_after_first = true },
-      javascriptreact = { "biome", "prettier", stop_after_first = true },
-      typescriptreact = { "biome", "prettier", stop_after_first = true },
-      json = { "biome", "prettier", stop_after_first = true },
-      html = { "biome", "prettier", stop_after_first = true },
-      yaml = { "biome", "prettier", stop_after_first = true },
-      css = { "biome", "prettier", stop_after_first = true },
-      scss = { "biome", "prettier", stop_after_first = true },
+      javascript = { "prettier" },
+      typescript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescriptreact = { "prettier" },
+      json = { "prettier" },
+      html = { "prettier" },
+      yaml = { "prettier" },
+      css = { "prettier" },
+      scss = { "prettier" },
     },
     formatters = {
       stylua = {
@@ -46,18 +55,26 @@ return {
       biome = {
         append_args = { "--indent-style", "space" },
       },
+      prettier = {
+        options = {
+          ext_parsers = {
+            urdf = "xml",
+            xacro = "xml",
+          },
+        },
+      },
     },
     format_on_save = function(bufnr)
-      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-        return
+      if not vim.g.disable_autoformat and not vim.b[bufnr].disable_autoformat then
+        return {}
       end
-
-      return {
-        timeout_ms = 500,
-        lsp_format = "fallback",
-        -- undojoin = true,
-      }
     end,
+    default_format_opts = {
+      timeout_ms = 500,
+      lsp_format = "fallback",
+      stop_after_first = true,
+      -- undojoin = true,
+    },
   },
   init = function()
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"

@@ -8,7 +8,7 @@ return {
   event = "VeryLazy",
   opts = {
     preset = "helix",
-    delay = 0,
+    delay = 150,
     triggers = {
       { "<auto>", mode = "nixsotc" },
       { "m", mode = { "n", "x" }, group = "Surround" },
