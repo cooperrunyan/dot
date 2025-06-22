@@ -5,7 +5,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
-      "nvim-telescope/telescope-ui-select.nvim",
+      -- "nvim-telescope/telescope-ui-select.nvim",
       "nvim-telescope/telescope-symbols.nvim",
     },
     keys = {
@@ -33,11 +33,11 @@ return {
       -- -- { "gt", ":Telescope lsp_type_definitions<cr>", desc = "Go to type definition", silent = true },
       { "<leader><space>", false },
     },
-    config = function(_, opts)
-      local telescope = require("telescope")
-      telescope.setup(opts)
-      -- telescope.load_extension("ui-select")
-    end,
+    -- config = function(_, opts)
+    --   local telescope = require("telescope")
+    --   telescope.setup(opts)
+    --   -- telescope.load_extension("ui-select")
+    -- end,
     opts = function()
       local actions = require("telescope.actions")
       local themes = require("telescope.themes")
@@ -118,7 +118,7 @@ return {
             },
           },
           load_extensions = {
-            "ui-select",
+            -- "ui-select",
             "symbols",
           },
         },

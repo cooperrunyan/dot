@@ -45,7 +45,7 @@ return {
         style = "minimal",
         top_down = false,
 
-        margin = { bottom = 1, right = 0 },
+        margin = { bottom = 1, right = 1 },
       },
       -- quickfile = { enabled = true },
       -- scope = { enabled = true },
