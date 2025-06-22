@@ -47,6 +47,8 @@ return {
       yaml = { "prettier" },
       css = { "prettier" },
       scss = { "prettier" },
+      c = { "clang-format" },
+      cpp = { "clang-format" },
     },
     formatters = {
       stylua = {
