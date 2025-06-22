@@ -55,24 +55,20 @@ return {
 
       { "<leader>r", vim.lsp.buf.rename, mode = "nx", silent = true, desc = "Rename symbol" },
       { "<leader>a", vim.lsp.buf.code_action, mode = "nx", silent = true, desc = "Code action" },
-      -- { "gr", vim.lsp.buf.references, silent = true, desc = "Go to references" },
-      { "gD", vim.lsp.buf.declaration, silent = true, desc = "Go to declaration" },
-      { "gd", vim.lsp.buf.definition, silent = true, desc = "Go to definition" },
-      { "gt", vim.lsp.buf.type_definition, silent = true, desc = "Go to type definition" },
-      -- { "gi", vim.lsp.buf.implementation, silent = true, desc = "Go to implementation" },
+      -- -- { "gr", vim.lsp.buf.references, silent = true, desc = "Go to references" },
+      -- { "gD", vim.lsp.buf.declaration, silent = true, desc = "Go to declaration" },
+      -- { "gd", vim.lsp.buf.definition, silent = true, desc = "Go to definition" },
+      -- { "gt", vim.lsp.buf.type_definition, silent = true, desc = "Go to type definition" },
+      -- -- { "gi", vim.lsp.buf.implementation, silent = true, desc = "Go to implementation" },
       {
         "K",
-        function()
-          vim.lsp.buf.hover({ border = "rounded" })
-        end,
+        function() vim.lsp.buf.hover({ border = "rounded" }) end,
         silent = true,
         desc = "Hover",
       },
       {
         "H",
-        function()
-          vim.lsp.buf.signature_help({ border = "rounded" })
-        end,
+        function() vim.lsp.buf.signature_help({ border = "rounded" }) end,
         silent = true,
         desc = "Signature help",
       },
@@ -111,16 +107,14 @@ return {
         mode = "n",
         silent = true,
         remap = false,
-        desc = "Goto header/source",
+        desc = "Goto header source",
       },
     },
   },
   keys = {
     {
       "<leader><leader>",
-      function()
-        require("which-key").show()
-      end,
+      function() require("which-key").show() end,
     },
   },
 }

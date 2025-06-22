@@ -11,9 +11,7 @@ return {
   opts = function()
     local variant = "github_dark_default"
 
-    if vim.opt.background == "light" then
-      variant = "github_light"
-    end
+    if vim.opt.background == "light" then variant = "github_light" end
 
     local palette = require("github-theme.palette").load(variant)
 
@@ -73,6 +71,7 @@ return {
           CmpDocumentationBorder = { link = "FloatBorder" },
           BlinkCmpDocCursorLine = { link = "Visual" },
           BlinkCmpGhostText = { link = "Comment" },
+          SnacksPickerMatch = { link = "BlinkCmpLabelMatch" },
         },
       },
     }

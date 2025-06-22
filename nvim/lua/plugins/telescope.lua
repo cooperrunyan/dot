@@ -9,35 +9,40 @@ return {
       "nvim-telescope/telescope-symbols.nvim",
     },
     keys = {
-      { "<leader>fF", ":Telescope find_files<cr>", desc = "Find files", silent = true },
-      { "<leader>fG", ":Telescope git_files<cr>", desc = "Git files", silent = true },
-      { "<leader>fg", ":Telescope live_grep<cr>", desc = "Live grep", silent = true },
-      { "<leader>fb", ":Telescope buffers<cr>", desc = "Buffers", silent = true },
-      { "<leader>fh", ":Telescope help_tags<cr>", desc = "Help", silent = true },
-      { "<leader>fi", ":Telescope highlights<cr>", desc = "Highlights", silent = true },
-      { "<leader>fa", ":Telescope builtin<cr>", desc = "Pickers", silent = true },
-      { "<leader>fD", ":Telescope diagnostics<cr>", desc = "Diagnostics", silent = true },
-      { "<leader>fk", ":Telescope keymaps<cr>", desc = "Keymaps", silent = true },
-      { "<leader>fr", ":Telescope registers<cr>", desc = "Registers", silent = true },
+      -- { "<leader>fF", ":Telescope find_files<cr>", desc = "Find files", silent = true },
+      -- { "<leader>fG", ":Telescope git_files<cr>", desc = "Git files", silent = true },
+      -- { "<leader>fg", ":Telescope live_grep<cr>", desc = "Live grep", silent = true },
+      -- { "<leader>fb", ":Telescope buffers<cr>", desc = "Buffers", silent = true },
+      -- { "<leader>fh", ":Telescope help_tags<cr>", desc = "Help", silent = true },
+      -- { "<leader>fi", ":Telescope highlights<cr>", desc = "Highlights", silent = true },
+      -- { "<leader>fa", ":Telescope builtin<cr>", desc = "Pickers", silent = true },
+      -- { "<leader>fD", ":Telescope diagnostics<cr>", desc = "Diagnostics", silent = true },
+      -- { "<leader>fk", ":Telescope keymaps<cr>", desc = "Keymaps", silent = true },
+      -- { "<leader>fr", ":Telescope registers<cr>", desc = "Registers", silent = true },
       { "<leader>fo", ":Telescope vim_options<cr>", desc = "Options", silent = true },
-      { "<leader>fc", ":Telescope commands<cr>", desc = "Commands", silent = true },
-      { "<leader>fC", ":Telescope autocommands<cr>", desc = "Autocommands", silent = true },
-      { "<leader>fT", ":Telescope colorscheme<cr>", desc = "Theme", silent = true },
-      { "<leader>fm", ":Telescope marks<cr>", desc = "Marks", silent = true },
-      { "<leader>fM", ":Telescope man_pages<cr>", desc = "Man", silent = true },
-      { "<leader>fH", ":Telescope command_history<cr>", desc = "Command history", silent = true },
-      { "<leader>fs", ":Telescope symbols<cr>", desc = "Symbols", silent = true },
-      { "gr", ":Telescope lsp_references<cr>", desc = "Go to references", silent = true },
-      -- { "gi", ":Telescope lsp_implementations<cr>", desc = "Go to implementation", silent = true },
-      -- { "gd", ":Telescope lsp_definitions<cr>", desc = "Go to definition", silent = true },
-      -- { "gt", ":Telescope lsp_type_definitions<cr>", desc = "Go to type definition", silent = true },
+      -- { "<leader>fc", ":Telescope commands<cr>", desc = "Commands", silent = true },
+      -- { "<leader>fC", ":Telescope autocommands<cr>", desc = "Autocommands", silent = true },
+      -- { "<leader>fT", ":Telescope colorscheme<cr>", desc = "Theme", silent = true },
+      -- { "<leader>fM", ":Telescope marks<cr>", desc = "Marks", silent = true },
+      -- { "<leader>fm", ":Telescope man_pages<cr>", desc = "Man", silent = true },
+      -- { "<leader>fH", ":Telescope command_history<cr>", desc = "Command history", silent = true },
+      -- { "<leader>fs", ":Telescope symbols<cr>", desc = "Symbols", silent = true },
+      -- { "gr", ":Telescope lsp_references<cr>", desc = "Go to references", silent = true },
+      -- -- { "gi", ":Telescope lsp_implementations<cr>", desc = "Go to implementation", silent = true },
+      -- -- { "gd", ":Telescope lsp_definitions<cr>", desc = "Go to definition", silent = true },
+      -- -- { "gt", ":Telescope lsp_type_definitions<cr>", desc = "Go to type definition", silent = true },
       { "<leader><space>", false },
     },
+    config = function(_, opts)
+      local telescope = require("telescope")
+      telescope.setup(opts)
+      -- telescope.load_extension("ui-select")
+    end,
     opts = function()
       local actions = require("telescope.actions")
       local themes = require("telescope.themes")
-      local utils = require("telescope.utils")
-      local entry_display = require("telescope.pickers.entry_display")
+      -- local utils = require("telescope.utils")
+      -- local entry_display = require("telescope.pickers.entry_display")
 
       local layout_strategies = require("telescope.pickers.layout_strategies")
       layout_strategies.horizontal_fused = function(picker, max_columns, max_lines, layout_config)
@@ -74,10 +79,18 @@ return {
           colorscheme = {
             enable_preview = true,
           },
-          diagnostics = themes.get_dropdown({
-            layout_strategy = "center_fused",
-            wrap_results = true,
-          }),
+          pickers = { enable_preview = false },
+          diagnostics = themes.get_ivy({}),
+          help_tags = {
+            mappings = {
+              i = { ["<CR>"] = "select_vertical" },
+            },
+          },
+          man_pages = {
+            mappings = {
+              i = { ["<CR>"] = "select_vertical" },
+            },
+          },
         },
         extensions = {
           ["ui-select"] = { themes.get_dropdown({ layout_strategy = "center_fused" }) },
