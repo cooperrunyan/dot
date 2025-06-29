@@ -105,17 +105,17 @@ return {
         telescope = false,
       },
     },
-    config = function(_, opts)
-      require("neogit").setup(opts)
-
-      vim.api.nvim_create_autocmd("BufLeave", {
-        pattern = { "NeogitStatus" },
-        callback = function()
-          local ok, events = pcall(require, "neo-tree.events")
-          if ok then events.fire_event(events.GIT_EVENT) end
-        end,
-      })
-    end,
+    -- config = function(_, opts)
+    --   require("neogit").setup(opts)
+    --
+    --   vim.api.nvim_create_autocmd("BufLeave", {
+    --     pattern = { "NeogitStatus" },
+    --     callback = function()
+    --       local ok, events = pcall(require, "neo-tree.events")
+    --       if ok then events.fire_event(events.GIT_EVENT) end
+    --     end,
+    --   })
+    -- end,
   },
   -- {
   -- 	"echasnovski/mini.comment",

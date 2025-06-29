@@ -1,5 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  enabled = false,
   cmd = "Neotree",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -10,22 +11,16 @@ return {
   keys = {
     {
       "<leader>e",
-      function()
-        require("neo-tree.command").execute({ action = "focus" })
-      end,
+      function() require("neo-tree.command").execute({ action = "focus" }) end,
       desc = "Focus File Tree",
     },
     {
       "<leader>E",
-      function()
-        require("neo-tree.command").execute({ toggle = true })
-      end,
+      function() require("neo-tree.command").execute({ toggle = true }) end,
       desc = "Toggle File Tree",
     },
   },
-  deactivate = function()
-    vim.cmd([[Neotree close]])
-  end,
+  deactivate = function() vim.cmd([[Neotree close]]) end,
   opts = function()
     local opts = {
       enable_diagnostics = false,
@@ -63,9 +58,7 @@ return {
           ["h"] = "close_node",
           ["<leader>h"] = "toggle_hidden",
           ["<leader>l"] = {
-            function()
-              vim.cmd(":wincmd p<cr>")
-            end,
+            function() vim.cmd("wincmd p") end,
             desc = "Return to previous window",
           },
           ["<space>"] = "none",
@@ -78,9 +71,7 @@ return {
             desc = "Copy Path to Clipboard",
           },
           ["O"] = {
-            function(state)
-              require("lazy.util").open(state.tree:get_node().path, { system = true })
-            end,
+            function(state) require("lazy.util").open(state.tree:get_node().path, { system = true }) end,
             desc = "Open with System Application",
           },
           ["P"] = { "toggle_preview", config = { use_float = false } },
@@ -112,9 +103,7 @@ return {
               if success then
                 local devicon, hl = web_devicons.get_icon(name)
                 icon.text = devicon or icon.text
-                if icon.text ~= "" then
-                  icon.text = icon.text .. " "
-                end
+                if icon.text ~= "" then icon.text = icon.text .. " " end
                 icon.highlight = hl or icon.highlight
               end
             end
@@ -140,9 +129,7 @@ return {
 
     local ok, snacks = pcall(require, "snacks")
     if ok then
-      local function on_move(data)
-        snacks.rename.on_rename_file(data.source, data.destination)
-      end
+      local function on_move(data) snacks.rename.on_rename_file(data.source, data.destination) end
       local events = require("neo-tree.events")
       opts.event_handlers = opts.event_handlers or {}
       vim.list_extend(opts.event_handlers, {

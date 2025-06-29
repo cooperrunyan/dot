@@ -38,6 +38,7 @@ return {
           CursorLine = { bg = "bg2" },
           NeoTreeDirectoryIcon = { fg = "bg4" },
           NeoTreeIndentMarker = { fg = "bg3" },
+          NvimTreeIndentMarker = { fg = "bg3" },
           NeoTreeGitAdded = { link = "Normal" },
           NeoTreeGitIgnored = { link = "Comment" },
           NeoTreeGitUntracked = { fg = "palette.green" },

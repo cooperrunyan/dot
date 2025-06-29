@@ -1,7 +1,5 @@
 #!/usr/bin/env zsh
 
-manpath
-
 if [[ -n "$ZSH_PROF_DEBUG" ]]; then
   zmodload zsh/zprof
 fi
