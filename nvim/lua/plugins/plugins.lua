@@ -51,7 +51,7 @@ return {
         local Terminal = toggleterm.Terminal
 
         -- local packages = table.concat(args.args, " ")
-        local cmd = "source /opt/ros/jazzy/setup.sh && colcon build --symlink-install"
+        local cmd = "zsh && source /opt/ros/jazzy/setup.sh && colcon build --symlink-install"
         if a.args ~= "" then cmd = cmd .. " --packages-select " .. a.args end
 
         local term = Terminal:new({

@@ -103,7 +103,7 @@ return {
 
       {
         "<leader>gs",
-        ":ClangdSwitchSourceHeader<cr>",
+        ":LspClangdSwitchSourceHeader<cr>",
         mode = "n",
         silent = true,
         remap = false,

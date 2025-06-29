@@ -46,9 +46,7 @@ return {
         },
         marksman = {},
         clangd = function()
-          if use_mason_clangd then
-            return {}
-          end
+          if use_mason_clangd then return {} end
           return { mason = false }
         end,
         cmake = {},
@@ -68,22 +66,16 @@ return {
           root_dir = function(bufnr, on_dir)
             local pattern = require("lspconfig.util").root_pattern({ "deno.json", "deno.jsonc" })
             local dir = pattern(vim.uri_to_fname(vim.uri_from_bufnr(bufnr)))
-            if dir ~= nil then
-              on_dir(dir)
-            end
+            if dir ~= nil then on_dir(dir) end
           end,
         },
         ts_ls = {
           root_dir = function(bufnr, on_dir)
             local util = require("lspconfig.util")
             local f = vim.uri_to_fname(vim.uri_from_bufnr(bufnr))
-            if util.root_pattern({ "deno.json", "deno.jsonc" })(f) ~= nil then
-              return
-            end
+            if util.root_pattern({ "deno.json", "deno.jsonc" })(f) ~= nil then return end
             local r = util.root_pattern({ "tsconfig.json", "jsconfig.json", "package.json", ".git" })(f)
-            if r then
-              on_dir(r)
-            end
+            if r then on_dir(r) end
           end,
         },
       },
@@ -92,9 +84,7 @@ return {
       for server, config in pairs(opts.servers) do
         local enabled = config ~= nil and config ~= false
 
-        if type(config) == "function" then
-          config = config()
-        end
+        if type(config) == "function" then config = config() end
 
         if type(config) == "table" then
           if vim.tbl_contains(config, "enabled") then
@@ -102,14 +92,10 @@ return {
             config["enabled"] = nil
           end
 
-          if not vim.tbl_isempty(config) then
-            vim.lsp.config(server, config)
-          end
+          if not vim.tbl_isempty(config) then vim.lsp.config(server, config) end
         end
 
-        if enabled then
-          vim.lsp.enable(server)
-        end
+        if enabled then vim.lsp.enable(server) end
       end
     end,
   },
@@ -142,7 +128,7 @@ return {
         "pyright",
         "ruff",
         -- "rust-analyzer",
-        "stylelint-lsp",
+        -- "stylelint-lsp",
         "typescript-language-server",
         "lemminx",
         "tectonic",

@@ -19,7 +19,7 @@ return {
       signcolumn = "no",
     },
     renderer = {
-      hidden_display = "simple",
+      -- hidden_display = "simple",
       indent_markers = {
         enable = true,
         icons = { corner = "╰" },
@@ -92,9 +92,10 @@ return {
     },
     on_attach = function(bufnr)
       local api = require("nvim-tree.api")
+      api.config.mappings.default_on_attach(bufnr)
       local opts = function(desc) return { desc = desc, buffer = bufnr, noremap = true, silent = true } end
       vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
-      vim.keymap.set("n", "h", api.node.collapse, opts("Collapse Node"))
+      vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Collapse Node"))
       vim.keymap.set("n", "K", api.node.show_info_popup, opts("Show Info"))
       vim.keymap.set("n", "s", api.node.open.vertical, opts("Open Split"))
       vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("Change Root"))
