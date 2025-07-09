@@ -18,10 +18,15 @@ return {
       width = 30,
       signcolumn = "no",
     },
+    update_focused_file = {
+      enable = true,
+    },
     renderer = {
-      -- hidden_display = "simple",
+      special_files = {},
+      indent_width = 2,
       indent_markers = {
         enable = true,
+        inline_arrows = false,
         icons = { corner = "╰" },
       },
       highlight_git = "name",
@@ -38,8 +43,8 @@ return {
         },
         show = {
           file = true,
-          folder = false,
-          folder_arrow = true,
+          folder = true,
+          folder_arrow = false,
           git = true,
           modified = true,
           diagnostics = false,
@@ -70,6 +75,11 @@ return {
         },
       },
     },
+    filters = {
+      custom = {
+        "^\\.git",
+      },
+    },
     diagnostics = { enable = false },
     modified = {
       enable = true,
@@ -96,6 +106,7 @@ return {
       local opts = function(desc) return { desc = desc, buffer = bufnr, noremap = true, silent = true } end
       vim.keymap.set("n", "l", api.node.open.edit, opts("Open"))
       vim.keymap.set("n", "h", api.node.navigate.parent_close, opts("Collapse Node"))
+      vim.keymap.set("n", "<leader>h", api.node.navigate.parent, opts("Parent Node"))
       vim.keymap.set("n", "K", api.node.show_info_popup, opts("Show Info"))
       vim.keymap.set("n", "s", api.node.open.vertical, opts("Open Split"))
       vim.keymap.set("n", ".", api.tree.change_root_to_node, opts("Change Root"))
@@ -103,11 +114,15 @@ return {
       vim.keymap.set("n", "P", function() api.node.open.preview(nil, { focus = true }) end, opts("Preview"))
       vim.keymap.set("n", "d", api.fs.trash, opts("Delete"))
       vim.keymap.set("n", "y", api.fs.copy.node, opts("Copy"))
+      vim.keymap.set("n", "x", api.fs.cut, opts("Cut"))
+      vim.keymap.set("n", "p", api.fs.paste, opts("Paste"))
       vim.keymap.set("n", "H", api.tree.toggle_gitignore_filter, opts("Toggle Hidden"))
       vim.keymap.set("n", "r", api.fs.rename, opts("Rename"))
       vim.keymap.set("n", "a", api.fs.create, opts("Create File"))
       vim.keymap.set("n", "q", api.tree.close, opts("Quit"))
       vim.keymap.set("n", "R", api.tree.reload, opts("Refresh"))
+      vim.keymap.set("n", "<esc>", api.fs.clear_clipboard, opts("Clear Clipboard"))
+      vim.keymap.set("n", "O", api.node.run.system, opts("Open (System)"))
     end,
   },
   config = function(_, opts)
@@ -127,6 +142,15 @@ return {
             vim.api.nvim_win_close(w, true)
           end
         end
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("BufLeave", {
+      pattern = { "NeogitStatus" },
+      callback = function()
+        local ok, api = pcall(require, "nvim-tree.api")
+        if ok then api.git.reload() end
+        -- if ok then api.tree.reload() end
       end,
     })
   end,
