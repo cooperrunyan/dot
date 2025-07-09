@@ -6,25 +6,19 @@ return {
   keys = {
     {
       "<leader>tf",
-      function()
-        vim.b.disable_autoformat = not vim.b.disable_autoformat
-      end,
+      function() vim.b.disable_autoformat = not vim.b.disable_autoformat end,
       mode = "n",
       desc = "Toggle format on save (Buffer)",
     },
     {
       "<leader>tF",
-      function()
-        vim.b.disable_autoformat = not vim.b.disable_autoformat
-      end,
+      function() vim.g.disable_autoformat = not vim.g.disable_autoformat end,
       mode = "n",
       desc = "Toggle format on save (Global)",
     },
     {
       "<leader>ff",
-      function()
-        require("conform").format({ async = true })
-      end,
+      function() require("conform").format({ async = true }) end,
       mode = "n",
       desc = "Format file",
     },
@@ -67,9 +61,7 @@ return {
       },
     },
     format_on_save = function(bufnr)
-      if not vim.g.disable_autoformat and not vim.b[bufnr].disable_autoformat then
-        return {}
-      end
+      if not vim.g.disable_autoformat and not vim.b[bufnr].disable_autoformat then return {} end
     end,
     default_format_opts = {
       timeout_ms = 500,
