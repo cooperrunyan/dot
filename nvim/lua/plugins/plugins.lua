@@ -51,7 +51,7 @@ return {
         local Terminal = toggleterm.Terminal
 
         -- local packages = table.concat(args.args, " ")
-        local cmd = "zsh && source /opt/ros/jazzy/setup.sh && colcon build --symlink-install"
+        local cmd = "source /opt/ros/jazzy/setup.sh && colcon build --symlink-install"
         if a.args ~= "" then cmd = cmd .. " --packages-select " .. a.args end
 
         local term = Terminal:new({
@@ -63,6 +63,7 @@ return {
             CMAKE_PREFIX_PATH = "",
             GZ_VERSION = "harmonic",
           },
+          close_on_exit = false,
           on_open = function(term)
             vim.keymap.set(
               "n",

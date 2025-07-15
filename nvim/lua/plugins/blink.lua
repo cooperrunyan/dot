@@ -6,6 +6,12 @@ return {
       "nvim-tree/nvim-web-devicons",
       -- "micangl/cmp-vimtex",
       { "xzbdmw/colorful-menu.nvim" },
+      {
+        "saghen/blink.compat",
+        version = "*",
+        lazy = true,
+        opts = {},
+      },
     },
     version = "*",
     opts = {
@@ -65,12 +71,8 @@ return {
 
             components = {
               label = {
-                text = function(ctx)
-                  return require("colorful-menu").blink_components_text(ctx)
-                end,
-                highlight = function(ctx)
-                  return require("colorful-menu").blink_components_highlight(ctx)
-                end,
+                text = function(ctx) return require("colorful-menu").blink_components_text(ctx) end,
+                highlight = function(ctx) return require("colorful-menu").blink_components_highlight(ctx) end,
               },
             },
           },
@@ -82,9 +84,7 @@ return {
         },
         list = {
           selection = {
-            preselect = function()
-              return not require("blink.cmp").snippet_active()
-            end,
+            preselect = function() return not require("blink.cmp").snippet_active() end,
             auto_insert = false,
           },
         },
@@ -111,11 +111,5 @@ return {
       },
     },
     opts_extend = { "sources.default" },
-  },
-  {
-    "saghen/blink.compat",
-    version = "*",
-    lazy = true,
-    opts = {},
   },
 }
