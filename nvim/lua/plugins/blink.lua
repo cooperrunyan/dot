@@ -5,7 +5,7 @@ return {
       -- "rafamadriz/friendly-snippets",
       "nvim-tree/nvim-web-devicons",
       -- "micangl/cmp-vimtex",
-      { "xzbdmw/colorful-menu.nvim" },
+      -- { "xzbdmw/colorful-menu.nvim" },
       {
         "saghen/blink.compat",
         version = "*",
@@ -67,14 +67,15 @@ return {
           -- winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
           winhighlight = "Normal:NormalFloat",
           draw = {
-            columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
+            columns = { { "kind_icon" }, { "label" } },
+            treesitter = { "lsp" },
 
-            components = {
-              label = {
-                text = function(ctx) return require("colorful-menu").blink_components_text(ctx) end,
-                highlight = function(ctx) return require("colorful-menu").blink_components_highlight(ctx) end,
-              },
-            },
+            -- components = {
+            --   label = {
+            --     text = function(ctx) return require("colorful-menu").blink_components_text(ctx) end,
+            --     highlight = function(ctx) return require("colorful-menu").blink_components_highlight(ctx) end,
+            --   },
+            -- },
           },
         },
         ghost_text = { enabled = false },

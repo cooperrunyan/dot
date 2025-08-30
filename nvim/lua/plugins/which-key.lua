@@ -25,6 +25,8 @@ return {
       { "<leader>x", group = "Diagnostic" },
       { "<leader>t", group = "Toggle" },
 
+      { "<leader>d", function() vim.diagnostic.open_float() end, mode = "n", desc = "Open Diagnostic" },
+
       { "<leader>c", "gcc", mode = "n", silent = true, remap = true, desc = "Comment line" },
       { "<leader>c", "gc", mode = "x", silent = true, remap = true, desc = "Comment" },
       { "<leader>C", "gc", mode = "n", silent = true, remap = true, desc = "Comment" },

@@ -74,6 +74,9 @@ vim.diagnostic.config({
     --   return diagnostic.message
     -- end,
   },
+  float = {
+    border = "rounded",
+  },
   severity_sort = true,
   signs = {
     text = {
