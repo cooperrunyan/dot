@@ -17,6 +17,12 @@ return {
       },
     },
     config = function()
+      vim.g.mkdp_preview_options = {
+        disable_filename = 1,
+      }
+
+      vim.g.mkdp_page_title = "${name}"
+
       vim.cmd([[do FileType]])
     end,
   },

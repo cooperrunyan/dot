@@ -24,14 +24,14 @@ return {
     },
   },
   opts = {
-    log_level = vim.log.levels.DEBUG,
+    -- log_level = vim.log.levels.DEBUG,
     formatters_by_ft = {
       tex = { "tex-fmt", "latexindent" },
       lua = { "stylua", stop_after_first = false },
       -- python = { "isort", "black", stop_after_first = false },
       python = { "ruff_fix", "ruff_format", "ruff_organize_imports", stop_after_first = false },
       rust = { lsp_format = "prefer" },
-      markdown = { "deno_fmt" },
+      markdown = { "prettier", "deno_fmt" },
       javascript = { "prettier" },
       typescript = { "prettier" },
       javascriptreact = { "prettier" },
@@ -52,6 +52,16 @@ return {
         append_args = { "--indent-style", "space" },
       },
       prettier = {
+        append_args = function(self, ctx)
+          if vim.bo[ctx.buf].filetype == "markdown" then
+            return {
+              "--prose-wrap=always",
+              "--tab-width=4",
+            }
+          end
+
+          return {}
+        end,
         options = {
           ext_parsers = {
             urdf = "xml",
