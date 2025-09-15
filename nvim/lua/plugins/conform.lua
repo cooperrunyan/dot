@@ -29,7 +29,8 @@ return {
       tex = { "tex-fmt", "latexindent" },
       lua = { "stylua", stop_after_first = false },
       -- python = { "isort", "black", stop_after_first = false },
-      python = { "ruff_fix", "ruff_format", "ruff_organize_imports", stop_after_first = false },
+      -- python = { "ruff_fix", "ruff_format", "ruff_organize_imports", stop_after_first = false },
+      python = { "ruff_format" },
       rust = { lsp_format = "prefer" },
       markdown = { "prettier", "deno_fmt" },
       javascript = { "prettier" },
@@ -50,6 +51,10 @@ return {
       },
       biome = {
         append_args = { "--indent-style", "space" },
+      },
+      ruff_format = {
+        -- append_args = { "--enable-unstable-feature", "hug_parens_with_braces_and_square_brackets" },
+        append_args = { "--preview" },
       },
       prettier = {
         append_args = function(self, ctx)

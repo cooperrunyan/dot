@@ -77,7 +77,7 @@ return {
     },
     filters = {
       custom = {
-        "^\\.git",
+        "^\\.git$",
       },
     },
     diagnostics = { enable = false },
