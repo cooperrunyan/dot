@@ -49,7 +49,31 @@ return {
           if use_mason_clangd then return {} end
           return { mason = false }
         end,
-        cmake = {},
+        -- cmake = {},
+        neocmake = {
+          single_file_support = true,
+          init_options = {
+            format = { enable = true },
+            lint = { enable = true },
+            scan_cmake_in_package = true,
+            enable_external_cmake_lint = true,
+          },
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = true,
+                relative_pattern_support = true,
+              },
+            },
+            textDocument = {
+              completion = {
+                completionItem = {
+                  snippetSupport = true,
+                },
+              },
+            },
+          },
+        },
         cssls = {},
         cssmodules_ls = {},
         bashls = {},

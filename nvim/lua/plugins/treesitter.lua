@@ -13,7 +13,7 @@ return {
     opts_extend = { "ensure_installed" },
     opts = {
       highlight = { enable = true },
-      indent = { enable = true, disable = { "cpp", "yaml" } },
+      indent = { enable = true, disable = { "yaml" } },
       playground = { enable = true },
       ensure_installed = {
         "bash",
@@ -82,7 +82,10 @@ return {
         },
       },
     },
-    config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
+      vim.o.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
   },
   {
     "windwp/nvim-ts-autotag",
