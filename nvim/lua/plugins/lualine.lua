@@ -3,6 +3,7 @@ return {
   event = "VeryLazy",
   dependencies = {
     { "andrewferrier/wrapping.nvim", optional = true },
+    { "nvim-tree/nvim-web-devicons", optional = true },
   },
   opts = function()
     local lazy_status = require("lazy.status")
@@ -45,7 +46,8 @@ return {
           NvimTree = {},
           trouble = {},
         },
-        theme = "github_dark_default",
+        -- theme = "github_dark_default",
+        theme = "auto",
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
       },

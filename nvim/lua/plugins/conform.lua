@@ -65,7 +65,10 @@ return {
             }
           end
 
-          return {}
+          return {
+            "--object-wrap=collapse",
+            "--arrow-parens=avoid",
+          }
         end,
         options = {
           ext_parsers = {

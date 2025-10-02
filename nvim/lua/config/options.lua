@@ -36,7 +36,7 @@ vim.opt.fillchars = "eob: "
 vim.opt.signcolumn = "yes:1"
 vim.opt.showmatch = true
 
-vim.opt.background = "dark"
+-- vim.opt.background = "dark"
 
 vim.g.vimtex_syntax_enabled = 0
 

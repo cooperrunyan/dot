@@ -80,6 +80,9 @@ return {
         "^\\.git$",
       },
     },
+    notify = {
+      absolute_path = false,
+    },
     diagnostics = { enable = false },
     modified = {
       enable = true,
