@@ -26,7 +26,7 @@ return {
         -- ["<tab>"] = { "accept", "snippet_forward", "fallback" },
         -- ["<esc>"] = { "cancel", "fallback" },
       },
-      term = { enabled = true },
+      -- term = { enabled = true },
       cmdline = {
         enabled = true,
         keymap = {
