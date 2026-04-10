@@ -6,6 +6,7 @@ return {
     keys = {
       { "<leader>/", function() require("snacks").picker.grep() end, desc = "Grep" },
       { "<leader>:", function() require("snacks").picker.command_history() end, desc = "Command History" },
+      { "<leader>m", function() require("snacks").picker.notifications() end, desc = "Notification History" },
       { "<leader>fb", function() require("snacks").picker.buffers() end, desc = "Buffers" },
       { "<leader>fF", function() require("snacks").picker.files() end, desc = "Find Files" },
       -- { "<leader>gb", function() require("snacks").picker.git_branches() end, desc = "Git Branches" },

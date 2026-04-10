@@ -49,31 +49,31 @@ return {
           if use_mason_clangd then return {} end
           return { mason = false }
         end,
-        -- cmake = {},
-        neocmake = {
-          single_file_support = true,
-          init_options = {
-            format = { enable = true },
-            lint = { enable = true },
-            scan_cmake_in_package = true,
-            enable_external_cmake_lint = true,
-          },
-          capabilities = {
-            workspace = {
-              didChangeWatchedFiles = {
-                dynamicRegistration = true,
-                relative_pattern_support = true,
-              },
-            },
-            textDocument = {
-              completion = {
-                completionItem = {
-                  snippetSupport = true,
-                },
-              },
-            },
-          },
-        },
+        cmake = {},
+        -- neocmake = {
+        --   single_file_support = true,
+        --   init_options = {
+        --     format = { enable = true },
+        --     lint = { enable = true },
+        --     scan_cmake_in_package = true,
+        --     enable_external_cmake_lint = true,
+        --   },
+        --   capabilities = {
+        --     workspace = {
+        --       didChangeWatchedFiles = {
+        --         dynamicRegistration = true,
+        --         relative_pattern_support = true,
+        --       },
+        --     },
+        --     textDocument = {
+        --       completion = {
+        --         completionItem = {
+        --           snippetSupport = true,
+        --         },
+        --       },
+        --     },
+        --   },
+        -- },
         cssls = {},
         cssmodules_ls = {},
         bashls = {},
@@ -82,7 +82,36 @@ return {
         html = {},
         pyright = {},
         ruff = {},
-        rust_analyzer = {},
+        -- rust_analyzer = {
+        --   -- cmd_env = {
+        --   -- RUSTUP_TOOLCHAIN = "stable",
+        --   -- },
+        --   settings = {
+        --     ["rust-analyzer"] = {
+        --       server = {
+        --         -- extraEnv = {
+        --         -- Because of esp32
+        --         -- RUSTUP_TOOLCHAIN = "stable",
+        --         -- },
+        --       },
+        --       files = { watcher = "server" },
+        --       check = {
+        --         command = "clippy",
+        --         extraArgs = { "--no-deps" },
+        --       },
+        --       checkOnSave = true,
+        --       -- procMacro = { enable = true },
+        --       assists = { preferSelf = true },
+        --       -- cargo = {
+        --       -- targetDir = true,
+        --       -- allTargets = false,
+        --       -- buildScripts = {
+        --       --   enable = true,
+        --       -- },
+        --       -- },
+        --     },
+        --   },
+        -- },
         lemminx = {},
         biome = { enabled = false },
         denols = {
@@ -101,6 +130,39 @@ return {
             local r = util.root_pattern({ "tsconfig.json", "jsconfig.json", "package.json", ".git" })(f)
             if r then on_dir(r) end
           end,
+        },
+        texlab = {
+          settings = {
+            texlab = {
+              build = {
+                onSave = false,
+                forwardSearchAfter = true,
+                -- useFileList = true,
+                auxDirectory = "build",
+                logDirectory = "build",
+                pdfDirectory = "build",
+                executable = "tectonic",
+                args = {
+                  "-X",
+                  "compile",
+                  "--keep-intermediates",
+                  "--keep-logs",
+                  "--synctex",
+                  "--outdir=build",
+                  "%f",
+                },
+              },
+              forwardSearch = {
+                executable = "displayline",
+                args = { "-background", "-noselect", "-revert", "%l", "%p", "%f" },
+              },
+              chtex = {
+                onOpenAndSave = true,
+                onEdit = true,
+              },
+              latexFormatter = "tex-fmt",
+            },
+          },
         },
       },
     },
@@ -166,6 +228,7 @@ return {
         "isort",
         "jq",
         "tex-fmt",
+        "texlab",
         "mypy",
         "prettier",
         "shellcheck",

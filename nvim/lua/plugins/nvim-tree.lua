@@ -3,7 +3,8 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  lazy = false,
+  -- lazy = false,
+  event = { "VeryLazy" },
   keys = {
     { "<leader>e", ":NvimTreeFocus<cr>", silent = true, desc = "Open File Tree" },
     { "<leader>E", ":NvimTreeToggle<cr>", silent = true, desc = "Toggle File Tree" },

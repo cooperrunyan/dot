@@ -1,11 +1,12 @@
 return {
   {
     "saghen/blink.cmp",
+    event = { "InsertEnter" },
     dependencies = {
       -- "rafamadriz/friendly-snippets",
       "nvim-tree/nvim-web-devicons",
       -- "micangl/cmp-vimtex",
-      -- { "xzbdmw/colorful-menu.nvim" },
+      -- "xzbdmw/colorful-menu.nvim",
       {
         "saghen/blink.compat",
         version = "*",

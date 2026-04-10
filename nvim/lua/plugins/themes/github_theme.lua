@@ -2,6 +2,8 @@ return {
   "cooperrunyan/github-nvim-theme",
   -- "projekt0n/github-nvim-theme",
   name = "github-theme",
+  -- dir = "~/dev/github-nvim-theme",
+  -- dev = true,
   enabled = true,
   lazy = false,
   priority = 1000,

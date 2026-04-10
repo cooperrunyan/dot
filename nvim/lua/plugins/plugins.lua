@@ -14,7 +14,7 @@ return {
       notify_on_switch = false,
     },
   },
-  { "j-hui/fidget.nvim", event = { "VeryLazy" } },
+  -- { "j-hui/fidget.nvim", event = { "VeryLazy" } },
   -- {
   -- 	"f-person/auto-dark-mode.nvim",
   -- 	opts = {},
@@ -138,7 +138,6 @@ return {
   {
     "folke/flash.nvim",
     lazy = true,
-    event = "VeryLazy",
     opts = {},
     keys = {
       {
