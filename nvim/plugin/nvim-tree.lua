@@ -154,11 +154,11 @@ vim.api.nvim_create_autocmd("QuitPre", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufLeave", {
-  pattern = { "NeogitStatus" },
-  callback = function()
-    local ok, api = pcall(require, "nvim-tree.api")
-    if ok then api.git.reload() end
-    -- if ok then api.tree.reload() end
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufLeave", {
+--   pattern = { "NeogitStatus" },
+--   callback = function()
+--     local ok, api = pcall(require, "nvim-tree.api")
+--     if ok then api.git.reload() end
+--     -- if ok then api.tree.reload() end
+--   end,
+-- })
