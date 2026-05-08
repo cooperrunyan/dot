@@ -28,10 +28,19 @@ nav #menu-help,
 #promo,
 div:has(> button svg use[href$="#lock"]),
 button:has(svg use[href$="#lock"]),
-div:has(> div > div > button[aria-label="Switch to Synth audio"])
+div:has(> div > div > button[aria-label="Switch to Synth audio"]),
+div:has(> div > form > div > div > div > button[aria-label="Use Synth"]),
+div[class*="tabBlurOverlay"],
+div[class*="controlsBlurOverlay"],
+div:has(> div > div[class*="popup"] > div > div > button[aria-label="OK"])
 {
     display: none !important;
 }
+
+/* div[class*="lineWrapActive"]  */
+/* g[data-testid="Cursor"] {
+    visibility: visible !important;
+} */
 
 :root {
     --tab-strings-dark: #4d4d4d !important;
