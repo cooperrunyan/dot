@@ -41,7 +41,10 @@ require("blink.cmp").setup({
   -- },
   signature = {
     enabled = true,
-    window = { border = "rounded", show_documentation = true },
+    window = {
+      border = "rounded",
+      show_documentation = true,
+    },
     trigger = {
       enabled = true,
       show_on_insert = true,

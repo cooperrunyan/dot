@@ -5,14 +5,14 @@ vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 vim.keymap.set(
   "n",
   "<leader>Tf",
-  function() vim.b.disable_autoformat = not vim.b.disable_autoformat end,
+  function() require("util.fmt_toggle").toggle_local() end,
   { desc = "Toggle format on save (Buffer)", silent = true }
 )
 
 vim.keymap.set(
   "n",
   "<leader>TF",
-  function() vim.g.disable_autoformat = not vim.g.disable_autoformat end,
+  function() require("util.fmt_toggle").toggle_global() end,
   { desc = "Toggle format on save (Global)", silent = true }
 )
 

@@ -42,6 +42,7 @@ local langs = {
   "mermaid",
   "python",
   "regex",
+  "rust",
   "sql",
   "toml",
   "tsx",

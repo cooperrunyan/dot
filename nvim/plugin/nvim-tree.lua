@@ -46,8 +46,9 @@ require("nvim-tree").setup({
       diagnostics_placement = "right_align",
       modified_placement = "right_align",
       padding = {
-        icon = "  ",
-        folder_arrow = " ",
+        icon = "", -- invisible whitespace
+        -- icon = " ",
+        -- folder_arrow = " ",
       },
       show = {
         file = true,
@@ -55,21 +56,26 @@ require("nvim-tree").setup({
         folder_arrow = false,
         git = true,
         modified = true,
-        diagnostics = false,
+        diagnostics = true,
       },
       glyphs = {
-        default = "",
-        symlink = "",
-        bookmark = "󰆤",
-        modified = "●",
-        hidden = "󰜌",
+        -- default = "",
+        -- symlink = "",
+        -- bookmark = "󰆤",
+        -- modified = "●",
+        -- hidden = "󰜌",
         folder = {
           arrow_closed = "",
           arrow_open = "",
-          default = "",
-          open = "",
-          empty = "󰉖",
-          empty_open = "",
+          -- default = "",
+          -- open = "",
+          -- empty = "󰉖",
+          -- empty_open = "",
+
+          default = "",
+          empty = "",
+          open = "",
+          empty_open = "",
         },
         git = {
           unstaged = "",

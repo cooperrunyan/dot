@@ -64,7 +64,7 @@ vim.keymap.set("n", "gd", function() require("snacks").picker.lsp_definitions() 
 vim.keymap.set("n", "gD", function() require("snacks").picker.lsp_declarations() end, opts("Goto Declaration"))
 vim.keymap.set(
   "n",
-  "gr",
+  "gR",
   function() require("snacks").picker.lsp_references() end,
   { nowait = true, desc = "References" }
 )
