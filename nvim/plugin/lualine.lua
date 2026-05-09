@@ -4,6 +4,7 @@ vim.pack.add({
 })
 
 local branch = { "branch", icons_enabled = true, icon = "" }
+local filetype = { "filetype", icon_only = true }
 
 local mode = {
   "mode",
@@ -40,13 +41,13 @@ require("lualine").setup({
     lualine_b = { branch },
     lualine_c = { "location", diagnostics },
     lualine_x = { "searchcount", no_fmt },
-    lualine_y = { "filetype" },
+    lualine_y = { filetype },
     lualine_z = { "filename" },
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { "filetype" },
+    lualine_c = { filetype },
     lualine_x = { "filename" },
     lualine_y = {},
     lualine_z = {},
