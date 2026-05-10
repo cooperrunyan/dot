@@ -70,7 +70,7 @@ require("which-key").setup({
     -- -- { "gi", vim.lsp.buf.implementation, silent = true, desc = "Go to implementation" },
     {
       "K",
-      function() vim.lsp.buf.hover() end,
+      function() vim.lsp.buf.hover({ max_width = 90 }) end,
       silent = true,
       desc = "Hover",
     },

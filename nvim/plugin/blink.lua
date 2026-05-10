@@ -14,7 +14,7 @@ require("blink.cmp").setup({
     -- ["<tab>"] = { "accept", "snippet_forward", "fallback" },
     -- ["<esc>"] = { "cancel", "fallback" },
   },
-  -- term = { enabled = true },
+  term = { enabled = false },
   cmdline = {
     enabled = true,
     keymap = {
@@ -33,16 +33,11 @@ require("blink.cmp").setup({
   },
   appearance = {
     use_nvim_cmp_as_default = true,
-    -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-    nerd_font_variant = "normal",
+    nerd_font_variant = "mono", -- "normal"
   },
-  -- snippets = {
-  -- 	preset = "luasnip",
-  -- },
   signature = {
     enabled = true,
     window = {
-      border = "rounded",
       show_documentation = true,
     },
     trigger = {
@@ -53,12 +48,9 @@ require("blink.cmp").setup({
   completion = {
     accept = { auto_brackets = { enabled = false } },
     menu = {
-      scrollbar = false,
-      border = "rounded",
-      -- winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
-      winhighlight = "Normal:NormalFloat",
+      -- scrollbar = false,
       draw = {
-        columns = { { "kind_icon" }, { "label" } },
+        -- columns = { { "kind_icon" }, { "label", "label_description", gap = 1 } },
         treesitter = { "lsp" },
 
         -- components = {
@@ -69,19 +61,13 @@ require("blink.cmp").setup({
         -- },
       },
     },
-    ghost_text = { enabled = false },
-    documentation = {
-      window = { border = "rounded" },
-      auto_show = true,
-    },
+    -- ghost_text = { enabled = false },
+    documentation = { auto_show = true },
     list = {
       selection = {
         preselect = function() return not require("blink.cmp").snippet_active() end,
         auto_insert = false,
       },
-    },
-    trigger = {
-      -- show_in_snippet = false
     },
   },
   sources = {
@@ -93,6 +79,18 @@ require("blink.cmp").setup({
       "buffer",
       "path",
       -- "snippets",
+    },
+    providers = {
+      lsp = {
+        name = "LSP",
+        module = "blink.cmp.sources.lsp",
+        transform_items = function(_, items)
+          return vim.tbl_filter(
+            function(item) return item.kind ~= require("blink.cmp.types").CompletionItemKind.Keyword end,
+            items
+          )
+        end,
+      },
     },
   },
 })

@@ -24,10 +24,28 @@ local diagnostics = {
 }
 
 local no_fmt = {
-  -- 󰉥  
+  -- 󰉥      
   --      󰁨 󱀌 󱀍
-  function() return (vim.g.disable_autoformat or vim.b.disable_autoformat) and "  " or "  " end,
+  function() return " " .. ((vim.g.disable_autoformat or vim.b.disable_autoformat) and " " or " ") end,
+  -- color = function() return (vim.g.disable_autoformat or vim.b.disable_autoformat) and "Comment" or "Normal" end,
   on_click = function(_, _, mods) require("util.fmt_toggle").toggle(string.find(mods, "s") or string.find(mods, "c")) end,
+  padding = 1,
+}
+
+local markdown_preview = {
+  function()
+    local ok, rm = pcall(require, "render-markdown")
+    if ok then return "  " .. (rm.get() and " " or " ") end
+  end,
+  on_click = function(_, _, _)
+    require("render-markdown").toggle()
+    require("lualine").refresh({
+      scope = "all",
+      place = { "statusline" },
+      trigger = "unknown",
+    })
+  end,
+  padding = 1,
 }
 
 require("lualine").setup({
@@ -40,7 +58,7 @@ require("lualine").setup({
     lualine_a = { mode },
     lualine_b = { branch },
     lualine_c = { "location", diagnostics },
-    lualine_x = { "searchcount", no_fmt },
+    lualine_x = { "searchcount", markdown_preview, no_fmt },
     lualine_y = { filetype },
     lualine_z = { "filename" },
   },

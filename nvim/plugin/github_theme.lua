@@ -21,6 +21,10 @@ require("github-theme").setup({
     all = {
       MatchParen = { link = "Visual" },
 
+      ["@markup.link"] = { link = "@markup.link.uri" },
+      ["@markup.link.label.markdown_inline"] = { link = "@markup.link.uri" },
+      ["@markup.link.markdown_inline"] = { link = "@markup.link.uri" },
+
       ["@label.latex"] = { link = "@string" },
       ["@punctuation.delimiter.latex"] = { link = "@conceal" },
       ["@punctuation.bracket.latex"] = { link = "@operator.latex" },
@@ -28,7 +32,9 @@ require("github-theme").setup({
       CursorLine = { bg = "bg2" },
       NvimTreeIndentMarker = { fg = "bg3" },
       TelescopeBorder = { link = "FloatBorder" },
-      -- Pmenu = { link = "FloatBorder" },
+      Pmenu = { link = "NormalFloat" },
+      PmenuBorder = { link = "FloatBorder" },
+      PmenuThumb = { bg = "palette.border.default" },
       -- PmenuSel = { link = "Visual" },
 
       DiagnosticUnderlineError = { bg = "palette.danger.subtle" },
@@ -51,18 +57,17 @@ require("github-theme").setup({
       -- Visual = { bg = palette.scale.gray[8] },
       -- IncSearch = { bg = palette.scale.blue[6], fg = "none" },
       IncSearch = { bg = "sel0", fg = "none" },
-      -- BlinkCmpSignatureHelpActiveParameter = { bg = "palette.border.default" },
-      -- BlinkCmpSignatureHelpActiveParameter = { bg = palette.scale.gray[9] },
-      BlinkCmpSignatureHelpActiveParameter = { bg = "bg2" },
-      LspSignatureActiveParameter = { link = "BlinkCmpSignatureHelpActiveParameter" },
+      -- LspSignatureActiveParameter = { fg = "none", bg = "bg2" },
+      LspSignatureActiveParameter = { link = "PmenuSel" },
+      BlinkCmpSignatureHelpActiveParameter = { link = "LspSignatureActiveParameter" },
       BlinkCmpMenuBorder = { link = "FloatBorder" },
       BlinkCmpDocBorder = { link = "FloatBorder" },
       BlinkCmpDocSeparator = { link = "FloatBorder" },
       BlinkCmpSignatureHelpBorder = { link = "FloatBorder" },
       CmpDocumentationBorder = { link = "FloatBorder" },
-      BlinkCmpDocCursorLine = { link = "Visual" },
-      BlinkCmpGhostText = { link = "Comment" },
-      SnacksPickerMatch = { link = "BlinkCmpLabelMatch" },
+      -- BlinkCmpDocCursorLine = { link = "Visual" },
+      -- BlinkCmpGhostText = { link = "Comment" },
+      -- SnacksPickerMatch = { link = "BlinkCmpLabelMatch" },
     },
   },
 })
@@ -79,7 +84,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   callback = function()
     vim.highlight.on_yank({
-      higroup = "yanked",
+      higroup = "Yanked",
       timeout = 200,
       priority = 900,
     })

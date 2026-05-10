@@ -3,9 +3,9 @@ vim.pack.add({
 })
 
 require("fidget").setup({
-  progress = {
-    display = {
-      done_icon = "",
-    },
-  },
+  -- progress = {
+  --   display = {
+  --     done_icon = "",
+  --   },
+  -- },
 })

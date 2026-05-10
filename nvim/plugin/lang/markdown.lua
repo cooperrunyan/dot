@@ -3,6 +3,16 @@
 vim.pack.add({
   "https://github.com/iamcco/markdown-preview.nvim",
   "https://github.com/bullets-vim/bullets.vim",
+  "https://github.com/nvim-mini/mini.icons",
+  "https://github.com/MeanderingProgrammer/render-markdown.nvim",
+})
+
+require("render-markdown").setup({
+  completions = { lsp = { enabled = true } },
+  code = {
+    -- style = "normal",
+    -- language = false
+  },
 })
 
 vim.api.nvim_create_autocmd("PackChanged", {
@@ -28,4 +38,4 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.cmd([[do FileType]])
+-- vim.cmd([[do FileType]])
