@@ -9,7 +9,10 @@ vim.pack.add({
 
 require("render-markdown").setup({
   completions = { lsp = { enabled = true } },
+  heading = { enabled = false },
   code = {
+    border = "thin",
+    inline_pad = 1,
     -- style = "normal",
     -- language = false
   },

@@ -72,10 +72,10 @@ require("nvim-tree").setup({
           -- empty = "󰉖",
           -- empty_open = "",
 
-          default = "",
-          empty = "",
-          open = "",
-          empty_open = "",
+          default = "",
+          empty = "",
+          open = "",
+          empty_open = "",
         },
         git = {
           unstaged = "",
