@@ -16,29 +16,43 @@ fi
 
 POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
+# disable vi mode
+set -o emacs
 
 autoload -Uz undo redo run-help push-input accept-and-hold yank yank-pop quote-region kill-buffer backward-kill-word set-mark-command
 bindkey '^u' undo
 bindkey '^r' redo
-# bindkey '^h' run-help
+# # bindkey '^h' run-help
 bindkey '^[p' push-input
-# bindkey '^p' yank
-# bindkey '^g' yank-pop
-bindkey "^\'" quote-region
-bindkey '^k' kill-buffer
-bindkey '\Es' set-mark-command
+# bindkey "^[[39;5u" quote-region # ctrl+'
+# bindkey '^k' kill-buffer
+# bindkey '\Es' set-mark-command
 bindkey '^n' forward-word
 bindkey '^b' backward-word
 
-delregion() {
-  if ((REGION_ACTIVE)) then
-     zle kill-region
-  else
-    zle backward-delete-char
-  fi
-}
-zle -N delregion
-bindkey '^?' delregion
+# shift+enter
+# bindkey '^[[27;2;13~'
+
+# ctrl+enter
+bindkey '^[[27;5;13~' accept-and-hold
+
+# shift+up
+bindkey '^[[1;2A' up-line
+
+# shift+down
+bindkey '^[[1;2B' down-line
+
+
+#
+# delregion() {
+#   if ((REGION_ACTIVE)) then
+#      zle kill-region
+#   else
+#     zle backward-delete-char
+#   fi
+# }
+# zle -N delregion
+# bindkey '^?' delregion
 
 HISTSIZE=100000
 HISTFILE="$XDG_DATA_HOME/zsh/.zsh_history"
@@ -96,11 +110,11 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS+=(brackets pattern regexp)
 
 zmodload zsh/complist 
 
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
-bindkey -M vicmd 'k' history-search-backward
-bindkey -M vicmd 'j' history-search-forward
-bindkey -M menuselect '^[[Z' reverse-menu-complete
+# bindkey '^[[A' history-search-backward
+# bindkey '^[[B' history-search-forward
+# bindkey -M vicmd 'k' history-search-backward
+# bindkey -M vicmd 'j' history-search-forward
+# bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 
 # zinit snippet OMZP::bun
