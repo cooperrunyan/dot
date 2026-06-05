@@ -19,16 +19,6 @@ git/custom.gitconfig
 .config/nvim/lazy-lock.json
 
 **/*_history
-**/iterm2/AppSupport
 
-.config/fish/fish_variables
-.config/fish/**/*.local.fish
 
-fish/functions/*bass*
 
-zmk/artifacts
-
-nvim/lazy-lock.json
-nvim/lazyvim.json
-
-firefox/**/*.zip

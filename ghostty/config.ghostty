@@ -1,0 +1,21 @@
+theme = dark:Github Dark Default,light:Github Light Default
+cursor-style = bar
+unfocused-split-opacity = 0.9
+# macos-titlebar-style = tabs
+macos-option-as-alt = true
+
+# `official` `blueprint`, `chalkboard`, `microchip`, `glass`, `holographic`,
+# `paper`, `retro`, `xray`
+macos-icon = xray
+window-padding-x = 8
+
+font-style-italic = false
+font-style-bold-italic = false
+font-feature = -liga, -calt, -dlig
+
+clipboard-read = allow
+clipboard-write = allow
+
+shell-integration-features = cursor,sudo,title,ssh-env,no-ssh-terminfo,path
+
+# window-title-font-family = 

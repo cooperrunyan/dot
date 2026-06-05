@@ -8,7 +8,7 @@
 ## Install
 
 ```bash
-git clone --recurse-submodules -j8 https://github.com/cooperrunyan/dot ~/.config/dot
+git clone https://github.com/cooperrunyan/dot ~/.config/dot
 cd ~/.config/dot
 stow .
 ```

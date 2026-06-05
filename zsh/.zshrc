@@ -194,13 +194,9 @@ abbr v="nvim"
 abbr b="brew"
 abbr2 brew i nstall
 abbr2 brew s earch
-abbr chx="chmod +x"
 alias ls="ls -phAFHtG --color"
 alias sudo="sudo -E"
-alias mkdir="mkdir -p"
-# alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
-# alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
-alias fzf="fzf --preview='bat --color=always --style=plain {}'"
+alias fzf="fzf --preview='bat --style=plain {}'"
 alias du="du -h"
 
 zshrc_benchmark() {
@@ -222,4 +218,4 @@ colortest() {
 }
 
 # bun completions
-[ -s "/Users/cooperrunyan/.local/share/bun/_bun" ] && source "/Users/cooperrunyan/.local/share/bun/_bun"
+[ -s "~/.local/share/bun/_bun" ] && source "~/.local/share/bun/_bun"
