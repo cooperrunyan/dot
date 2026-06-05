@@ -190,10 +190,19 @@ alias calc='noglob _calc'
 alias gr="noglob grep -iE"
 
 abbr g="git"
+abbr2 git aa="add -A"
+abbr2 git ac="add -A; git c"
+abbr2 git st=stash
+abbr2 git sm=submodule
+abbr2 git b=branch
+abbr2 git ch=checkout
+
 abbr v="nvim"
 abbr b="brew"
-abbr2 brew i nstall
-abbr2 brew s earch
+abbr2 brew i=install
+abbr2 brew s=search
+abbr2 brew un=uninstall
+
 alias ls="ls -phAFHtG --color"
 alias sudo="sudo -E"
 alias fzf="fzf --preview='bat --style=plain {}'"
@@ -218,4 +227,6 @@ colortest() {
 }
 
 # bun completions
-[ -s "~/.local/share/bun/_bun" ] && source "~/.local/share/bun/_bun"
+if [ -s "$XDG_DATA_HOME/bun/_bun" ]; then 
+  source "$XDG_DATA_HOME/bun/_bun" 
+fi

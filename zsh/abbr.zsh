@@ -13,7 +13,12 @@ function abbr() {
 
 # abbr2 "brew" "i" "nstall"
 function abbr2() {
-  nested_abbrs[$1]+="$2:$3 "
+  delim='='
+  param="$2"
+  sub=${param%%"$delim"*}
+  exp=${param#*"$delim"}
+
+  nested_abbrs[$1:::::$sub]="$exp"
 }
 
 # expand any aliases in the current line buffer
@@ -23,17 +28,14 @@ function expand_abbr() {
     zle expand-word
   else
     for key val in "${(@kv)nested_abbrs}"; do
-      if ! [[ $LBUFFER =~ ".*(^|;|\\||&&|>|>>)( )*$key" ]]; then continue; fi
+      delim=':::::'
+      cmd=${key%%"$delim"*}
+      prefix=${key#*"$delim"}
 
-      for sub in ${(@s/ /)val}; do
-        parts=(${(@s/:/)sub})
-        prefix="$parts[1]"
-        content="$parts[2]"
-        if [[ $LBUFFER =~ ".*(^|;|\\||&&|>|>>)( )*$key( )*$prefix\$" ]]; then
-          LBUFFER+=$content
-          break
-        fi
-      done
+      if [[ $LBUFFER =~ ".*(^|;|\\||&&|>|>>)( )*$cmd( )*$prefix\$" ]]; then
+        LBUFFER="${LBUFFER%"$prefix"}$val"
+        break
+      fi
     done
   fi
   zle self-insert
@@ -46,9 +48,9 @@ bindkey '^ ' magic-space # control-space to bypass completion
 bindkey -M isearch " " magic-space # normal space during searches
 
 # A function for expanding any aliases before accepting the line as is and executing the entered command
-function expand-abbr-and-accept-line {
-  expand_abbr
-  zle .backward-delete-char
-  zle .accept-line
-}
-zle -N accept-line expand-abbr-and-accept-line
+# function expand-abbr-and-accept-line {
+#   expand_abbr
+#   zle .backward-delete-char
+#   zle .accept-line
+# }
+# zle -N accept-line expand-abbr-and-accept-line
