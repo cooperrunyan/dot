@@ -34,13 +34,13 @@ bindkey '^b' backward-word
 # bindkey '^[[27;2;13~'
 
 # ctrl+enter
-bindkey '^[[27;5;13~' accept-and-hold
+# bindkey '^[[27;5;13~' accept-and-hold
 
 # shift+up
-bindkey '^[[1;2A' up-line
+# bindkey '^[[1;2A' up-line
 
 # shift+down
-bindkey '^[[1;2B' down-line
+# bindkey '^[[1;2B' down-line
 
 
 #
@@ -211,6 +211,7 @@ abbr2 git sm=submodule
 abbr2 git b=branch
 abbr2 git ch=checkout
 
+abbr t="tmux"
 abbr v="nvim"
 abbr b="brew"
 abbr2 brew i=install
