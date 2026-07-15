@@ -83,6 +83,10 @@
       "rev": "4b7fbaa239c5db6b36f424a4521ca9f1a401be33",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
+    "nvim-ros2": {
+      "rev": "d8d6e12a1c833d310c6ef356ac3f1d0a9e931009",
+      "src": "https://github.com/ErickKramer/nvim-ros2"
+    },
     "nvim-surround": {
       "rev": "1098d7b3c34adcfa7feb3289ee434529abd4afd1",
       "src": "https://github.com/kylechui/nvim-surround",
@@ -108,6 +112,10 @@
     "qmk.nvim": {
       "rev": "3c804c1480991e4837514900b22b9358cfd64fa1",
       "src": "https://github.com/codethread/qmk.nvim"
+    },
+    "remote-sshfs.nvim": {
+      "rev": "7a12a1677bbe96ca98f0c713448ac1f518ba09b7",
+      "src": "https://github.com/nosduco/remote-sshfs.nvim"
     },
     "render-markdown.nvim": {
       "rev": "629eb9533ec989d9d5c6cab8f3ad5372422c24e0",

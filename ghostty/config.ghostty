@@ -1,4 +1,4 @@
-theme = dark:Github Dark Default,light:Github Light Default
+theme = dark:GitHub Dark Default,light:GitHub Light Default
 cursor-style = bar
 unfocused-split-opacity = 0.9
 # macos-titlebar-style = tabs
