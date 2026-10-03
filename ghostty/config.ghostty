@@ -6,7 +6,7 @@ macos-option-as-alt = true
 
 # `official` `blueprint`, `chalkboard`, `microchip`, `glass`, `holographic`,
 # `paper`, `retro`, `xray`
-macos-icon = xray
+# macos-icon = xray
 window-padding-x = 8
 
 font-style-italic = false
